@@ -1,0 +1,20 @@
+{
+  "name": "rent-a-car-oloo-js",
+  "version": "1.0.0",
+  "description": "Implement the business logic of a Rent a car, create an ApiRestfull connected to MongoAtlas and implement the object composition. Introduction to linked objects by prototypes of JS",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest",
+    "main": "node ./main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pau13-loop/Rent-a-car-OLOO-JS.git"
+  },
+  "author": "Pau Llinas Amat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pau13-loop/Rent-a-car-OLOO-JS/issues"
+  },
+  "homepage": "https://github.com/pau13-loop/Rent-a-car-OLOO-JS#readme"
+}
