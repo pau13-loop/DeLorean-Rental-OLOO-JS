@@ -1,0 +1,17 @@
+{
+  "name": "category",
+  "version": "1.0.0",
+  "description": "",
+  "main": "category.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^27.3.1"
+  }
+}

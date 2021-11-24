@@ -19,6 +19,4 @@ describe('Define vehicle and category for getters test cases', () => {
         expect(fordMustang.getCategory().getName()).toBe('Category name: classic');
         expect(fordMustang.getCategory().getDiscountTax()).toBe('Category discount tax: 30');
     })
-
-
 })
