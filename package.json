@@ -1,5 +1,5 @@
 {
-  "name": "rent-a-car-oloo-js",
+  "name": "rent-a-car-oloo",
   "version": "1.0.0",
   "description": "Implement the business logic of a Rent a car, create an ApiRestfull connected to MongoAtlas and implement the object composition. Introduction to linked objects by prototypes of JS",
   "main": "main.js",

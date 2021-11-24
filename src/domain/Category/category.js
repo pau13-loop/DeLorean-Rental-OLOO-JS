@@ -4,11 +4,11 @@ var Category = {
         this.discountTax = discountTax;
         return this;
     },
-    getCategoryName: function() {
+    getName: function() {
         return `Category name: ${this.name}`;
     },
     getDiscountTax: function() {
-        return `Category Discount tax is: ${this.discountTax}`;
+        return `Category discount tax: ${this.discountTax}`;
     }
 }
 
