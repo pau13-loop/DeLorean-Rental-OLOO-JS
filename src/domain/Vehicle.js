@@ -1,10 +1,10 @@
 var Vehicle = {
     init: function(
-        brand, model, color) {
+        brand, model, color, category) {
         this.brand = brand;
         this.model = model;
         this.color = color;
-        // this.category = category;
+        this.category = category;
         return this;
     },
     getBrand: function() {
@@ -20,9 +20,9 @@ var Vehicle = {
     getColor: function() {
         return `Car color is: ${this.color}`;
     },
-    // getCategory: function() {
-    //     return this.category;
-    // }
+    getCategory: function() {
+        return this.category;
+    }
 };
 
-module.exports = Vehicle;;
+module.exports = Vehicle;
