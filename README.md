@@ -23,5 +23,38 @@ Implement the business logic of a Rent a car, create an ApiRestfull connected to
 ###### Examples OLOO
 > https://www.learngamedevelopment.net/blog/40
 
+###### Object.defineProperty in constructor:
+> https://stackoverflow.com/questions/18524652/how-to-use-javascript-object-defineproperty
+
+###### Respuesta para linkar objetos hata tres niveles ???
+> https://stackoverflow.com/questions/33455026/not-sharing-object-properties-in-oloo-inheritance
 
 
+# Lógica de negocio a aplicar:
+
+- Los obj tendrán el precio inicial de cuando se obtuvieron por primera vez de BD. Por esta razón una vez acabe el "Black Friday" podrán restablecer su valor original sin hacer una query costosa, tan solo tendrán que acceder a su atributo "originalPRice" que será [no enumerable, no configurable y no writeable]. El atributo no vendrá definido de BD por lo que nos ahorramos el campo en los obj a la hora de meterlos en BD y lo creamos al inicializar el obj.
+
+## Atribs a aplicar (en los prototipos)
+
+- originalPrice 
+
+## Método a aplicar (Lógica prototipos)
+
+- UpdatePrice (este método se ejecutará cuando el vehiculo lleve en stock 1 año, actualizará el precio un 5%)
+- applyDiscount (Black friday method, se hace el cálculo con el discountTax, atributo distinto para cada categoria)
+- RestorePrice (devuelve su precio original después de un BlackFriday)
+
+## Método a aplicar (en el Service)
+
+- findAll
+- findOne
+- findByCategory
+- findByPriceMinorTo
+- findByPriceMajorTo
+- findByBrand (or brands ???)
+- findByNumPassengers
+- findByColor
+- 
+- SortByMayorPrice
+- SortByMinorPrice
+- 
