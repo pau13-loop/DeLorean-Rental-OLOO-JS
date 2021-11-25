@@ -1,27 +1,39 @@
 var Vehicle = {
     init: function(
-        brand, model, color, category) {
+        brand, model, color, price, category) {
         this.brand = brand;
         this.model = model;
         this.color = color;
+        this.price = price
         this.category = category;
         return this;
     },
+    // GETTERS
     getBrand: function() {
-        return `Car brand: ${this.brand}`;
+        return `Vehicle brand: ${this.brand}`;
     },
     getModel: function() {
-        return `Car model: ${this.model}`;
+        return `Vehicle model: ${this.model}`;
     },
-    // //? Esta función debería implementar getBrans + getName, o debería acceder a las propiedades directamente ???
     getName: function() {
-        return `Car name: ${this.brand} ${this.model}`;
+        return `Vehicle name: ${this.brand} ${this.model}`;
     },
     getColor: function() {
-        return `Car color: ${this.color}`;
+        return `Vehicle color: ${this.color}`;
     },
     getCategory: function() {
         return this.category;
+    },
+    getPrice: function() {
+        return `Vehicle price: ${this.price}`;
+    },
+    // DATA MANIPULATION
+    //? Porque si accedo al método getDiscountTax() me devuelve NaN ???
+    updatePrice: function() {
+        this.price = Math.floor((100 * this.category.discountTax) / this.price);
+    },
+    getUpdatedPrice: function() {
+        return `Discount applied successfully! \nPrice: ${this.price}`;
     }
 };
 
