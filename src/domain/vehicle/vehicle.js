@@ -12,7 +12,7 @@ var Vehicle = {
             writeable: false,
             enumerable: false,
         });
-        //? Donde explico que la regla de mi negocio no permite bajar el valor de su coche una vez llegué al 30% de su valor inicial ???
+        //? Donde explico que la regla de mi negocio no permite bajar el valor de los coches una vez llegué al 30% de su valor inicial ???
         Object.defineProperty(this, "minPrice", {
             value: price * 0.3,
             writeable: false,
@@ -39,6 +39,7 @@ var Vehicle = {
     getPrice: function () {
         return `Vehicle price: ${this.price}`;
     },
+    // GETTERS NON ENUMREABLE OR WRITEABLE PROPS
     getOriginalPrice: function () {
         return 'Vehicle original price: ' + this.originalPrice;
     },

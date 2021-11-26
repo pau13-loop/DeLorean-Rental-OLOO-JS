@@ -1,6 +1,14 @@
 const { expect } = require('@jest/globals');
 var Vehicle = require('../vehicle');
-var Category = require('../../Category/category');
+var Category = require('../../category/category');
+
+/**
+ * TODO
+ * Faltan por testear:
+ * - toBeInstanceOf()
+ * - ToBeFalsy()
+ * - ToBeTruthy()
+ *  */
 
 describe('Define vehicle and category for getters test cases', () => {
 
@@ -11,8 +19,19 @@ describe('Define vehicle and category for getters test cases', () => {
         fordMustang = Object.create(Vehicle).init('ford', 'mustang', 'red', 70, category);
     });
 
+    test('Check vehicle props', () => {
+        expect(fordMustang.brand).toBe('ford');
+        expect(fordMustang.model).toBe('mustang');
+        expect(fordMustang.color).toBe('red');
+        expect(fordMustang.price).toBe(70);
+        // Random test not.toBe()
+        expect(fordMustang.brand).not.toBe('seat');
+        expect(fordMustang.price).not.toBeNull();
+        expect(fordMustang.category).not.toBeNaN();
+    });
 
-    test('Check vehicle to have the required properties', () => {
+
+    test('Check vehicle getters', () => {
         expect(fordMustang).toHaveProperty('brand');
         expect(fordMustang).toHaveProperty('model');
         expect(fordMustang).toHaveProperty('color');
