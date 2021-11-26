@@ -7,7 +7,9 @@
     "test": "jest",
     "main": "node ./main.js",
     "lint": "eslint ./*.js",
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www",
+    "serverstart": "DEBUG=rent-a-car:* npm run devstart"
   },
   "repository": {
     "type": "git",
@@ -28,6 +30,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "eslint": "^8.3.0"
+    "eslint": "^8.3.0",
+    "nodemon": "^2.0.15"
   }
 }
