@@ -1,14 +1,19 @@
-var Vehicle = require('./src/domain/vehicle/vehicle');
-var Category = require('./src/domain/category/category');
+//Load HTTP module
+const http = require("http");
+const hostname = '127.0.0.1';
+const port = 3000;
 
-// Create category
-var category = Object.create(Category).init('premium', 50);
-var seatCupra = Object.create(Vehicle).init('seat', 'cupra', 'grey', 50, category);
-// Create vehicle
-console.log('Vehicle prepared !');
-console.log(`Vehicle: ${seatCupra}`);
-console.log(seatCupra.getName());
-console.log(seatCupra.getOriginalPrice());
+//Create HTTP server and listen on port 3000 for requests
+const server = http.createServer((req, res) => {
 
-console.log('Número props: ' + Object.keys(seatCupra).length);
+    //Set the response HTTP header with HTTP status and Content type
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Hello World\n');
+});
+
+//listen for request on port 3000, and as a callback function have the port listened on logged
+server.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`);
+});
 
