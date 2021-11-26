@@ -1,5 +1,5 @@
-var Vehicle = require('./src/domain/Vehicle/vehicle');
-var Category = require('./src/domain/Category/category');
+var Vehicle = require('./src/domain/vehicle/vehicle');
+var Category = require('./src/domain/category/category');
 
 // Create category
 var category = Object.create(Category).init('premium', 50);
