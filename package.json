@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "test": "jest",
-    "main": "node ./main.js"
+    "main": "node ./main.js",
+    "lint": "eslint ./*.js"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,8 @@
   "homepage": "https://github.com/pau13-loop/Rent-a-car-OLOO-JS#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.3.0"
   }
 }
