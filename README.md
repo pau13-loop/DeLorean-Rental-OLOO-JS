@@ -21,6 +21,7 @@ Implement the business logic of a Rent a car, create an ApiRestfull connected to
 
 - jest
 - eslint
+- nodemon
 
 
 
@@ -54,9 +55,34 @@ Example app listening on port 8000
 ```
 Access to the `localhost:8000` to be able to view the express server up and running.
 
+
+
 # eslint NOT WORKING AT THE MOMENT
 
 To explain a little further, eslint src/js is a command that we could enter in our terminal/command line to run eslint on JavaScript files contained in the src/js directory inside our app directory. Including the above inside our app's package.json file provides a shortcut for this command — lint.
+
+
+
+# Working with EXPRESS
+
+Then run the app:
+> `DEBUG=rent-a-car:* npm start`
+
+### www file
+The file /bin/www is the application entry point! The very first thing this does is require() the "real" application entry point (app.js, in the project root) that sets up and returns the express() application object.
+
+### app.js
+This file creates an express application object (named app, by convention), sets up the application with various settings and middleware, and then exports the app from the module.
+
+### Routes
+First, it loads the express module and uses it to get an express.Router object. Then it specifies a route on that object and lastly exports the router from the module (this is what allows the file to be imported into app.js).
+
+###### Why "next" in router function() ?
+One thing of interest above is that the callback function has the third argument 'next', and is hence a middleware function rather than a simple route callback. While the code doesn't currently use the next argument, it may be useful in the future if you want to add multiple route handlers to the '/' route path.
+
+### Views (templates)
+The views (templates) are stored in the /views directory (as specified in app.js) and are given the file extension .pug. The method Response.render() is used to render a specified template along with the values of named variables passed in an object, and then send the result as a response. 
+
 
 # Bibliography
 
