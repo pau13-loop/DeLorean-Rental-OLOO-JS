@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/pau13-loop/Rent-a-car-OLOO-JS/issues"
   },
-  "homepage": "https://github.com/pau13-loop/Rent-a-car-OLOO-JS#readme"
+  "homepage": "https://github.com/pau13-loop/Rent-a-car-OLOO-JS#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }

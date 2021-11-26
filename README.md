@@ -1,6 +1,25 @@
 # Rent-a-car-OLOO-JS
 Implement the business logic of a Rent a car, create an ApiRestfull connected to MongoAtlas and implement the object composition. Introduction to linked objects by prototypes of JS
 
+# Install the required dependencies
+
+- node 
+- npm
+- express
+
+# Node.js server
+
+To run the node.js server execute the file where you have added the configuration of your server, for example:
+> node main.js
+You'll get something like the example below:
+```
+> node hellonode.js
+Server running at http://127.0.0.1:3000/
+```
+
+
+
+
 # Bibliography
 
 ###### OLOO explanation
