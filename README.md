@@ -1,11 +1,23 @@
 # Rent-a-car-OLOO-JS
 Implement the business logic of a Rent a car, create an ApiRestfull connected to MongoAtlas and implement the object composition. Introduction to linked objects by prototypes of JS
 
+
+
 # Install the required dependencies
+
+###### Production
 
 - node 
 - npm
 - express
+- express-generator
+
+###### Development
+
+- jest
+- eslint
+
+
 
 # Node.js server
 
@@ -16,9 +28,30 @@ You'll get something like the example below:
 > node hellonode.js
 Server running at http://127.0.0.1:3000/
 ```
+Access to the `127.0.0.1:3000` to be able to view the express server up and running.
 
 
 
+###### Help
+**Remember !**
+
+The IP  `127.0.0.1` always refers to the `localhost`. Then if you access to the url `http://127.0.0.1:3000/` or to this other one `http://localhost:3000/` you'll get the same result, so don't worry about it because both urls point to the same destination point.
+
+
+
+# Express server example
+To run the node.js server execute the file where you have added the configuration of your server, for example:
+> node myAppExpress.js
+You'll get something like the example below:
+```
+> node myAppExpress.js
+Example app listening on port 8000
+```
+Access to the `localhost:8000` to be able to view the express server up and running.
+
+# eslint NOT WORKING AT THE MOMENT
+
+To explain a little further, eslint src/js is a command that we could enter in our terminal/command line to run eslint on JavaScript files contained in the src/js directory inside our app directory. Including the above inside our app's package.json file provides a shortcut for this command — lint.
 
 # Bibliography
 
@@ -47,6 +80,7 @@ Server running at http://127.0.0.1:3000/
 
 ###### Respuesta para linkar objetos hata tres niveles ???
 > https://stackoverflow.com/questions/33455026/not-sharing-object-properties-in-oloo-inheritance
+
 
 
 # Lógica de negocio a aplicar:
