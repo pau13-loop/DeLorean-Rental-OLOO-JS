@@ -11,6 +11,11 @@ Implement the business logic of a Rent a car, create an ApiRestfull connected to
 - npm
 - express
 - express-generator
+- cookie-parser
+- debug
+- http-errors
+- jade
+- morgan
 
 ###### Development
 
