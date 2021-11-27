@@ -29,6 +29,7 @@ var vehicleAPI = (function singleVehicleController() {
         vehicleByCategory,
         vehicleFindAllByBrand
     };
+
 })();
 
 exports.vehicleAPI = vehicleAPI;
