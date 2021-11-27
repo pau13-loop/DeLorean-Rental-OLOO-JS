@@ -16,8 +16,12 @@ router.use(function (req, res, next) {
 // VEHICLE ROUTES //
 
 router.get('/', vehicleController.vehicleAPI.vehicleList);
+
+// Probablemente no necesario, ya que el id no lo conocen los usuarios
 router.get('/:id', vehicleController.vehicleAPI.vehicleFindOne);
-router.get('/:category', vehicleController.vehicleAPI.vehicleByCategory);
-router.get('/:brand', vehicleController.vehicleAPI.vehicleFindAllByBrand);
+
+router.get('/brand/:brand', vehicleController.vehicleAPI.vehicleFindAllByBrand);
+router.get('/model/:model', vehicleController.vehicleAPI.vehicleFindOneByModel);
+router.get('/category/:category', vehicleController.vehicleAPI.vehicleByCategory);
 
 module.exports = router;

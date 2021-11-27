@@ -17,27 +17,35 @@ var vehicleAPI = (function singleVehicleController() {
     //     // res.status(200).send('NOT IMPLEMENTED: Vehicle list');
     // }
 
-        const vehicleList = function(req, res) {
+    const vehicleList = function (req, res) {
         res.status(200).type('json').json(stockService.serviceAPI.getStockList());
     }
 
-    const vehicleFindOne = function(req, res) {
+    const vehicleFindOne = function (req, res) {
         res.status(200).send('NOT IMPLEMENTED: Vehicle find one');
     }
 
-    const vehicleByCategory = function(req, res) {
-        res.status(200).send('NOT IMPLEMENTED: Vehicle find by category');
+    const vehicleFindAllByBrand = function(req, res) {
+        res.status(200).type('json').json(stockService.serviceAPI.getAllByBrand(req.params.brand));
     }
 
-    const vehicleFindAllByBrand = function(req, res) {
-        res.status(200).send('NOT IMPLEMENTED: Vehicle find all by brand');
+    // Solamanete nos interesa saber que ese modelo está disponible o existe, no cuantos hay
+    const vehicleFindOneByModel = function(req, res) {
+        console.log('Controller: ', req.params.model);
+        res.status(200).type('json').json(stockService.serviceAPI.getOneByModel(req.params.model));
+    }
+
+    const vehicleByCategory = function (req, res) {
+        res.status(200).type('json').json(stockService.serviceAPI.getAllByCategory(req.params.category));
+        
     }
 
     return {
         vehicleList,
         vehicleFindOne,
         vehicleByCategory,
-        vehicleFindAllByBrand
+        vehicleFindAllByBrand,
+        vehicleFindOneByModel
     };
 
 })();
