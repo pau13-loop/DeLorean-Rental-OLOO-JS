@@ -5,10 +5,13 @@ var Category = {
         return this;
     },
     getName: function() {
-        return `Category name: ${this.name}`;
+        return this.name;
     },
     getDiscountTax: function() {
-        return `Category discount tax: ${this.discountTax}`;
+        return this.discountTax;
+    },
+    makeDiscount: function(price) {
+        return;
     }
 }
 

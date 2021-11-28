@@ -22,35 +22,32 @@ var Vehicle = {
     },
     // GETTERS
     getBrand: function () {
-        return `Vehicle brand: ${this.brand}`;
+        return this.brand;
     },
     getModel: function () {
-        return `Vehicle model: ${this.model}`;
+        return this.model;
     },
     getName: function () {
         return `Vehicle name: ${this.brand} ${this.model}`;
     },
     getColor: function () {
-        return `Vehicle color: ${this.color}`;
+        return this.color;
     },
     getCategory: function () {
         return this.category;
     },
     getPrice: function () {
-        return `Vehicle price: ${this.price}`;
+        return this.price;
     },
     // GETTERS NON ENUMREABLE OR WRITEABLE PROPS
     getOriginalPrice: function () {
-        return 'Vehicle original price: ' + this.originalPrice;
+        return this.originalPrice;
     },
+    // TODO: esta función probablemente sobre !!! 
     getErrorMinPrice: function () {
         return 'Price can not go under minimum';
     },
     // DATA MANIPULATION
-    /**
-     * TODO: Revisar esto con atención
-     //! Las validaciones se deberían hacer en el service y el objeto debería encapsular una lógica simple que solo sea llamada si se cumple la condición ??? Los if-else deberían ir en el service ?
-     */
     //? Porque si accedo al método getDiscountTax() me devuelve NaN ???
     updatePrice: function () {
         //TODO: aplicar prog. defensiva, chequear que el precio no se puede descontar si es inferior al precioOriginal

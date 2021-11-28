@@ -3,19 +3,9 @@ const stockService = require('../service/service.filter');
 
 var vehicleAPI = (function singleVehicleController() {
 
-    //? El modulo resource nos lo podemos ahorrar ???
-    //* Ya que en principio el la logica de Ollivaners habiamos creado uno ya que el controller actuaba como el router y el resource de Ollivanders actuaria como el controller de node
-
     const vehicleList = function (req, res) {
         res.status(200).type('json').json(stockService.serviceAPI.getStockList());
     }
-
-    //! ATENCIÓN 
-    /**
-     *TODO: 
-     * Si una lista al hacer un getAll me vuelve vacia, donde compruebo si devuelvo la lista o un mensaje de error en el caso de que este vacia, en el Service o en el controller ? Me creo una función que lo único que haga sea comprobar si la lista está vacia y mantnemos SRP ? controller
-     ** Es una validación que se realizará constantemente para cada método que devuelva una lista, tendria sentido crearse una función
-     */
 
     // FILTERS
     const vehicleFindOne = function (req, res) {
@@ -23,7 +13,10 @@ var vehicleAPI = (function singleVehicleController() {
     }
 
     const vehicleFindAllByBrand = function(req, res) {
-        res.status(200).type('json').json(stockService.serviceAPI.getAllByBrand(req.params.brand));
+        let allVehiclesByBrand = stockService.serviceAPI.getAllByBrand(req.params.brand);
+        checkResponseIsDefined(allVehiclesByBrand)
+        ? res.status(200).type('json').json(allVehiclesByBrand)
+        : res.status(404).send("Brand not found");
     }
 
     // Solamanete nos interesa saber que ese modelo está disponible o existe, no cuantos hay
@@ -40,6 +33,14 @@ var vehicleAPI = (function singleVehicleController() {
 
     const vehicleByDiscountTax = function (req, res) {
         res.status(200).type('json').json(stockService.serviceAPI.getAllByDiscountTax(req.params.discountTax));
+    }
+
+    // RESPONSE CHECKER
+    const checkResponseIsDefined = function(response) {
+        if (response !== undefined && response !== null && response.length > 0) {
+            return true;
+        }
+        return false;
     }
 
     return {
