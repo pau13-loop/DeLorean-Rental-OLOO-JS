@@ -142,3 +142,23 @@ The views (templates) are stored in the /views directory (as specified in app.js
 - SortByMayorPrice
 - SortByMinorPrice
 - 
+
+
+
+# Preguntas que han ido surgiendo a lo largo del dessarrollo:
+
+### Dudas que han surgido en el Controller
+
+1. El modulo resource nos lo podemos ahorrar ??? Ya que en principio el la logica de Ollivaners habiamos creado uno ya que el controller actuaba como el router y el resource de Ollivanders actuaria como el controller de node. 
+
+> Sí, la lógica del resoruces es una capa que nos podemos ahorrar, en Ollivanders no teniamos la capa routers.
+
+2.    Si una lista al hacer un getAll me vuelve vacia, donde compruebo si devuelvo la lista o un mensaje de error en el caso de que este vacia, en el Service o en el controller ? Me creo una función que lo único que haga sea comprobar si la lista está vacia y mantnemos SRP ? Es una validación que se realizará constantemente para cada método que devuelva una lista, tendria sentido crearse una función. 
+
+> La validación se debería hacer, se puede crear un método para ello y debería estar creada en el Controller de la aplicación
+
+3.   Las validaciones se deberían hacer en el service y el objeto debería encapsular una lógica simple que solo sea llamada si se cumple la condición ??? Los if-else deberían ir en el service ?
+
+> La lógica de negocio debe ir encapsulada en el dominio. En el service solo se ataca la bd y se filtra u ordena si se desea pero la lógica de negocio, que es lo que planteo en este caso, la encapsulamos en el dominio
+
+4. 
