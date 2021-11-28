@@ -3,15 +3,15 @@ const stockService = require('../service/service.filter');
 
 var vehicleAPI = (function singleVehicleController() {
 
+    // STOCK
     const vehicleList = function (req, res) {
-        res.status(200).type('json').json(stockService.serviceAPI.getStockList());
+        let stock = stockService.serviceAPI.getStockList();
+        checkResponseIsDefined(stock) 
+        ? res.status(200).type('json').json(stock)
+        : res.status(404).send("We are currently out of stock");
     }
 
-    // FILTERS
-    const vehicleFindOne = function (req, res) {
-        res.status(200).send('NOT IMPLEMENTED: Vehicle find one');
-    }
-
+    // FIND ALL
     const vehicleFindAllByBrand = function(req, res) {
         let allVehiclesByBrand = stockService.serviceAPI.getAllByBrand(req.params.brand);
         checkResponseIsDefined(allVehiclesByBrand)
@@ -19,20 +19,28 @@ var vehicleAPI = (function singleVehicleController() {
         : res.status(404).send("Brand not found");
     }
 
-    // Solamanete nos interesa saber que ese modelo está disponible o existe, no cuantos hay
-    const vehicleFindOneByModel = function(req, res) {
-        console.log('Controller: ', req.params.model);
-        res.status(200).type('json').json(stockService.serviceAPI.getOneByModel(req.params.model));
-    }
-
-    // CATEGORY
     const vehicleByCategory = function (req, res) {
-        res.status(200).type('json').json(stockService.serviceAPI.getAllByCategory(req.params.category));
+        let allVehiclesByCategory = stockService.serviceAPI.getAllByCategory(req.params.category);
+        checkResponseIsDefined(allVehiclesByCategory) 
+        ? res.status(200).type('json').json(allVehiclesByCategory) 
+        : res.status(404).send("Right now we don't have vehicles availables of this category");
         
     }
 
     const vehicleByDiscountTax = function (req, res) {
-        res.status(200).type('json').json(stockService.serviceAPI.getAllByDiscountTax(req.params.discountTax));
+        let allVehiclesByDiscountTax = stockService.serviceAPI.getAllByDiscountTax(req.params.discountTax);
+        checkResponseIsDefined(allVehiclesByDiscountTax)
+        ? res.status(200).type('json').json(allVehiclesByDiscountTax)
+        : res.status(404).send("We don't have vehicles availables with this discount tax");
+    }
+
+    // FIND ONE
+    // Solamanete nos interesa saber que ese modelo está disponible o existe, no cuantos hay
+    const vehicleFindOneByModel = function(req, res) {
+        let vehicleModel = stockService.serviceAPI.getOneByModel(req.params.model);
+        checkResponseIsDefined(vehicleModel) 
+        ? res.status(200).type('json').json(vehicleModel)
+        : res.status(404).send("Currently we don't have this model available");
     }
 
     // RESPONSE CHECKER
@@ -44,14 +52,14 @@ var vehicleAPI = (function singleVehicleController() {
     }
 
     return {
+        // STOCK
         vehicleList,
-        // FILTERS
-        vehicleFindOne,
+        // FIND ALL
         vehicleFindAllByBrand,
-        vehicleFindOneByModel,
-        // CATEGORY
         vehicleByCategory,
-        vehicleByDiscountTax
+        vehicleByDiscountTax,
+        // FIND ONE
+        vehicleFindOneByModel
     };
 
 })();

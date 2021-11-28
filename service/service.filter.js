@@ -7,7 +7,7 @@ var serviceAPI = (function singleService() {
         return vehiclesMock;
     }
 
-    // FILTERS
+    // FIND ALL
     const getAllByBrand = function(brand) {
         let stockFilteredByBrand = [];
         vehiclesMock.forEach(vehicle => {
@@ -19,15 +19,6 @@ var serviceAPI = (function singleService() {
         return stockFilteredByBrand;
     }
 
-    const getOneByModel = function(model) {
-        let requestedVehicle = mockStockList.find(vehicle => vehicle.model === model);
-        if (requestedVehicle) {
-            return requestedVehicle;
-        }
-        return {"errorMsg": "Vehicle not available"};
-    }
-
-    // CATEGORY
     const getAllByCategory = function(category) {
         let stockFilteredByCategory = [];
         vehiclesMock.forEach(vehicle => {
@@ -50,13 +41,23 @@ var serviceAPI = (function singleService() {
         return stockByDiscountTax.sort(function(a, b) {return a.category.discountTax - b.category.discountTax});
     }
 
+    // FIND ONE
+    const getOneByModel = function(model) {
+        let requestedVehicle = mockStockList.find(vehicle => vehicle.model === model);
+        if (requestedVehicle) {
+            return requestedVehicle;
+        }
+        return {"errorMsg": "Vehicle not available"};
+    }
+
     return {
         getStockList,
+        // FIND ALL
         getAllByBrand,
-        getOneByModel,
-        // CATEGORY
         getAllByCategory,
-        getAllByDiscountTax
+        getAllByDiscountTax,
+        // FIND ONE
+        getOneByModel
     }
 })();
 
