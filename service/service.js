@@ -7,6 +7,7 @@ var serviceAPI = (function singleService() {
         return vehiclesMock;
     }
 
+    // FILTERS
     const getAllByBrand = function(brand) {
         let stockFilteredByBrand = [];
         vehiclesMock.forEach(vehicle => {
@@ -26,6 +27,7 @@ var serviceAPI = (function singleService() {
         return {"errorMsg": "Vehicle not available"};
     }
 
+    // CATEGORY
     const getAllByCategory = function(category) {
         let stockFilteredByCategory = [];
         vehiclesMock.forEach(vehicle => {
@@ -37,12 +39,24 @@ var serviceAPI = (function singleService() {
         return stockFilteredByCategory;
     }
 
+    const getAllByDiscountTax = function(discountTax) {
+        let stockByDiscountTax = [];
+        vehiclesMock.forEach(vehicle => {
+            if (vehicle.category.discountTax >= discountTax) {
+                stockByDiscountTax = [...stockByDiscountTax, vehicle];
+            }
+        });
+        //TODO: implementar método que ordene lista
+        return stockByDiscountTax.sort(function(a, b) {return a.category.discountTax - b.category.discountTax});
+    }
 
     return {
         getStockList,
         getAllByBrand,
         getOneByModel,
-        getAllByCategory
+        // CATEGORY
+        getAllByCategory,
+        getAllByDiscountTax
     }
 })();
 

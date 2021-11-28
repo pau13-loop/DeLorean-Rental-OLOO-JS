@@ -22,6 +22,9 @@ router.get('/:id', vehicleController.vehicleAPI.vehicleFindOne);
 
 router.get('/brand/:brand', vehicleController.vehicleAPI.vehicleFindAllByBrand);
 router.get('/model/:model', vehicleController.vehicleAPI.vehicleFindOneByModel);
+
+// CATEGORY
 router.get('/category/:category', vehicleController.vehicleAPI.vehicleByCategory);
+router.get('/discount/:discountTax', vehicleController.vehicleAPI.vehicleByDiscountTax);
 
 module.exports = router;
