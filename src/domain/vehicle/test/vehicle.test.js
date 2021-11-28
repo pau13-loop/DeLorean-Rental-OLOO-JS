@@ -78,37 +78,39 @@ describe('Define vehicle and category for getters test cases', () => {
         expect(fordMustang.getCategory().getDiscountTax()).toEqual(30);
     });
 
-    test('Update price', () => {
+    test.only('Update price', () => {
         expect(fordMustang.getPrice()).toBe(70);
         let percentageOfFiveOverSeventy = 70 - 70 * 0.1;
         fordMustang.updatePrice();
         expect(fordMustang.getPrice()).toBe(percentageOfFiveOverSeventy);
-    })
+    });
 
     test('Error try to update price under minimum', () => {
         expect(fordMustang.getPrice()).toBe(70);
         fordMustang.price = 5;
         expect(fordMustang.getPrice()).toBe(5);
-        expect(fordMustang.updatePrice()).toEqual(expect.stringContaining(('Price can not go under minimum')));
-    })
-
-    test('Discount vehicle price', () => {
-        // Get price before update
-        expect(fordMustang.getPrice()).toBe(70);
-        expect(fordMustang.getOriginalPrice()).toBe(70);
-        // Update price
-        let percentatgeOfSeventy = Math.floor((100 * 30) / 70);
-        fordMustang.applyDiscount();
-        // Check price has updated correcty but original price still with the same value
-        expect(fordMustang.getPrice()).toBe(percentatgeOfSeventy);
-        expect(fordMustang.getDiscountedPrice()).toBe(`Discount applied successfully! \nPrice: ${percentatgeOfSeventy}`);
-        expect(fordMustang.getOriginalPrice()).toBe(70);
+        fordMustang.updatePrice();
+        expect(fordMustang.getPrice()).toBe(5);
     });
 
-    test('Error try to applyDiscount with price under minimum', () => {
-        expect(fordMustang.getPrice()).toBe(70);
-        fordMustang.price = 5;
-        expect(fordMustang.getPrice()).toBe(5);
-        expect(fordMustang.applyDiscount()).toEqual(expect.stringContaining(('Price can not go under minimum')));
-    })
+    //* Movidos a Category.test.js
+    // test('Discount vehicle price', () => {
+    //     // Get price before update
+    //     expect(fordMustang.getPrice()).toBe(70);
+    //     expect(fordMustang.getOriginalPrice()).toBe(70);
+    //     // Update price
+    //     let percentatgeOfSeventy = Math.floor((100 * 30) / 70);
+    //     fordMustang.applyDiscount();
+    //     // Check price has updated correcty but original price still with the same value
+    //     expect(fordMustang.getPrice()).toBe(percentatgeOfSeventy);
+    //     expect(fordMustang.getDiscountedPrice()).toBe(`Discount applied successfully! \nPrice: ${percentatgeOfSeventy}`);
+    //     expect(fordMustang.getOriginalPrice()).toBe(70);
+    // });
+
+    // test('Error try to applyDiscount with price under minimum', () => {
+    //     expect(fordMustang.getPrice()).toBe(70);
+    //     fordMustang.price = 5;
+    //     expect(fordMustang.getPrice()).toBe(5);
+    //     expect(fordMustang.applyDiscount()).toEqual(expect.stringContaining(('Price can not go under minimum')));
+    // })
 })

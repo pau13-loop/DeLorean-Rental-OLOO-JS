@@ -11,7 +11,8 @@ var Category = {
         return this.discountTax;
     },
     applyDiscount: function (price) {
-            return Math.floor((100 * this.discountTax) / price);
+        //* Al aplicar el descuento siempre queremos redondear al menor número posible
+            return Math.floor(price - (0.01 * this.discountTax) * price);
     }
 }
 
