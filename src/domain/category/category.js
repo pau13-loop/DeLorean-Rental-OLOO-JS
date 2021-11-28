@@ -10,8 +10,8 @@ var Category = {
     getDiscountTax: function() {
         return this.discountTax;
     },
-    makeDiscount: function(price) {
-        return;
+    applyDiscount: function (price) {
+            return Math.floor((100 * this.discountTax) / price);
     }
 }
 

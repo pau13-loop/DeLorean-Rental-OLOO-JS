@@ -22,4 +22,8 @@ describe('Define vehicle and category for getters test cases', () => {
         expect(category.getName()).toEqual(expect.stringMatching("classic"));
         expect(category.getDiscountTax()).toEqual(30);
     });
+
+    test('Apply discount over price', () => {
+        expect(category.applyDiscount(70)).toEqual(42);
+    });
 })
