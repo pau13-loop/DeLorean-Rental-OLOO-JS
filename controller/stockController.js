@@ -20,6 +20,13 @@ var stockAPI = (function singleStockController() {
         : res.status(404).send("The price couldn't be updated");
     }
 
+    const applyDiscount = function(req, res) {
+        let applyDiscountStock = stockDomainService.ServiceDomainAPI.applyDiscount();
+        checkResponseIsDefined
+        ? res.status(200).type('json').json(applyDiscountStock)
+        : res.status(404).send("The black friday discount couldn't be applied");
+    }
+
     // FIND ALL
     const vehicleFindAllByBrand = function(req, res) {
         let allVehiclesByBrand = stockFilterService.serviceFilterAPI.getAllByBrand(req.params.brand);
@@ -91,6 +98,7 @@ var stockAPI = (function singleStockController() {
         stockList,
         // UPDATE
         updatePriceStock,
+        applyDiscount,
         // FIND ALL
         vehicleFindAllByBrand,
         vehicleFindAllByColor,

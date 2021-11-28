@@ -1,16 +1,15 @@
-const mockStockList = require('../mock/mockStockList');
-var vehiclesMock = require('../mock/mockStockList');
+var mockStockList = require('../mock/mockStockList');
 
-var serviceAPI = (function singleService() {
+var serviceFilterAPI = (function singleFilterService() {
 
     const getStockList = function() {
-        return vehiclesMock;
+        return mockStockList;
     }
 
     // FIND ALL
     const getAllByBrand = function(brand) {
         let stockFilteredByBrand = [];
-        vehiclesMock.forEach(vehicle => {
+        mockStockList.forEach(vehicle => {
             if (vehicle.brand === brand) {
                 //! Spreading
                 stockFilteredByBrand = [...stockFilteredByBrand, vehicle];
@@ -21,7 +20,7 @@ var serviceAPI = (function singleService() {
 
     const getAllByCategory = function(category) {
         let stockFilteredByCategory = [];
-        vehiclesMock.forEach(vehicle => {
+        mockStockList.forEach(vehicle => {
             if (vehicle.category.name === category) {
                 //! Spreading
                 stockFilteredByCategory = [...stockFilteredByCategory, vehicle];
@@ -32,7 +31,7 @@ var serviceAPI = (function singleService() {
 
     const getAllByDiscountTax = function(discountTax) {
         let stockByDiscountTax = [];
-        vehiclesMock.forEach(vehicle => {
+        mockStockList.forEach(vehicle => {
             if (vehicle.category.discountTax >= discountTax) {
                 stockByDiscountTax = [...stockByDiscountTax, vehicle];
             }
@@ -61,4 +60,4 @@ var serviceAPI = (function singleService() {
     }
 })();
 
-exports.serviceAPI = serviceAPI;
+exports.serviceFilterAPI = serviceFilterAPI;

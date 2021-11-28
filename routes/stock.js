@@ -15,7 +15,8 @@ router.use(function (req, res, next) {
 router.get('/', stockController.stockAPI.stockList);
 
 //  UPDATE
-router.get('/update', stockController.stockAPI.updatePriceStock)
+router.get('/update', stockController.stockAPI.updatePriceStock);
+router.get('/blackFriday', stockController.stockAPI.applyDiscount);
 
 // FIND ALL //
 router.get('/brand/:brand', stockController.stockAPI.vehicleFindAllByBrand);
