@@ -1,29 +1,34 @@
 const vehicle = require('../src/domain/vehicle/vehicle');
-const stockService = require('../service/service.filter');
+const stockFilterService = require('../service/service.filter');
+const stockDomainService = require('../service/service.domain');
 
 var stockAPI = (function singleStockController() {
 
     // STOCK
-    const vehicleList = function (req, res) {
-        let stock = stockService.serviceAPI.getStockList();
+    const stockList = function (req, res) {
+        let stock = stockFilterService.serviceFilterAPI.getStockList();
         checkResponseIsDefined(stock) 
         ? res.status(200).type('json').json(stock)
         : res.status(404).send("We are currently out of stock");
     }
 
+    // UPDATE PRICE
+    const updatePriceStock = function(req, res) {
+        let updatedStock = stockDomainService.ServiceDomainAPI.updatePriceStock();
+        checkResponseIsDefined
+        ? res.status(200).type('json').json(updatedStock)
+        : res.status(404).send("The price couldn't be updated");
+    }
+
     // FIND ALL
     const vehicleFindAllByBrand = function(req, res) {
-        let allVehiclesByBrand = stockService.serviceAPI.getAllByBrand(req.params.brand);
+        let allVehiclesByBrand = stockFilterService.serviceFilterAPI.getAllByBrand(req.params.brand);
         checkResponseIsDefined(allVehiclesByBrand)
         ? res.status(200).type('json').json(allVehiclesByBrand)
         : res.status(404).send("Brand not found");
     }
 
     const vehicleFindAllByColor = function(req, res) {
-        // let allVehiclesByColor = stockService.serviceAPI.getAllByBrand(req.params.brand);
-        // checkResponseIsDefined(allVehiclesByBrand)
-        // ? res.status(200).type('json').json(allVehiclesByBrand)
-        // : res.status(404).send("Brand not found");
         res.status(200).send("Find all by color");
     }
 
@@ -32,7 +37,7 @@ var stockAPI = (function singleStockController() {
     }
 
     const vehicleByCategory = function (req, res) {
-        let allVehiclesByCategory = stockService.serviceAPI.getAllByCategory(req.params.category);
+        let allVehiclesByCategory = stockFilterService.serviceFilterAPI.getAllByCategory(req.params.category);
         checkResponseIsDefined(allVehiclesByCategory) 
         ? res.status(200).type('json').json(allVehiclesByCategory) 
         : res.status(404).send("Right now we don't have vehicles availables of this category");
@@ -40,7 +45,7 @@ var stockAPI = (function singleStockController() {
     }
 
     const vehicleByDiscountTax = function (req, res) {
-        let allVehiclesByDiscountTax = stockService.serviceAPI.getAllByDiscountTax(req.params.discountTax);
+        let allVehiclesByDiscountTax = stockFilterService.serviceFilterAPI.getAllByDiscountTax(req.params.discountTax);
         checkResponseIsDefined(allVehiclesByDiscountTax)
         ? res.status(200).type('json').json(allVehiclesByDiscountTax)
         : res.status(404).send("We don't have vehicles availables with this discount tax");
@@ -65,13 +70,15 @@ var stockAPI = (function singleStockController() {
     // FIND ONE
     // Solamanete nos interesa saber que ese modelo está disponible o existe, no cuantos hay
     const vehicleFindOneByModel = function(req, res) {
-        let vehicleModel = stockService.serviceAPI.getOneByModel(req.params.model);
+        let vehicleModel = stockFilterService.serviceFilterAPI.getOneByModel(req.params.model);
+        console.log('Find one: ', vehicleModel.length);
         checkResponseIsDefined(vehicleModel) 
         ? res.status(200).type('json').json(vehicleModel)
         : res.status(404).send("Currently we don't have this model available");
     }
 
     // RESPONSE CHECKER
+    //! Los json obj único no los deveulve como true, ejemplo con findByModel
     const checkResponseIsDefined = function(response) {
         if (response !== undefined && response !== null && response.length > 0) {
             return true;
@@ -81,7 +88,9 @@ var stockAPI = (function singleStockController() {
 
     return {
         // STOCK
-        vehicleList,
+        stockList,
+        // UPDATE
+        updatePriceStock,
         // FIND ALL
         vehicleFindAllByBrand,
         vehicleFindAllByColor,

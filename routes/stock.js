@@ -12,7 +12,10 @@ router.use(function (req, res, next) {
 });
 
 // STOCK ROUTES //
-router.get('/', stockController.stockAPI.vehicleList);
+router.get('/', stockController.stockAPI.stockList);
+
+//  UPDATE
+router.get('/update', stockController.stockAPI.updatePriceStock)
 
 // FIND ALL //
 router.get('/brand/:brand', stockController.stockAPI.vehicleFindAllByBrand);
