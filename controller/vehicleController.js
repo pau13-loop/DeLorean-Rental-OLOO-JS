@@ -1,6 +1,5 @@
 const vehicle = require('./../src/domain/vehicle/vehicle');
-const stockResource = require('../resource/stockResource');
-const stockService = require('../service/service');
+const stockService = require('../service/service.filter');
 
 var vehicleAPI = (function singleVehicleController() {
 
@@ -40,7 +39,6 @@ var vehicleAPI = (function singleVehicleController() {
     }
 
     const vehicleByDiscountTax = function (req, res) {
-        console.log("Request: ", req.params.discountTax);
         res.status(200).type('json').json(stockService.serviceAPI.getAllByDiscountTax(req.params.discountTax));
     }
 
