@@ -1,7 +1,7 @@
-const vehicle = require('./../src/domain/vehicle/vehicle');
+const vehicle = require('../src/domain/vehicle/vehicle');
 const stockService = require('../service/service.filter');
 
-var vehicleAPI = (function singleVehicleController() {
+var stockAPI = (function singleStockController() {
 
     // STOCK
     const vehicleList = function (req, res) {
@@ -19,6 +19,18 @@ var vehicleAPI = (function singleVehicleController() {
         : res.status(404).send("Brand not found");
     }
 
+    const vehicleFindAllByColor = function(req, res) {
+        // let allVehiclesByColor = stockService.serviceAPI.getAllByBrand(req.params.brand);
+        // checkResponseIsDefined(allVehiclesByBrand)
+        // ? res.status(200).type('json').json(allVehiclesByBrand)
+        // : res.status(404).send("Brand not found");
+        res.status(200).send("Find all by color");
+    }
+
+    const vehicleFindAllByPrice = function(req, res) {
+        res.status(200).send("Find all by PRICE");
+    }
+
     const vehicleByCategory = function (req, res) {
         let allVehiclesByCategory = stockService.serviceAPI.getAllByCategory(req.params.category);
         checkResponseIsDefined(allVehiclesByCategory) 
@@ -32,6 +44,22 @@ var vehicleAPI = (function singleVehicleController() {
         checkResponseIsDefined(allVehiclesByDiscountTax)
         ? res.status(200).type('json').json(allVehiclesByDiscountTax)
         : res.status(404).send("We don't have vehicles availables with this discount tax");
+    }
+
+    const vehicleFindAllByFuel = function(req, res) {
+        res.status(200).send("Find all by FUEL");
+    }
+
+    const vehicleFindAllByPassengersNum = function(req, res) {
+        res.status(200).send("Find all by Passengers NUM");
+    }
+
+    const vehicleFindAllByYear = function(req, res) {
+        res.status(200).send("Find all by YEAR");
+    }
+
+    const vehicleFindAllByAvailability = function(req, res) {
+        res.status(200).send("Find all by AVAILABLES");
     }
 
     // FIND ONE
@@ -56,12 +84,18 @@ var vehicleAPI = (function singleVehicleController() {
         vehicleList,
         // FIND ALL
         vehicleFindAllByBrand,
+        vehicleFindAllByColor,
+        vehicleFindAllByPrice,
         vehicleByCategory,
         vehicleByDiscountTax,
+        vehicleFindAllByFuel,
+        vehicleFindAllByPassengersNum,
+        vehicleFindAllByYear,
+        vehicleFindAllByAvailability,
         // FIND ONE
         vehicleFindOneByModel
     };
 
 })();
 
-exports.vehicleAPI = vehicleAPI;
+exports.stockAPI = stockAPI;

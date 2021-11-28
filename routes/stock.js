@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 // Controller modules 
-var vehicleController = require('../controller/vehicleController');
+var stockController = require('../controller/stockController');
 
 // ROUTER LEVEL MIDDLEWARE
 router.use(function (req, res, next) {
@@ -12,14 +12,20 @@ router.use(function (req, res, next) {
 });
 
 // STOCK ROUTES //
-router.get('/', vehicleController.vehicleAPI.vehicleList);
+router.get('/', stockController.stockAPI.vehicleList);
 
 // FIND ALL //
-router.get('/brand/:brand', vehicleController.vehicleAPI.vehicleFindAllByBrand);
-router.get('/category/:category', vehicleController.vehicleAPI.vehicleByCategory);
-router.get('/discount/:discountTax', vehicleController.vehicleAPI.vehicleByDiscountTax);
+router.get('/brand/:brand', stockController.stockAPI.vehicleFindAllByBrand);
+router.get('/color/:color', stockController.stockAPI.vehicleFindAllByColor);
+router.get('/price/:price', stockController.stockAPI.vehicleFindAllByPrice);
+router.get('/category/:category', stockController.stockAPI.vehicleByCategory);
+router.get('/discount/:discountTax', stockController.stockAPI.vehicleByDiscountTax);
+router.get('/fuel/:fuel', stockController.stockAPI.vehicleFindAllByFuel);
+router.get('/passengers/:passengersNum', stockController.stockAPI.vehicleFindAllByPassengersNum);
+router.get('/year/:year', stockController.stockAPI.vehicleFindAllByYear);
+router.get('/available', stockController.stockAPI.vehicleFindAllByAvailability);
 
 // FIND ONE
-router.get('/model/:model', vehicleController.vehicleAPI.vehicleFindOneByModel);
+router.get('/model/:model', stockController.stockAPI.vehicleFindOneByModel);
 
 module.exports = router;
