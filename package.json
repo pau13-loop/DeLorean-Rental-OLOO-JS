@@ -5,7 +5,11 @@
   "main": "main.js",
   "scripts": {
     "test": "jest",
-    "main": "node ./main.js"
+    "main": "node ./main.js",
+    "lint": "eslint ./*.js",
+    "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www",
+    "serverstart": "DEBUG=rent-a-car:* npm run devstart"
   },
   "repository": {
     "type": "git",
@@ -16,5 +20,17 @@
   "bugs": {
     "url": "https://github.com/pau13-loop/Rent-a-car-OLOO-JS/issues"
   },
-  "homepage": "https://github.com/pau13-loop/Rent-a-car-OLOO-JS#readme"
+  "homepage": "https://github.com/pau13-loop/Rent-a-car-OLOO-JS#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "debug": "^4.3.2",
+    "express": "^4.17.1",
+    "http-errors": "^1.8.1",
+    "jade": "^0.29.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.3.0",
+    "nodemon": "^2.0.15"
+  }
 }

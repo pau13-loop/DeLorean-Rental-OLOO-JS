@@ -5,10 +5,14 @@ var Category = {
         return this;
     },
     getName: function() {
-        return `Category name: ${this.name}`;
+        return this.name;
     },
     getDiscountTax: function() {
-        return `Category discount tax: ${this.discountTax}`;
+        return this.discountTax;
+    },
+    applyDiscount: function (price) {
+        //* Al aplicar el descuento siempre queremos redondear al menor número posible
+            return Math.floor(price - (0.01 * this.discountTax) * price);
     }
 }
 
