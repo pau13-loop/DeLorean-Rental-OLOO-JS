@@ -45,20 +45,32 @@ var ServiceDomainAPI = (function singleDomainService() {
         return mockStockTwoVehicles;
     }
 
+    // Devolvemos null para que devuelva el error 404 en caso de no encontrar el vehiculo
     const bookVehicle = function(brand, model) {
         let vehicleToBook = mockStockTwoVehicles.find(vehicle => vehicle.brand === brand && vehicle.model === model);
         if (vehicleToBook) {
             vehicleToBook.available = false;
             return mockStockTwoVehicles;
         }
-        return undefined;
+        return null;
+    }
+
+    // Devolvemos null para que devuelva el error 404 en caso de no encontrar el vehiculo
+    const returnVehicle = function(brand, model) {
+        let vehicleToReturn = mockStockTwoVehicles.find(vehicle => vehicle.brand === brand && vehicle.model === model && !vehicle.available);
+        if (vehicleToReturn) {
+            vehicleToReturn.available = true;
+            return mockStockTwoVehicles;
+        }
+        return null;
     }
 
     return {
         updatePriceStock,
         applyDiscount,
         restorePrice,
-        bookVehicle
+        bookVehicle,
+        returnVehicle
     }
 })();
 

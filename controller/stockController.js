@@ -15,30 +15,37 @@ var stockAPI = (function singleStockController() {
     // UPDATE PRICE
     const updatePriceStock = function(req, res) {
         let updatedStock = stockDomainService.ServiceDomainAPI.updatePriceStock();
-        checkResponseIsDefined
+        checkResponseIsDefined(updatedStock)
         ? res.status(200).type('json').json(updatedStock)
         : res.status(404).send("The price couldn't be updated");
     }
 
     const applyDiscount = function(req, res) {
         let applyDiscountStock = stockDomainService.ServiceDomainAPI.applyDiscount();
-        checkResponseIsDefined
+        checkResponseIsDefined(applyDiscountStock)
         ? res.status(200).type('json').json(applyDiscountStock)
         : res.status(404).send("The black friday discount couldn't be applied");
     }
 
     const restorePrice = function(req, res) {
         let restoredPriceStock = stockDomainService.ServiceDomainAPI.restorePrice();
-        checkResponseIsDefined
+        checkResponseIsDefined(restoredPriceStock)
         ? res.status(200).type('json').json(restoredPriceStock)
         : res.status(404).send("The prices couldn't be restored successfully");
     }
 
     const bookVehicle = function(req, res) {
         let bookedVehicle = stockDomainService.ServiceDomainAPI.bookVehicle(req.params.brand, req.params.model);
-        checkResponseIsDefined
+        checkResponseIsDefined(bookedVehicle)
         ? res.status(200).type('json').json(bookedVehicle)
         : res.status(404).send("The vehicle is not available");
+    }
+
+    const returnVehicle = function(req, res) {
+        let returnedVehicle = stockDomainService.ServiceDomainAPI.returnVehicle(req.params.brand, req.params.model);
+        checkResponseIsDefined(returnedVehicle)
+        ? res.status(200).type('json').json(returnedVehicle)
+        : res.status(404).send("This vehicle never was booked");
     }
 
     // FIND ALL
@@ -92,7 +99,6 @@ var stockAPI = (function singleStockController() {
     // Solamanete nos interesa saber que ese modelo está disponible o existe, no cuantos hay
     const vehicleFindOneByModel = function(req, res) {
         let vehicleModel = stockFilterService.serviceFilterAPI.getOneByModel(req.params.model);
-        console.log('Find one: ', vehicleModel.length);
         checkResponseIsDefined(vehicleModel) 
         ? res.status(200).type('json').json(vehicleModel)
         : res.status(404).send("Currently we don't have this model available");
@@ -100,6 +106,7 @@ var stockAPI = (function singleStockController() {
 
     // RESPONSE CHECKER
     //! Los json obj único no los deveulve como true, ejemplo con findByModel
+    //TODO: este error se produce al chequear la length, alguna ayuda ???
     const checkResponseIsDefined = function(response) {
         if (response !== undefined && response !== null && response.length > 0) {
             return true;
@@ -115,6 +122,7 @@ var stockAPI = (function singleStockController() {
         applyDiscount,
         restorePrice,
         bookVehicle,
+        returnVehicle,
         // FIND ALL
         vehicleFindAllByBrand,
         vehicleFindAllByColor,
