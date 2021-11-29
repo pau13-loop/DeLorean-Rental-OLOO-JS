@@ -64,7 +64,7 @@ var stockAPI = (function singleStockController() {
         let allVehiclesByPrice = stockFilterService.serviceFilterAPI.getAllByPrice(req.params.price);
         checkResponseIsDefined(allVehiclesByPrice)
         ? res.status(200).type('json').json(allVehiclesByPrice)
-        : res.status(404).send("Brand not found");
+        : res.status(404).send("We haven't got vehicle of this price or lower");
     }
 
     const vehicleByCategory = function (req, res) {
@@ -83,7 +83,10 @@ var stockAPI = (function singleStockController() {
     }
 
     const vehicleFindAllByFuel = function(req, res) {
-        res.status(200).send("Find all by FUEL");
+        let allVehiclesByFuel = stockFilterService.serviceFilterAPI.getAllByFuel(req.params.fuel);
+        checkResponseIsDefined(allVehiclesByFuel)
+        ? res.status(200).type('json').json(allVehiclesByFuel)
+        : res.status(404).send("We don't have vehicles with this kind of fuel");
     }
 
     const vehicleFindAllByPassengersNum = function(req, res) {
