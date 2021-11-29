@@ -1,6 +1,6 @@
 var Vehicle = {
     init: function (
-        brand, model, color, price, category) {
+        brand, model, color, price, category, available) {
         this.brand = brand;
         this.model = model;
         this.color = color;
@@ -11,7 +11,7 @@ var Vehicle = {
         // this.fuel = fuel;
         // this.passengers = passengers;
         // this.year = year;
-        // this.available = available;
+        this.available = available;
         // this.characteristics = characteristics;
         //
         //! No la qiuiero inicializar ahora, sino cuando reciba el precio de bd, así me ahorro un campo en la bd !!!
@@ -48,6 +48,9 @@ var Vehicle = {
     getPrice: function () {
         return this.price;
     },
+    getAvailability: function() {
+        return this.available;
+    },
     getDiscountedPrice: function () {
         return `Discount applied successfully! \nPrice: ${this.price}`;
     },
@@ -67,7 +70,6 @@ var Vehicle = {
         // Siempre el descuento será de un 5% en todos los vehiculos cuando cumplena año
         //! Lo calculo directamente o accediendo al método getMinPrice() ???
         // let original = this.originalPrice;
-        console.log('Original price: ', this.originalPrice);
         if (this.price > this.originalPrice * 0.3) {
             //* Al actualizar el precio queremos redondearlo
             this.price -= Math.round(this.price * 0.1); 
