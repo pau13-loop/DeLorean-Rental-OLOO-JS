@@ -73,6 +73,16 @@ var serviceFilterAPI = (function singleFilterService() {
         return stockByFuel;
     }
 
+    const getAllByPassengersNum = function(passengersNum) {
+        let stockByPassengersNum = [];
+        mockStockList.forEach(vehicle => {
+            if (vehicle.passengersNum >= passengersNum) {
+                stockByPassengersNum = [...stockByPassengersNum, vehicle];
+            }
+        });
+        return stockByPassengersNum;
+    }
+
     const getAllByYear = function(year) {
         let stockByYear = [];
         mockStockList.forEach(vehicle => {
@@ -97,6 +107,7 @@ var serviceFilterAPI = (function singleFilterService() {
         getAllByCategory,
         getAllByDiscountTax,
         getAllByFuel,
+        getAllByPassengersNum,
         getAllByYear,
         // FIND ONE
         getOneByModel

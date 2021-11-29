@@ -93,14 +93,17 @@ var stockAPI = (function singleStockController() {
     }
 
     const vehicleFindAllByPassengersNum = function(req, res) {
-        res.status(200).send("Find all by Passengers NUM");
+        let allVehiclesByPassengersNum = stockFilterService.serviceFilterAPI.getAllByPassengersNum(req.params.passengersNum);
+        checkResponseIsDefined(allVehiclesByPassengersNum)
+        ? res.status(200).type('json').json(allVehiclesByPassengersNum)
+        : res.status(404).send("We don't have vehicles with this number of passengers");
     }
 
     const vehicleFindAllByYear = function(req, res) {
         let allVehiclesByYear = stockFilterService.serviceFilterAPI.getAllByYear(req.params.year);
         checkResponseIsDefined(allVehiclesByYear)
         ? res.status(200).type('json').json(allVehiclesByYear)
-        : res.status(404).send("We don't have vehicles of this year");
+        : res.status(404).send("We don't have vehicles of this year or grather");
     }
 
     const vehicleFindAllByAvailability = function(req, res) {

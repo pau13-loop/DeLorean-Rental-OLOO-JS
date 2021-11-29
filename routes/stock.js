@@ -33,8 +33,9 @@ router.get('/price/:price', stockController.stockAPI.vehicleFindAllByPrice);
 router.get('/category/:category', stockController.stockAPI.vehicleByCategory);
 router.get('/discount/:discountTax', stockController.stockAPI.vehicleByDiscountTax);
 router.get('/fuel/:fuel', stockController.stockAPI.vehicleFindAllByFuel);
-// router.get('/passengers/:passengersNum', stockController.stockAPI.vehicleFindAllByPassengersNum);
+router.get('/passengers/:passengersNum', stockController.stockAPI.vehicleFindAllByPassengersNum);
 router.get('/year/:year', stockController.stockAPI.vehicleFindAllByYear);
+//? El stock se debería filtrar por availability true o debería haver un endpoint aparte para buscar los vehiculos que estuvieran en true ???
 // router.get('/available', stockController.stockAPI.vehicleFindAllByAvailability);
 
 // FIND ONE
