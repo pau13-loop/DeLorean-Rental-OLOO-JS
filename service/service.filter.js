@@ -18,11 +18,33 @@ var serviceFilterAPI = (function singleFilterService() {
         return stockFilteredByBrand;
     }
 
+    const getAllByColor = function(color) {
+        let stockByColor = [];
+        mockStockList.forEach(vehicle => {
+            if (vehicle.color === color) {
+                stockByColor = [...stockByColor, vehicle];
+            }
+        });
+        return stockByColor;
+    }
+
+    const getAllByPrice = function(requestedPrice) {
+        let stockByRequestedPrice = [];
+        mockStockList.forEach(vehicle => {
+            if (vehicle.price <= requestedPrice) {
+                stockByRequestedPrice = [...stockByRequestedPrice, vehicle];
+            }
+        });
+        //* Ordena la lista de mayor a menor
+        return stockByRequestedPrice.sort(function(a, b) {
+            return b.price - a.price;
+        });
+    }
+
     const getAllByCategory = function (category) {
         let stockFilteredByCategory = [];
         mockStockList.forEach(vehicle => {
             if (vehicle.category.name === category) {
-                //! Spreading
                 stockFilteredByCategory = [...stockFilteredByCategory, vehicle];
             }
         });
@@ -39,19 +61,6 @@ var serviceFilterAPI = (function singleFilterService() {
         //TODO: implementar método que ordene lista
         //* Ordena la lista de menor a mayor
         return stockByDiscountTax.sort(function (a, b) { return a.category.discountTax - b.category.discountTax });
-    }
-
-    const getAllByPrice = function(requestedPrice) {
-        let stockByRequestedPrice = [];
-        mockStockList.forEach(vehicle => {
-            if (vehicle.price <= requestedPrice) {
-                stockByRequestedPrice = [...stockByRequestedPrice, vehicle];
-            }
-        });
-        //* Ordena la lista de mayor a menor
-        return stockByRequestedPrice.sort(function(a, b) {
-            return b.price - a.price;
-        });
     }
 
     const getAllByFuel = function(fuel) {
@@ -73,9 +82,10 @@ var serviceFilterAPI = (function singleFilterService() {
         getStockList,
         // FIND ALL
         getAllByBrand,
+        getAllByColor,
+        getAllByPrice,
         getAllByCategory,
         getAllByDiscountTax,
-        getAllByPrice,
         getAllByFuel,
         // FIND ONE
         getOneByModel

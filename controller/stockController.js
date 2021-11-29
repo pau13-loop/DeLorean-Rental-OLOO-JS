@@ -57,7 +57,10 @@ var stockAPI = (function singleStockController() {
     }
 
     const vehicleFindAllByColor = function(req, res) {
-        res.status(200).send("Find all by color");
+        let allVehiclesByColor = stockFilterService.serviceFilterAPI.getAllByColor(req.params.color);
+        checkResponseIsDefined(allVehiclesByColor)
+        ? res.status(200).type('json').json(allVehiclesByColor)
+        : res.status(404).send("Vehicle color not found");
     }
 
     const vehicleFindAllByPrice = function(req, res) {

@@ -23,7 +23,7 @@ router.get('/return/:brand/:model', stockController.stockAPI.returnVehicle);
 
 // FIND ALL //
 router.get('/brand/:brand', stockController.stockAPI.vehicleFindAllByBrand);
-// router.get('/color/:color', stockController.stockAPI.vehicleFindAllByColor);
+router.get('/color/:color', stockController.stockAPI.vehicleFindAllByColor);
 /**
  * TODO
  * Se podría implementar un campo más en la url para ordenar en asc o desc ???
@@ -34,8 +34,8 @@ router.get('/category/:category', stockController.stockAPI.vehicleByCategory);
 router.get('/discount/:discountTax', stockController.stockAPI.vehicleByDiscountTax);
 router.get('/fuel/:fuel', stockController.stockAPI.vehicleFindAllByFuel);
 // router.get('/passengers/:passengersNum', stockController.stockAPI.vehicleFindAllByPassengersNum);
-// router.get('/year/:year', stockController.stockAPI.vehicleFindAllByYear);
-router.get('/available', stockController.stockAPI.vehicleFindAllByAvailability);
+router.get('/year/:year', stockController.stockAPI.vehicleFindAllByYear);
+// router.get('/available', stockController.stockAPI.vehicleFindAllByAvailability);
 
 // FIND ONE
 router.get('/model/:model', stockController.stockAPI.vehicleFindOneByModel);
