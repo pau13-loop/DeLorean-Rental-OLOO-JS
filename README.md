@@ -130,18 +130,33 @@ The views (templates) are stored in the /views directory (as specified in app.js
 
 ## Método a aplicar (en el Service)
 
-- findAll
-- findOne
-- findByCategory
+###### Find alls
+- [x] findAll
+- [x][] findByBrand (or brands ???)
+- [] findByColor
+- [] findByPrice
+- [x] findByCategory
+- [x] findByDiscountTax
+- [] findByFuel
+- [] findByPassengersNum
+- [] findByYear
+- [] findAvailables
+- [] findByCharacteristics
+
+###### Find ones
+- [x] findModel
+
+###### Other
 - findByPriceMinorTo
 - findByPriceMajorTo
-- findByBrand (or brands ???)
-- findByNumPassengers
-- findByColor
-- 
+
 - SortByMayorPrice
 - SortByMinorPrice
-- 
+ 
+
+- Actualizar un vehiculo ? PUT
+- Eliminar un vehiculo ? DELETE
+- Añadir un vehiculo ? POST
 
 
 
@@ -162,3 +177,21 @@ The views (templates) are stored in the /views directory (as specified in app.js
 > La lógica de negocio debe ir encapsulada en el dominio. En el service solo se ataca la bd y se filtra u ordena si se desea pero la lógica de negocio, que es lo que planteo en este caso, la encapsulamos en el dominio
 
 4. 
+
+# ACUERDATE PAU PORFAVOR !!!
+- Debería comprobar que al actualizar los coches su disponibilidad está seteada a "true"
+
+- Implementar un único método para los filtros, que sea generico y filtre por cualquier campo del vehiculo. El método sería algo así
+```
+const filterVehicle = function(keyFilter, filter) {
+    let stockFiltered = [];
+    mockStockList.forEach(vehicle => {
+        //! en vehicle.filter será la key del filtro, vehicle.keyFilter
+        if (vehicle.keyFilter === filter) {
+            stockFiltered = [...stockFiltered, vehicle];
+        }
+    });
+    return stockFiltered;
+}
+```
+Ahora tenemos que ver cuando queremos ordenar la lista o si solo lo implementamos para los filtros en los cual no haga falta ordenar la lista
