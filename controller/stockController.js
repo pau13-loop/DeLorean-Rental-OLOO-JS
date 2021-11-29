@@ -27,6 +27,20 @@ var stockAPI = (function singleStockController() {
         : res.status(404).send("The black friday discount couldn't be applied");
     }
 
+    const restorePrice = function(req, res) {
+        let restoredPriceStock = stockDomainService.ServiceDomainAPI.restorePrice();
+        checkResponseIsDefined
+        ? res.status(200).type('json').json(restoredPriceStock)
+        : res.status(404).send("The prices couldn't be restored successfully");
+    }
+
+    const bookVehicle = function(req, res) {
+        let bookedVehicle = stockDomainService.ServiceDomainAPI.bookVehicle();
+        checkResponseIsDefined
+        ? res.status(200).type('json').json(bookedVehicle)
+        : res.status(404).send("The vehicle is not available");
+    }
+
     // FIND ALL
     const vehicleFindAllByBrand = function(req, res) {
         let allVehiclesByBrand = stockFilterService.serviceFilterAPI.getAllByBrand(req.params.brand);
@@ -99,6 +113,8 @@ var stockAPI = (function singleStockController() {
         // UPDATE
         updatePriceStock,
         applyDiscount,
+        restorePrice,
+        bookVehicle,
         // FIND ALL
         vehicleFindAllByBrand,
         vehicleFindAllByColor,

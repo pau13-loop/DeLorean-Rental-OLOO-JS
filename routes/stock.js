@@ -17,6 +17,8 @@ router.get('/', stockController.stockAPI.stockList);
 //  UPDATE
 router.get('/update', stockController.stockAPI.updatePriceStock);
 router.get('/blackFriday', stockController.stockAPI.applyDiscount);
+router.get('/blackFriday/restore', stockController.stockAPI.restorePrice);
+router.get('/book/:model', stockController.stockAPI.bookVehicle);
 
 // FIND ALL //
 router.get('/brand/:brand', stockController.stockAPI.vehicleFindAllByBrand);
