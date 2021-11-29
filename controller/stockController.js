@@ -97,7 +97,10 @@ var stockAPI = (function singleStockController() {
     }
 
     const vehicleFindAllByYear = function(req, res) {
-        res.status(200).send("Find all by YEAR");
+        let allVehiclesByYear = stockFilterService.serviceFilterAPI.getAllByYear(req.params.year);
+        checkResponseIsDefined(allVehiclesByYear)
+        ? res.status(200).type('json').json(allVehiclesByYear)
+        : res.status(404).send("We don't have vehicles of this year");
     }
 
     const vehicleFindAllByAvailability = function(req, res) {
