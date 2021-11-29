@@ -61,7 +61,10 @@ var stockAPI = (function singleStockController() {
     }
 
     const vehicleFindAllByPrice = function(req, res) {
-        res.status(200).send("Find all by PRICE");
+        let allVehiclesByPrice = stockFilterService.serviceFilterAPI.getAllByPrice(req.params.price);
+        checkResponseIsDefined(allVehiclesByPrice)
+        ? res.status(200).type('json').json(allVehiclesByPrice)
+        : res.status(404).send("Brand not found");
     }
 
     const vehicleByCategory = function (req, res) {

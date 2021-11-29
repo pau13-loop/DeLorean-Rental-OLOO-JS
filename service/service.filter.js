@@ -37,7 +37,21 @@ var serviceFilterAPI = (function singleFilterService() {
             }
         });
         //TODO: implementar método que ordene lista
+        //* Ordena la lista de menor a mayor
         return stockByDiscountTax.sort(function (a, b) { return a.category.discountTax - b.category.discountTax });
+    }
+
+    const getAllByPrice = function(requestedPrice) {
+        let stockByRequestedPrice = [];
+        mockStockList.forEach(vehicle => {
+            if (vehicle.price <= requestedPrice) {
+                stockByRequestedPrice = [...stockByRequestedPrice, vehicle];
+            }
+        });
+        //* Ordena la lista de mayor a menor
+        return stockByRequestedPrice.sort(function(a, b) {
+            return b.price - a.price;
+        });
     }
 
     // FIND ONE
@@ -51,6 +65,7 @@ var serviceFilterAPI = (function singleFilterService() {
         getAllByBrand,
         getAllByCategory,
         getAllByDiscountTax,
+        getAllByPrice,
         // FIND ONE
         getOneByModel
     }
