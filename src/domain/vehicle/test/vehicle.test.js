@@ -16,7 +16,7 @@ describe('Define vehicle and category for getters test cases', () => {
     var fordMustang = undefined;
 
     beforeEach(() => {
-        fordMustang = Object.create(Vehicle).init('ford', 'mustang', 'red', 70, category);
+        fordMustang = Object.create(Vehicle).init('ford', 'mustang', 'red', 70, category, true);
     });
 
     test('Check vehicle props accessed directly', () => {
@@ -24,12 +24,14 @@ describe('Define vehicle and category for getters test cases', () => {
         expect(fordMustang.model).toBe('mustang');
         expect(fordMustang.color).toBe('red');
         expect(fordMustang.price).toBe(70);
+        expect(fordMustang.available).toBe(true);
         expect(fordMustang.originalPrice).toBeTruthy();
         //! Este caso test se tiene que ver si se puede eliminar ya que el precio puede cambiar, o puede venir alterado ???
         expect(fordMustang.originalPrice).toEqual(fordMustang.price);
         // Random test not.toBe()
         expect(fordMustang.brand).not.toBe('seat');
         expect(fordMustang.price).not.toBeNull();
+        expect(fordMustang.available).not.toBeFalsy();
         expect(fordMustang.category).not.toBeNaN();
     });
 
@@ -41,13 +43,14 @@ describe('Define vehicle and category for getters test cases', () => {
         expect(fordMustang).toHaveProperty('price');
         expect(fordMustang).toHaveProperty('originalPrice');
         expect(fordMustang).toHaveProperty('category');
+        expect(fordMustang).toHaveProperty('available');
         // Random prop check
         expect(fordMustang).not.toHaveProperty('aquatic');
     });
 
     test('Check originalPrice property is defined but not enumerable', () => {
-        expect(Object.keys(fordMustang)).toHaveLength(5);
-        expect(Object.keys(fordMustang).length).not.toBeGreaterThan(5);
+        expect(Object.keys(fordMustang)).toHaveLength(6);
+        expect(Object.keys(fordMustang).length).not.toBeGreaterThan(6);
         expect(Object.keys(fordMustang)).not.toContain('originalPrice');
         expect(fordMustang.originalPrice).toBeDefined();
         expect(fordMustang.originalPrice).not.toBeNull();
@@ -61,6 +64,7 @@ describe('Define vehicle and category for getters test cases', () => {
         expect(fordMustang.getName()).toEqual(expect.stringMatching('ford mustang'));
         expect(fordMustang.getColor()).toEqual(expect.stringMatching('red'));
         expect(fordMustang.getPrice()).toBe(70);
+        expect(fordMustang.getAvailability()).toBeTruthy();
         expect(fordMustang.getOriginalPrice()).toBe(70);
     });
 
@@ -78,7 +82,7 @@ describe('Define vehicle and category for getters test cases', () => {
         expect(fordMustang.getCategory().getDiscountTax()).toEqual(30);
     });
 
-    test.only('Update price', () => {
+    test('Update price', () => {
         expect(fordMustang.getPrice()).toBe(70);
         let percentageOfFiveOverSeventy = 70 - 70 * 0.1;
         fordMustang.updatePrice();
