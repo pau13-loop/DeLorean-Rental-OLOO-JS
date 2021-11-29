@@ -6,27 +6,7 @@ var serviceFilterAPI = (function singleFilterService() {
         return mockStockList;
     }
 
-    // FIND ALL
-    const getAllByBrand = function (brand) {
-        let stockFilteredByBrand = [];
-        mockStockList.forEach(vehicle => {
-            if (vehicle.brand === brand) {
-                //! Spreading
-                stockFilteredByBrand = [...stockFilteredByBrand, vehicle];
-            }
-        });
-        return stockFilteredByBrand;
-    }
-
-    const getAllByColor = function(color) {
-        let stockByColor = [];
-        mockStockList.forEach(vehicle => {
-            if (vehicle.color === color) {
-                stockByColor = [...stockByColor, vehicle];
-            }
-        });
-        return stockByColor;
-    }
+    // UNTOUCHABLE bcs need .sort()
 
     const getAllByPrice = function(requestedPrice) {
         let stockByRequestedPrice = [];
@@ -41,16 +21,6 @@ var serviceFilterAPI = (function singleFilterService() {
         });
     }
 
-    const getAllByCategory = function (category) {
-        let stockFilteredByCategory = [];
-        mockStockList.forEach(vehicle => {
-            if (vehicle.category.name === category) {
-                stockFilteredByCategory = [...stockFilteredByCategory, vehicle];
-            }
-        });
-        return stockFilteredByCategory;
-    }
-
     const getAllByDiscountTax = function (discountTax) {
         let stockByDiscountTax = [];
         mockStockList.forEach(vehicle => {
@@ -63,34 +33,34 @@ var serviceFilterAPI = (function singleFilterService() {
         return stockByDiscountTax.sort(function (a, b) { return a.category.discountTax - b.category.discountTax });
     }
 
-    const getAllByFuel = function(fuel) {
-        let stockByFuel = [];
+    const getAllByCategory = function (category) {
+        let stockFilteredByCategory = [];
         mockStockList.forEach(vehicle => {
-            if (vehicle.fuel === fuel) {
-                stockByFuel = [...stockByFuel, vehicle];
+            if (vehicle.category.name === category) {
+                stockFilteredByCategory = [...stockFilteredByCategory, vehicle];
             }
         });
-        return stockByFuel;
+        return stockFilteredByCategory;
     }
 
-    const getAllByPassengersNum = function(passengersNum) {
-        let stockByPassengersNum = [];
-        mockStockList.forEach(vehicle => {
-            if (vehicle.passengersNum >= passengersNum) {
-                stockByPassengersNum = [...stockByPassengersNum, vehicle];
-            }
-        });
-        return stockByPassengersNum;
-    }
 
-    const getAllByYear = function(year) {
-        let stockByYear = [];
+    // GENERIC FILTER
+
+    const genericFilter = function(requestedFilter, value) {
+        let stockFiltered = [];
         mockStockList.forEach(vehicle => {
-            if (vehicle.year >= year) {
-                stockByYear = [...stockByYear, vehicle];
+            if (isNaN(value))  {
+                if (vehicle[requestedFilter] === value) {
+                    stockFiltered = [...stockFiltered, vehicle];
+                }
+            }
+            else {
+                if (vehicle[requestedFilter] >= value) {
+                    stockFiltered = [...stockFiltered, vehicle];
+                }
             }
         });
-        return stockByYear;
+        return stockFiltered;
     }
 
     // FIND ONE
@@ -100,18 +70,14 @@ var serviceFilterAPI = (function singleFilterService() {
 
     return {
         getStockList,
-        // FIND ALL
-        getAllByBrand,
-        getAllByColor,
+        // SPECIFIC
         getAllByPrice,
         getAllByCategory,
         getAllByDiscountTax,
-        getAllByFuel,
-        getAllByPassengersNum,
-        getAllByYear,
+        // GENERIC
+        genericFilter,
         // FIND ONE
         getOneByModel
     }
 })();
-
 exports.serviceFilterAPI = serviceFilterAPI;

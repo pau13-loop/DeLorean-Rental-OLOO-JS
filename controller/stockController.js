@@ -48,26 +48,20 @@ var stockAPI = (function singleStockController() {
         : res.status(404).send("This vehicle never was booked");
     }
 
-    // FIND ALL
-    const vehicleFindAllByBrand = function(req, res) {
-        let allVehiclesByBrand = stockFilterService.serviceFilterAPI.getAllByBrand(req.params.brand);
-        checkResponseIsDefined(allVehiclesByBrand)
-        ? res.status(200).type('json').json(allVehiclesByBrand)
-        : res.status(404).send("Brand not found");
-    }
-
-    const vehicleFindAllByColor = function(req, res) {
-        let allVehiclesByColor = stockFilterService.serviceFilterAPI.getAllByColor(req.params.color);
-        checkResponseIsDefined(allVehiclesByColor)
-        ? res.status(200).type('json').json(allVehiclesByColor)
-        : res.status(404).send("Vehicle color not found");
-    }
+    // UNTOUCHABLE bcs need .sort()
 
     const vehicleFindAllByPrice = function(req, res) {
         let allVehiclesByPrice = stockFilterService.serviceFilterAPI.getAllByPrice(req.params.price);
         checkResponseIsDefined(allVehiclesByPrice)
         ? res.status(200).type('json').json(allVehiclesByPrice)
         : res.status(404).send("We haven't got vehicle of this price or lower");
+    }
+
+    const vehicleByDiscountTax = function (req, res) {
+        let allVehiclesByDiscountTax = stockFilterService.serviceFilterAPI.getAllByDiscountTax(req.params.discountTax);
+        checkResponseIsDefined(allVehiclesByDiscountTax)
+        ? res.status(200).type('json').json(allVehiclesByDiscountTax)
+        : res.status(404).send("We don't have vehicles availables with this discount tax");
     }
 
     const vehicleByCategory = function (req, res) {
@@ -78,36 +72,13 @@ var stockAPI = (function singleStockController() {
         
     }
 
-    const vehicleByDiscountTax = function (req, res) {
-        let allVehiclesByDiscountTax = stockFilterService.serviceFilterAPI.getAllByDiscountTax(req.params.discountTax);
-        checkResponseIsDefined(allVehiclesByDiscountTax)
-        ? res.status(200).type('json').json(allVehiclesByDiscountTax)
-        : res.status(404).send("We don't have vehicles availables with this discount tax");
-    }
+    // FILTERS
 
-    const vehicleFindAllByFuel = function(req, res) {
-        let allVehiclesByFuel = stockFilterService.serviceFilterAPI.getAllByFuel(req.params.fuel);
-        checkResponseIsDefined(allVehiclesByFuel)
-        ? res.status(200).type('json').json(allVehiclesByFuel)
-        : res.status(404).send("We don't have vehicles with this kind of fuel");
-    }
-
-    const vehicleFindAllByPassengersNum = function(req, res) {
-        let allVehiclesByPassengersNum = stockFilterService.serviceFilterAPI.getAllByPassengersNum(req.params.passengersNum);
-        checkResponseIsDefined(allVehiclesByPassengersNum)
-        ? res.status(200).type('json').json(allVehiclesByPassengersNum)
-        : res.status(404).send("We don't have vehicles with this number of passengers");
-    }
-
-    const vehicleFindAllByYear = function(req, res) {
-        let allVehiclesByYear = stockFilterService.serviceFilterAPI.getAllByYear(req.params.year);
-        checkResponseIsDefined(allVehiclesByYear)
-        ? res.status(200).type('json').json(allVehiclesByYear)
-        : res.status(404).send("We don't have vehicles of this year or grather");
-    }
-
-    const vehicleFindAllByAvailability = function(req, res) {
-        res.status(200).send("Find all by AVAILABLES");
+    const filterStock = function(req, res) {
+        let stockFiltered = stockFilterService.serviceFilterAPI.genericFilter(Object.keys(req.params)[0], Object.values(req.params)[0]);
+        checkResponseIsDefined(stockFiltered)
+        ? res.status(200).type('json').json(stockFiltered)
+        : res.status(404).send("The request couldn't be supplied sorry");
     }
 
     // FIND ONE
@@ -138,16 +109,12 @@ var stockAPI = (function singleStockController() {
         restorePrice,
         bookVehicle,
         returnVehicle,
-        // FIND ALL
-        vehicleFindAllByBrand,
-        vehicleFindAllByColor,
+        // UNTOUCHABLE
         vehicleFindAllByPrice,
-        vehicleByCategory,
         vehicleByDiscountTax,
-        vehicleFindAllByFuel,
-        vehicleFindAllByPassengersNum,
-        vehicleFindAllByYear,
-        vehicleFindAllByAvailability,
+        vehicleByCategory,
+        // GENERIC
+        filterStock,
         // FIND ONE
         vehicleFindOneByModel
     };

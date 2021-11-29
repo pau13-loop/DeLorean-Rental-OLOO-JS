@@ -30,7 +30,6 @@ var ServiceDomainAPI = (function singleDomainService() {
         mockStockTwoVehicles.forEach(vehicle => {
             setPrototypeVehicle(vehicle);
             let categoryVehicle = vehicle.getCategory();
-            console.log('Category vehicle: ', categoryVehicle);
             setPrototypeCategory(categoryVehicle);
             vehicle.price = categoryVehicle.applyDiscount(vehicle.price);
         });

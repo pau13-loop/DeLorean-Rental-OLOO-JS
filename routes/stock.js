@@ -21,20 +21,23 @@ router.get('/blackFriday/restore', stockController.stockAPI.restorePrice);
 router.get('/book/:brand/:model', stockController.stockAPI.bookVehicle);
 router.get('/return/:brand/:model', stockController.stockAPI.returnVehicle);
 
-// FIND ALL //
-router.get('/brand/:brand', stockController.stockAPI.vehicleFindAllByBrand);
-router.get('/color/:color', stockController.stockAPI.vehicleFindAllByColor);
+// UNTOUCHABLE
 /**
  * TODO
  * Se podría implementar un campo más en la url para ordenar en asc o desc ???
  * Ejemplo: /price/:price/:method --> pero que method solo pueda tener el valor "asc" o "desc"
  */
 router.get('/price/:price', stockController.stockAPI.vehicleFindAllByPrice);
-router.get('/category/:category', stockController.stockAPI.vehicleByCategory);
 router.get('/discount/:discountTax', stockController.stockAPI.vehicleByDiscountTax);
-router.get('/fuel/:fuel', stockController.stockAPI.vehicleFindAllByFuel);
-router.get('/passengers/:passengersNum', stockController.stockAPI.vehicleFindAllByPassengersNum);
-router.get('/year/:year', stockController.stockAPI.vehicleFindAllByYear);
+router.get('/category/:category', stockController.stockAPI.vehicleByCategory);
+
+
+// GENERIC
+router.get('/color/:color', stockController.stockAPI.filterStock);
+router.get('/brand/:brand', stockController.stockAPI.filterStock);
+router.get('/fuel/:fuel', stockController.stockAPI.filterStock);
+router.get('/passengers/:passengersNum', stockController.stockAPI.filterStock);
+router.get('/year/:year', stockController.stockAPI.filterStock);
 //? El stock se debería filtrar por availability true o debería haver un endpoint aparte para buscar los vehiculos que estuvieran en true ???
 // router.get('/available', stockController.stockAPI.vehicleFindAllByAvailability);
 
