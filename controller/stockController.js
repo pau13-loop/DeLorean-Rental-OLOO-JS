@@ -35,7 +35,7 @@ var stockAPI = (function singleStockController() {
     }
 
     const bookVehicle = function(req, res) {
-        let bookedVehicle = stockDomainService.ServiceDomainAPI.bookVehicle();
+        let bookedVehicle = stockDomainService.ServiceDomainAPI.bookVehicle(req.params.brand, req.params.model);
         checkResponseIsDefined
         ? res.status(200).type('json').json(bookedVehicle)
         : res.status(404).send("The vehicle is not available");
