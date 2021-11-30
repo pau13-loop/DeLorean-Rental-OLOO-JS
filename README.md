@@ -1,6 +1,10 @@
 # Rent-a-car-OLOO-JS
 Implement the business logic of a Rent a car, create an ApiRestfull connected to MongoAtlas and implement the object composition. Introduction to linked objects by prototypes of JS
 
+# ATENCIÓN !!!
+
+> ***Para el observador:***La primera version estable del se encuentra en la rama develop ;)
+
 # Bibliography
 
 ###### OLOO, why to use it ? 
