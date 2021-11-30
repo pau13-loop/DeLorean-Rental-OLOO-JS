@@ -133,14 +133,14 @@ The views (templates) are stored in the /views directory (as specified in app.js
 ###### Find alls
 - [x] findAll
 - [x][] findByBrand (or brands ???)
-- [] findByColor
-- [] findByPrice
+- [x] findByColor
+- [x] findByPrice
 - [x] findByCategory
 - [x] findByDiscountTax
-- [] findByFuel
-- [] findByPassengersNum
-- [] findByYear
-- [] findAvailables
+- [x] findByFuel
+- [x] findByPassengersNum
+- [x] findByYear
+- [x] findAvailables
 - [] findByCharacteristics
 
 ###### Find ones
