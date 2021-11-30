@@ -6,24 +6,25 @@ var serviceFilterAPI = (function singleFilterService() {
         return mockStockList;
     }
 
-    const getStockAvailalbe = function() {
+    const getStockAvailalbe = function () {
         let stockAvailable = [];
         mockStockList.forEach(vehicle => {
+            //TODO: Restructing
             vehicle.available && (stockAvailable = [...stockAvailable, vehicle]);
         });
         return stockAvailable;
     }
 
-    // UNTOUCHABLE bcs need .sort()
-
+    //! COMPLETED
+    // FIND ALLs
     const getAllByPrice = function (requestedPrice) {
         let stockByRequestedPrice = [];
         mockStockList.forEach(vehicle => {
             vehicle.price <= requestedPrice && (stockByRequestedPrice = [...stockByRequestedPrice, vehicle]);
         });
-        //* Ordena la lista de mayor a menor
+        //TODO: Sort list from smallest to biggest
         return stockByRequestedPrice.sort(function (a, b) {
-            return b.price - a.price;
+            return a.price - b.price;
         });
     }
 
@@ -32,21 +33,21 @@ var serviceFilterAPI = (function singleFilterService() {
         mockStockList.forEach(vehicle => {
             vehicle.category.discountTax >= discountTax && (stockByDiscountTax = [...stockByDiscountTax, vehicle]);
         });
-        //TODO: implementar método que ordene lista
-        //* Ordena la lista de menor a mayor
-        return stockByDiscountTax.sort(function (a, b) { return a.category.discountTax - b.category.discountTax });
+        //TODO: Sort list from biggest to smallest
+        return stockByDiscountTax.sort(function (a, b) { return b.category.discountTax - a.category.discountTax });
     }
 
     const getAllByCategory = function (category) {
         let stockFilteredByCategory = [];
+        //TODO: .foreEach()
         mockStockList.forEach(vehicle => {
             vehicle.category.name === category && (stockFilteredByCategory = [...stockFilteredByCategory, vehicle]);
         });
         return stockFilteredByCategory;
     }
 
+    //! COMPLETED
     // GENERIC FILTER
-
     const genericFilter = function (requestedFilter, value) {
         let stockFiltered = [];
         mockStockList.forEach(vehicle => {
@@ -62,6 +63,7 @@ var serviceFilterAPI = (function singleFilterService() {
 
     // FIND ONE
     const getOneByModel = function (model) {
+        //TODO: .find()
         return mockStockList.find(vehicle => vehicle.model === model);
     }
 
