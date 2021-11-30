@@ -24,6 +24,6 @@ describe('Define vehicle and category for getters test cases', () => {
     });
 
     test('Apply discount over price', () => {
-        expect(category.applyDiscount(70)).toEqual(42);
+        expect(category.applyDiscount(70)).toEqual(49);
     });
 })

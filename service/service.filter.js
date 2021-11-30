@@ -6,91 +6,58 @@ var serviceFilterAPI = (function singleFilterService() {
         return mockStockList;
     }
 
-    // FIND ALL
-    const getAllByBrand = function (brand) {
-        let stockFilteredByBrand = [];
+    const getStockAvailalbe = function() {
+        let stockAvailable = [];
         mockStockList.forEach(vehicle => {
-            if (vehicle.brand === brand) {
-                //! Spreading
-                stockFilteredByBrand = [...stockFilteredByBrand, vehicle];
-            }
+            vehicle.available && (stockAvailable = [...stockAvailable, vehicle]);
         });
-        return stockFilteredByBrand;
+        return stockAvailable;
     }
 
-    const getAllByColor = function(color) {
-        let stockByColor = [];
-        mockStockList.forEach(vehicle => {
-            if (vehicle.color === color) {
-                stockByColor = [...stockByColor, vehicle];
-            }
-        });
-        return stockByColor;
-    }
+    // UNTOUCHABLE bcs need .sort()
 
-    const getAllByPrice = function(requestedPrice) {
+    const getAllByPrice = function (requestedPrice) {
         let stockByRequestedPrice = [];
         mockStockList.forEach(vehicle => {
-            if (vehicle.price <= requestedPrice) {
-                stockByRequestedPrice = [...stockByRequestedPrice, vehicle];
-            }
+            vehicle.price <= requestedPrice && (stockByRequestedPrice = [...stockByRequestedPrice, vehicle]);
         });
         //* Ordena la lista de mayor a menor
-        return stockByRequestedPrice.sort(function(a, b) {
+        return stockByRequestedPrice.sort(function (a, b) {
             return b.price - a.price;
         });
-    }
-
-    const getAllByCategory = function (category) {
-        let stockFilteredByCategory = [];
-        mockStockList.forEach(vehicle => {
-            if (vehicle.category.name === category) {
-                stockFilteredByCategory = [...stockFilteredByCategory, vehicle];
-            }
-        });
-        return stockFilteredByCategory;
     }
 
     const getAllByDiscountTax = function (discountTax) {
         let stockByDiscountTax = [];
         mockStockList.forEach(vehicle => {
-            if (vehicle.category.discountTax >= discountTax) {
-                stockByDiscountTax = [...stockByDiscountTax, vehicle];
-            }
+            vehicle.category.discountTax >= discountTax && (stockByDiscountTax = [...stockByDiscountTax, vehicle]);
         });
         //TODO: implementar método que ordene lista
         //* Ordena la lista de menor a mayor
         return stockByDiscountTax.sort(function (a, b) { return a.category.discountTax - b.category.discountTax });
     }
 
-    const getAllByFuel = function(fuel) {
-        let stockByFuel = [];
+    const getAllByCategory = function (category) {
+        let stockFilteredByCategory = [];
         mockStockList.forEach(vehicle => {
-            if (vehicle.fuel === fuel) {
-                stockByFuel = [...stockByFuel, vehicle];
-            }
+            vehicle.category.name === category && (stockFilteredByCategory = [...stockFilteredByCategory, vehicle]);
         });
-        return stockByFuel;
+        return stockFilteredByCategory;
     }
 
-    const getAllByPassengersNum = function(passengersNum) {
-        let stockByPassengersNum = [];
-        mockStockList.forEach(vehicle => {
-            if (vehicle.passengersNum >= passengersNum) {
-                stockByPassengersNum = [...stockByPassengersNum, vehicle];
-            }
-        });
-        return stockByPassengersNum;
-    }
+    // GENERIC FILTER
 
-    const getAllByYear = function(year) {
-        let stockByYear = [];
+    const genericFilter = function (requestedFilter, value) {
+        let stockFiltered = [];
         mockStockList.forEach(vehicle => {
-            if (vehicle.year >= year) {
-                stockByYear = [...stockByYear, vehicle];
+            if (isNaN(value)) {
+                vehicle[requestedFilter] === value && (stockFiltered = [...stockFiltered, vehicle]);
+            }
+            else {
+                vehicle[requestedFilter] >= value && (stockFiltered = [...stockFiltered, vehicle]);
             }
         });
-        return stockByYear;
+        return stockFiltered;
     }
 
     // FIND ONE
@@ -100,18 +67,15 @@ var serviceFilterAPI = (function singleFilterService() {
 
     return {
         getStockList,
-        // FIND ALL
-        getAllByBrand,
-        getAllByColor,
+        getStockAvailalbe,
+        // SPECIFIC
         getAllByPrice,
         getAllByCategory,
         getAllByDiscountTax,
-        getAllByFuel,
-        getAllByPassengersNum,
-        getAllByYear,
+        // GENERIC
+        genericFilter,
         // FIND ONE
         getOneByModel
     }
 })();
-
 exports.serviceFilterAPI = serviceFilterAPI;

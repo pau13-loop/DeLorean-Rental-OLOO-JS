@@ -16,7 +16,7 @@ describe('Define vehicle and category for getters test cases', () => {
     var fordMustang = undefined;
 
     beforeEach(() => {
-        fordMustang = Object.create(Vehicle).init('ford', 'mustang', 'red', 70, category, true);
+        fordMustang = Object.create(Vehicle).init('ford', 'mustang', 'red', 70, category, 'gasoline', 4, 1999, true);
     });
 
     test('Check vehicle props accessed directly', () => {
@@ -24,6 +24,9 @@ describe('Define vehicle and category for getters test cases', () => {
         expect(fordMustang.model).toBe('mustang');
         expect(fordMustang.color).toBe('red');
         expect(fordMustang.price).toBe(70);
+        expect(fordMustang.fuel).toBe('gasoline');
+        expect(fordMustang.passengers).toBe(4);
+        expect(fordMustang.year).toBe(1999);
         expect(fordMustang.available).toBe(true);
         expect(fordMustang.originalPrice).toBeTruthy();
         //! Este caso test se tiene que ver si se puede eliminar ya que el precio puede cambiar, o puede venir alterado ???
@@ -41,16 +44,19 @@ describe('Define vehicle and category for getters test cases', () => {
         expect(fordMustang).toHaveProperty('model');
         expect(fordMustang).toHaveProperty('color');
         expect(fordMustang).toHaveProperty('price');
-        expect(fordMustang).toHaveProperty('originalPrice');
         expect(fordMustang).toHaveProperty('category');
+        expect(fordMustang).toHaveProperty('fuel');
+        expect(fordMustang).toHaveProperty('passengers');
+        expect(fordMustang).toHaveProperty('year');
         expect(fordMustang).toHaveProperty('available');
+        expect(fordMustang).toHaveProperty('originalPrice');
         // Random prop check
         expect(fordMustang).not.toHaveProperty('aquatic');
     });
 
     test('Check originalPrice property is defined but not enumerable', () => {
-        expect(Object.keys(fordMustang)).toHaveLength(6);
-        expect(Object.keys(fordMustang).length).not.toBeGreaterThan(6);
+        expect(Object.keys(fordMustang)).toHaveLength(9);
+        expect(Object.keys(fordMustang).length).not.toBeGreaterThan(9);
         expect(Object.keys(fordMustang)).not.toContain('originalPrice');
         expect(fordMustang.originalPrice).toBeDefined();
         expect(fordMustang.originalPrice).not.toBeNull();
@@ -58,12 +64,16 @@ describe('Define vehicle and category for getters test cases', () => {
 
     });
 
+    //? getCategory() no está testeado ???
     test('Getters properties vehicle', () => {
         expect(fordMustang.getBrand()).toEqual(expect.stringMatching('ford'));
         expect(fordMustang.getModel()).toEqual(expect.stringMatching('mustang'));
         expect(fordMustang.getName()).toEqual(expect.stringMatching('ford mustang'));
         expect(fordMustang.getColor()).toEqual(expect.stringMatching('red'));
         expect(fordMustang.getPrice()).toBe(70);
+        expect(fordMustang.getFuel()).toBe('gasoline');
+        expect(fordMustang.getPassengers()).toBe(4);
+        expect(fordMustang.getYear()).toBe(1999);
         expect(fordMustang.getAvailability()).toBeTruthy();
         expect(fordMustang.getOriginalPrice()).toBe(70);
     });

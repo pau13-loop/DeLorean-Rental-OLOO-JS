@@ -1,17 +1,16 @@
 var Vehicle = {
     init: function (
-        brand, model, color, price, category, available) {
+        brand, model, color, price, category, fuel, passengers, year, available) {
         this.brand = brand;
         this.model = model;
         this.color = color;
         this.price = price;
         this.category = category;
-        // Implementar getters y casos test aún //
-        // fuel, seats, year, avaialble, characteristics
-        // this.fuel = fuel;
-        // this.passengers = passengers;
-        // this.year = year;
+        this.fuel = fuel;
+        this.passengers = passengers;
+        this.year = year;
         this.available = available;
+        //
         // this.characteristics = characteristics;
         //
         //! No la qiuiero inicializar ahora, sino cuando reciba el precio de bd, así me ahorro un campo en la bd !!!
@@ -47,6 +46,15 @@ var Vehicle = {
     },
     getPrice: function () {
         return this.price;
+    },
+    getFuel: function() {
+        return this.fuel;
+    },
+    getPassengers: function() {
+        return this.passengers;
+    },
+    getYear: function() {
+        return this.year;
     },
     getAvailability: function() {
         return this.available;
