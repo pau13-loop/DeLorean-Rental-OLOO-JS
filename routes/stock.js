@@ -13,6 +13,8 @@ router.use(function (req, res, next) {
 
 // STOCK ROUTES //
 router.get('/', stockController.stockAPI.stockList);
+//? El stock se debería filtrar por availability true o debería haver un endpoint aparte para buscar los vehiculos que estuvieran en true ???
+router.get('/available', stockController.stockAPI.availableStockList);
 
 //  UPDATE
 router.get('/update', stockController.stockAPI.updatePriceStock);
@@ -38,8 +40,6 @@ router.get('/brand/:brand', stockController.stockAPI.filterStock);
 router.get('/fuel/:fuel', stockController.stockAPI.filterStock);
 router.get('/passengers/:passengersNum', stockController.stockAPI.filterStock);
 router.get('/year/:year', stockController.stockAPI.filterStock);
-//? El stock se debería filtrar por availability true o debería haver un endpoint aparte para buscar los vehiculos que estuvieran en true ???
-// router.get('/available', stockController.stockAPI.vehicleFindAllByAvailability);
 
 // FIND ONE
 router.get('/model/:model', stockController.stockAPI.vehicleFindOneByModel);

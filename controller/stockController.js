@@ -12,6 +12,13 @@ var stockAPI = (function singleStockController() {
         : res.status(404).send("We are currently out of stock");
     }
 
+    const availableStockList = function(req, res) {
+        let availableStock = stockFilterService.serviceFilterAPI.getStockAvailalbe();
+        checkResponseIsDefined(availableStock) 
+        ? res.status(200).type('json').json(availableStock)
+        : res.status(404).send("Right now we don't have any available car");
+    }
+
     // UPDATE PRICE
     const updatePriceStock = function(req, res) {
         let updatedStock = stockDomainService.ServiceDomainAPI.updatePriceStock();
@@ -103,6 +110,7 @@ var stockAPI = (function singleStockController() {
     return {
         // STOCK
         stockList,
+        availableStockList,
         // UPDATE
         updatePriceStock,
         applyDiscount,

@@ -6,17 +6,23 @@ var serviceFilterAPI = (function singleFilterService() {
         return mockStockList;
     }
 
+    const getStockAvailalbe = function() {
+        let stockAvailable = [];
+        mockStockList.forEach(vehicle => {
+            vehicle.available && (stockAvailable = [...stockAvailable, vehicle]);
+        });
+        return stockAvailable;
+    }
+
     // UNTOUCHABLE bcs need .sort()
 
-    const getAllByPrice = function(requestedPrice) {
+    const getAllByPrice = function (requestedPrice) {
         let stockByRequestedPrice = [];
         mockStockList.forEach(vehicle => {
-            if (vehicle.price <= requestedPrice) {
-                stockByRequestedPrice = [...stockByRequestedPrice, vehicle];
-            }
+            vehicle.price <= requestedPrice && (stockByRequestedPrice = [...stockByRequestedPrice, vehicle]);
         });
         //* Ordena la lista de mayor a menor
-        return stockByRequestedPrice.sort(function(a, b) {
+        return stockByRequestedPrice.sort(function (a, b) {
             return b.price - a.price;
         });
     }
@@ -24,9 +30,7 @@ var serviceFilterAPI = (function singleFilterService() {
     const getAllByDiscountTax = function (discountTax) {
         let stockByDiscountTax = [];
         mockStockList.forEach(vehicle => {
-            if (vehicle.category.discountTax >= discountTax) {
-                stockByDiscountTax = [...stockByDiscountTax, vehicle];
-            }
+            vehicle.category.discountTax >= discountTax && (stockByDiscountTax = [...stockByDiscountTax, vehicle]);
         });
         //TODO: implementar método que ordene lista
         //* Ordena la lista de menor a mayor
@@ -36,28 +40,21 @@ var serviceFilterAPI = (function singleFilterService() {
     const getAllByCategory = function (category) {
         let stockFilteredByCategory = [];
         mockStockList.forEach(vehicle => {
-            if (vehicle.category.name === category) {
-                stockFilteredByCategory = [...stockFilteredByCategory, vehicle];
-            }
+            vehicle.category.name === category && (stockFilteredByCategory = [...stockFilteredByCategory, vehicle]);
         });
         return stockFilteredByCategory;
     }
 
-
     // GENERIC FILTER
 
-    const genericFilter = function(requestedFilter, value) {
+    const genericFilter = function (requestedFilter, value) {
         let stockFiltered = [];
         mockStockList.forEach(vehicle => {
-            if (isNaN(value))  {
-                if (vehicle[requestedFilter] === value) {
-                    stockFiltered = [...stockFiltered, vehicle];
-                }
+            if (isNaN(value)) {
+                vehicle[requestedFilter] === value && (stockFiltered = [...stockFiltered, vehicle]);
             }
             else {
-                if (vehicle[requestedFilter] >= value) {
-                    stockFiltered = [...stockFiltered, vehicle];
-                }
+                vehicle[requestedFilter] >= value && (stockFiltered = [...stockFiltered, vehicle]);
             }
         });
         return stockFiltered;
@@ -70,6 +67,7 @@ var serviceFilterAPI = (function singleFilterService() {
 
     return {
         getStockList,
+        getStockAvailalbe,
         // SPECIFIC
         getAllByPrice,
         getAllByCategory,

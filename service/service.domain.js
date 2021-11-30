@@ -4,6 +4,7 @@ const Vehicle = require('../src/domain/vehicle/vehicle');
 
 var ServiceDomainAPI = (function singleDomainService() {
 
+    //TODO: asignar prototypo ???
     //? Esto se debe hacer al inicializar la bd ???
     //* Asignar la propiedad --> es el momento adecuado ???
     const setPrototypeVehicle = function (vehicle) {
@@ -44,6 +45,7 @@ var ServiceDomainAPI = (function singleDomainService() {
         return mockStockTwoVehicles;
     }
 
+    //TODO: seguro que es la mejor implementación devolver un null ???
     // Devolvemos null para que devuelva el error 404 en caso de no encontrar el vehiculo
     const bookVehicle = function(brand, model) {
         let vehicleToBook = mockStockTwoVehicles.find(vehicle => vehicle.brand === brand && vehicle.model === model);
