@@ -55,7 +55,7 @@ var stockAPI = (function singleStockController() {
         : res.status(404).send("This vehicle never was booked");
     }
 
-    // UNTOUCHABLE bcs need .sort()
+    // FIND ALL
 
     const vehicleFindAllByPrice = function(req, res) {
         let allVehiclesByPrice = stockFilterService.serviceFilterAPI.getAllByPrice(req.params.price);
@@ -79,22 +79,22 @@ var stockAPI = (function singleStockController() {
         
     }
 
-    // FILTERS
-
-    const filterStock = function(req, res) {
-        let stockFiltered = stockFilterService.serviceFilterAPI.genericFilter(Object.keys(req.params)[0], Object.values(req.params)[0]);
-        checkResponseIsDefined(stockFiltered)
-        ? res.status(200).type('json').json(stockFiltered)
-        : res.status(404).send("The request couldn't be supplied sorry");
-    }
-
-    // FIND ONE
+        // FIND ONE
     // Solamanete nos interesa saber que ese modelo está disponible o existe, no cuantos hay
     const vehicleFindOneByModel = function(req, res) {
         let vehicleModel = stockFilterService.serviceFilterAPI.getOneByModel(req.params.model);
         checkResponseIsDefined(vehicleModel) 
         ? res.status(200).type('json').json(vehicleModel)
         : res.status(404).send("Currently we don't have this model available");
+    }
+
+    // GENERIC FILTER
+
+    const filterStock = function(req, res) {
+        let stockFiltered = stockFilterService.serviceFilterAPI.genericFilter(Object.keys(req.params)[0], Object.values(req.params)[0]);
+        checkResponseIsDefined(stockFiltered)
+        ? res.status(200).type('json').json(stockFiltered)
+        : res.status(404).send("The request couldn't be supplied sorry");
     }
 
     // RESPONSE CHECKER

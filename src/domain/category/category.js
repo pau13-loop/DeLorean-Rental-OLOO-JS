@@ -10,6 +10,11 @@ var Category = {
     getDiscountTax: function() {
         return this.discountTax;
     },
+    setPrototypeCategory: function (category) {
+        if (Object.getPrototypeOf(category) !== Category) {
+            return Object.setPrototypeOf(category, Category.init(category.name, category.discountTax));
+        }
+    },
     applyDiscount: function (price) {
         //* Al aplicar el descuento siempre queremos redondear al menor número posible
             return Math.floor(price - (0.01 * this.discountTax) * price);

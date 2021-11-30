@@ -1,6 +1,6 @@
 var Vehicle = {
     init: function (
-        brand, model, price, category, year, available, characteristics) {
+        brand, model, price, category, year, available) {
         this.brand = brand;
         this.model = model;
         // this.color = color;
@@ -13,12 +13,6 @@ var Vehicle = {
         //
         // this.characteristics = characteristics;
         //
-        //! No la qiuiero inicializar ahora, sino cuando reciba el precio de bd !!!
-        Object.defineProperty(this, "originalPrice", {
-            value: price,
-            writeable: false,
-            enumerable: false,
-        });
         return this;
     },
     getBrand: function () {
@@ -53,11 +47,20 @@ var Vehicle = {
     getMinPrice: function() {
         return this.originalPrice * 0.3;
     },
-    //? Porque si accedo al método getDiscountTax() me devuelve NaN ???
+    setPrototypeVehicle: function (vehicle) {
+        if (Object.getPrototypeOf(vehicle) !== Vehicle) {
+            let newVehicle = Object.setPrototypeOf(vehicle, Vehicle.init(vehicle.brand, vehicle.model, vehicle.price, vehicle.category, vehicle.year, vehicle.available));
+            Object.defineProperty(newVehicle, "originalPrice", {
+                value: newVehicle.price,
+                writeable: false,
+                enumerable: false,
+                configurable: false
+            });
+            return vehicle;
+        }
+    },
     updatePrice: function () {
         // Siempre el descuento será de un 10% en todos los vehiculos cuando cumplena año
-        let minPrice = this.getMinPrice();
-        console.log('Min price: ', minPrice);
         if (this.price > this.getMinPrice()) {
             //* Al actualizar el precio queremos redondearlo
             this.price -= Math.round(this.price * 0.1); 
