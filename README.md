@@ -176,7 +176,38 @@ The views (templates) are stored in the /views directory (as specified in app.js
 
 > La lógica de negocio debe ir encapsulada en el dominio. En el service solo se ataca la bd y se filtra u ordena si se desea pero la lógica de negocio, que es lo que planteo en este caso, la encapsulamos en el dominio
 
-4. 
+4. Esta función sobra  ???
+```
+        getMinPrice: function() {
+        return this.getOriginalPrice * 0.3;
+    },
+
+    if (this.price > this.originalPrice * 0.3)
+```
+
+> Si hubiera colocado el método dentro del condicional el lenguage del dominio sería mucho más intuitivo y facilitaria el antenimiento del código en el caso de que futuros programadores vinieran a trabjar en el proyecto
+
+5. Cuando le debo asignar el prototipo a los objetos ? 
+
+```
+    //TODO: asignar prototypo ???
+    //? Esto se debe hacer al inicializar la bd ???
+    //* Asignar la propiedad --> es el momento adecuado ???
+    const setPrototypeVehicle = function (vehicle) {
+        if (Object.getPrototypeOf(vehicle) !== Vehicle) {
+            return Object.setPrototypeOf(vehicle, Vehicle.init(vehicle.brand, vehicle.model, vehicle.color, vehicle.price, vehicle.category));
+        }
+    }
+```
+
+> La asignación o lincamiento de prototipos debe producirse en el domain, en la lógica de dominio. Cada entidad deberá ser la encargada de lincar su prototipo a los objetos.
+
+6. Cuando ordeno los aobjetos ?
+
+> En la llamada a la BD ya puedo hacer que me de los obj ordenados según como me interesa
+
+
+
 
 # ACUERDATE PAU PORFAVOR !!!
 - Debería comprobar que al actualizar los coches su disponibilidad está seteada a "true"
