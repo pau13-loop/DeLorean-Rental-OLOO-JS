@@ -47,7 +47,7 @@ var ServiceDomainAPI = (function singleDomainService() {
 
     //TODO: seguro que es la mejor implementación devolver un null ???
     // Devolvemos null para que devuelva el error 404 en caso de no encontrar el vehiculo
-    const bookVehicle = function(brand, model) {
+    const bookVehicle = function (brand, model) {
         let vehicleToBook = mockStockTwoVehicles.find(vehicle => vehicle.brand === brand && vehicle.model === model);
         if (vehicleToBook) {
             vehicleToBook.available = false;
@@ -57,7 +57,7 @@ var ServiceDomainAPI = (function singleDomainService() {
     }
 
     // Devolvemos null para que devuelva el error 404 en caso de no encontrar el vehiculo
-    const returnVehicle = function(brand, model) {
+    const returnVehicle = function (brand, model) {
         let vehicleToReturn = mockStockTwoVehicles.find(vehicle => vehicle.brand === brand && vehicle.model === model && !vehicle.available);
         if (vehicleToReturn) {
             vehicleToReturn.available = true;

@@ -1,6 +1,6 @@
 var Vehicle = {
     init: function (
-        brand, model, color, price, category, available) {
+        brand, model, color, price, category, fuel, available) {
         this.brand = brand;
         this.model = model;
         this.color = color;
@@ -8,7 +8,7 @@ var Vehicle = {
         this.category = category;
         // Implementar getters y casos test aún //
         // fuel, seats, year, avaialble, characteristics
-        // this.fuel = fuel;
+        this.fuel = fuel;
         // this.passengers = passengers;
         // this.year = year;
         this.available = available;
@@ -47,6 +47,9 @@ var Vehicle = {
     },
     getPrice: function () {
         return this.price;
+    },
+    getFuel: function() {
+        return this.fuel;
     },
     getAvailability: function() {
         return this.available;
