@@ -1,6 +1,6 @@
 var Vehicle = {
     init: function (
-        brand, model, category, passengers, year, price, available) {
+        model, brand, category, passengers, year, price, available) {
         this.model = model;
         this.brand = brand;
         this.category = category;
@@ -43,7 +43,7 @@ var Vehicle = {
     //TODO: Object.defineProperty()
     setPrototypeVehicle: function (vehicle) {
         if (Object.getPrototypeOf(vehicle) !== Vehicle) {
-            let newVehicle = Object.setPrototypeOf(vehicle, Vehicle.init(vehicle.brand, vehicle.model, vehicle.category, vehicle.passengers, vehicle.year, vehicle.price, vehicle.available));
+            let newVehicle = Object.setPrototypeOf(vehicle, Vehicle.init(vehicle.model, vehicle.brand, vehicle.category, vehicle.passengers, vehicle.year, vehicle.price, vehicle.available));
             Object.defineProperty(newVehicle, "ORIGINALPRICE", {
                 value: newVehicle.price,
                 writeable: false,
@@ -66,18 +66,20 @@ var Vehicle = {
         });
     },
     //! para chequear si son clásicos, aquí o en el service ???
-    updatePrice: function () {
-        const actualYear = new Date().getFullYear();
-        let updatePercentatge = 0.1 * (actualYear - this.year);
-        //* Al actualizar el precio queremos redondearlo
-        //? Conseguimos el nuevo precio multiplicando el porcentaje por el precio original, porque el precio podría ya tener un descuento aplicdo, y el descuento del 10% por año siempre se realizará sobre el precio original
-        let newPrice = Math.round(this.ORIGINALPRICE * updatePercentatge);
-
-        if (newPrice > this.getMinPrice()) {
-            this.price = newPrice; 
-        }
-        else {
-            this.price = this.getMinPrice(); 
+    updatePrice: function (vehicle) {
+        if (vehicle.category !== 'classic') {
+            const actualYear = new Date().getFullYear();
+            let updatePercentatge = 0.1 * (actualYear - vehicle.year);
+            //* Al actualizar el precio queremos redondearlo
+            //? Conseguimos el nuevo precio multiplicando el porcentaje por el precio original, porque el precio podría ya tener un descuento aplicdo, y el descuento del 10% por año siempre se realizará sobre el precio original
+            let newPrice = Math.round(vehicle.ORIGINALPRICE * updatePercentatge);
+    
+            if (newPrice > this.getMinPrice()) {
+                vehicle.price = newPrice; 
+            }
+            else {
+                vehicle.price = this.getMinPrice(); 
+            }
         }
     }
 };

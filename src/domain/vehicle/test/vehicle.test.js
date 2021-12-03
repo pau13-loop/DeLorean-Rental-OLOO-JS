@@ -10,53 +10,98 @@ var Category = require('../../category/category');
  * - ToBeTruthy()
  *  */
 
-describe('Define vehicle and category for getters test cases', () => {
+var category = Object.create(Category).init('classic', 30);
+var fordMustang = Object.create(Vehicle).init('mustang', 'ford', category, 4, 1999, 70, true);
 
-    var category = Object.create(Category).init('classic', 30);
-    var fordMustang = undefined;
+test('Check vehicle props accessed directly', () => {
+    expect(fordMustang.model).toBe('mustang');
+    expect(fordMustang.brand).toBe('ford');
+    expect(fordMustang.price).toBe(70);
+    expect(fordMustang.category).toBeDefined();
+    expect(fordMustang.year).toBe(1999);
+    expect(fordMustang.available).toBe(true);
+    // Random test not.toBe()
+    expect(fordMustang.brand).not.toBe('seat');
+    expect(fordMustang.price).not.toBeNull();
+    expect(fordMustang.available).not.toBeFalsy();
+    expect(fordMustang.category).not.toBeNaN();
+});
 
-    beforeEach(() => {
-        fordMustang = Object.create(Vehicle).init('ford', 'mustang', 70, category, 1999, true);
-    });
+test('Check vehicle properties', () => {
+    expect(fordMustang).toHaveProperty('model');
+    expect(fordMustang).toHaveProperty('brand');
+    expect(fordMustang).toHaveProperty('category');
+    expect(fordMustang).toHaveProperty('passengers');
+    expect(fordMustang).toHaveProperty('year');
+    expect(fordMustang).toHaveProperty('price');
+    expect(fordMustang).toHaveProperty('available');
+    // Random prop check
+    expect(fordMustang).not.toHaveProperty('aquatic');
+});
 
-    test('Check vehicle props accessed directly', () => {
-        expect(fordMustang.brand).toBe('ford');
-        expect(fordMustang.model).toBe('mustang');
-        expect(fordMustang.price).toBe(70);
-        expect(fordMustang.year).toBe(1999);
-        expect(fordMustang.available).toBe(true);
-        expect(fordMustang.originalPrice).toBeTruthy();
-        //! Este caso test se tiene que ver si se puede eliminar ya que el precio puede cambiar, o puede venir alterado ???
-        expect(fordMustang.originalPrice).toEqual(fordMustang.price);
-        // Random test not.toBe()
-        expect(fordMustang.brand).not.toBe('seat');
-        expect(fordMustang.price).not.toBeNull();
-        expect(fordMustang.available).not.toBeFalsy();
-        expect(fordMustang.category).not.toBeNaN();
-    });
-
-
-    test('Check vehicle properties', () => {
-        expect(fordMustang).toHaveProperty('brand');
-        expect(fordMustang).toHaveProperty('model');
-        expect(fordMustang).toHaveProperty('price');
-        expect(fordMustang).toHaveProperty('category');
-        expect(fordMustang).toHaveProperty('year');
-        expect(fordMustang).toHaveProperty('available');
-        expect(fordMustang).toHaveProperty('originalPrice');
-        // Random prop check
-        expect(fordMustang).not.toHaveProperty('aquatic');
+describe("Set prototype of Vehicle and check it's ORIGINALPRICE", () => {
+    let newVehicle = {
+        mode: "clio",
+        brand: "renault",
+        category: category,
+        passengers: 5,
+        year: 2019,
+        price: 15,
+        available: true
+    };
+    
+    Vehicle.setPrototypeVehicle(newVehicle);
+    
+    test('Check prototype of', () => {        
+        // Two different ways of check the prototype of an obj
+        expect(Vehicle.isPrototypeOf(newVehicle)).toBe(true);
+        expect(Object.getPrototypeOf(newVehicle) === Vehicle).toBe(true);
     });
 
     test('Check originalPrice property is defined but not enumerable', () => {
-        expect(Object.keys(fordMustang)).toHaveLength(6);
-        expect(Object.keys(fordMustang).length).not.toBeGreaterThan(6);
-        expect(Object.keys(fordMustang)).not.toContain('originalPrice');
-        expect(fordMustang.originalPrice).toBeDefined();
-        expect(fordMustang.originalPrice).not.toBeNull();
+        expect(Object.keys(newVehicle)).toHaveLength(7);
+        expect(Object.keys(newVehicle).length).not.toBeGreaterThan(7);
+        expect(Object.keys(newVehicle)).not.toContain('ORIGINALPRICE');
+        expect(newVehicle.ORIGINALPRICE).toBeDefined();
+        expect(newVehicle.ORIGINALPRICE).not.toBeNull();
+        expect(newVehicle).toHaveProperty('ORIGINALPRICE');
+        expect(newVehicle.ORIGINALPRICE).toBeTruthy();
+        expect(newVehicle.ORIGINALPRICE).toEqual(newVehicle.price);
+    });
+});
 
+describe('Define vehicle and category for getters test cases', () => {
+
+    // CATEGORIES
+    var commonCategory = Object.create(Category).init('common', 60);
+    var classicCategory = Object.create(Category).init('classic', 40);
+
+    // VEHICLES
+    var golf = {
+        mode: "golf",
+        brand: "volkswagen",
+        category: classicCategory,
+        passengers: 5,
+        year: 1999,
+        price: 35,
+        available: true
+    };
+
+    var leon = {
+        mode: "leon",
+        brand: "seat",
+        category: commonCategory,
+        passengers: 5,
+        year: 2018,
+        price: 20,
+        available: true
+    };
+
+    beforeEach(() => {
 
     });
+
+
 
     //? getCategory() no está testeado ???
     test('Getters properties vehicle', () => {
