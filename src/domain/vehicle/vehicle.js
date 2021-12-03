@@ -10,32 +10,34 @@ var Vehicle = {
         this.available = available;
         return this;
     },
-    getBrand: function () {
-        return this.brand;
-    },
+    // Prop getters
     getModel: function () {
         return this.model;
+    },
+    getBrand: function () {
+        return this.brand;
     },
     getCategory: function () {
         return this.category;
     },
-    getPrice: function () {
-        return this.price;
+    getPassengers: function() {
+        return this.passengers;
     },
     getYear: function() {
         return this.year;
     },
-    getAvailability: function() {
-        return this.available;
+    getPrice: function () {
+        return this.price;
     },
-    getOriginalPrice: function () {
-        return this.ORIGINALPRICE;
+    getAvailable: function() {
+        return this.available;
     },
     getName: function () {
         return `Vehicle name: ${this.brand} ${this.model}`;
     },
-    getDiscountedPrice: function () {
-        return `Discount applied successfully! \nPrice: ${this.price}`;
+    // Other necessary getters
+    getOriginalPrice: function () {
+        return this.ORIGINALPRICE;
     },
     getMinPrice: function() {
         return this.ORIGINALPRICE * 0.3;
