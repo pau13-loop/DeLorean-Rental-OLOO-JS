@@ -40,7 +40,7 @@ var Vehicle = {
         return this.ORIGINALPRICE;
     },
     getMinPrice: function() {
-        return this.ORIGINALPRICE * 0.3;
+        return this.ORIGINALPRICE * 0.4;
     },
     //TODO: Object.defineProperty()
     setPrototypeVehicle: function (vehicle) {
@@ -56,6 +56,7 @@ var Vehicle = {
         }
     },
     //TODO: closure
+    //! Esta función se debería poder llamar únicamente cuando el vehiculo este reservado ???
     getPresonalAssistance: function (subject) {
         let closure = function (name) {
             function notifyAssistance() {
@@ -74,7 +75,7 @@ var Vehicle = {
             let updatePercentatge = 0.1 * (actualYear - vehicle.year);
             //* Al actualizar el precio queremos redondearlo
             //? Conseguimos el nuevo precio multiplicando el porcentaje por el precio original, porque el precio podría ya tener un descuento aplicdo, y el descuento del 10% por año siempre se realizará sobre el precio original
-            let newPrice = Math.round(vehicle.ORIGINALPRICE * updatePercentatge);
+            let newPrice = Math.round(vehicle.ORIGINALPRICE - vehicle.ORIGINALPRICE * updatePercentatge);
     
             if (newPrice > this.getMinPrice()) {
                 vehicle.price = newPrice; 
