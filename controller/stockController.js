@@ -44,7 +44,7 @@ var stockAPI = (function singleStockController() {
     const bookVehicle = function(req, res) {
         let bookedVehicle = stockDomainService.ServiceDomainAPI.bookVehicle(req.params.brand, req.params.model);
         checkResponseIsDefined(bookedVehicle)
-        ? res.status(200).type('json').json(bookedVehicle)
+        ? res.status(200).send('Your vehicle has been booked')
         : res.status(404).send("The vehicle is not available");
     }
 
@@ -92,7 +92,7 @@ var stockAPI = (function singleStockController() {
     }
 
     //! COMPLETED
-    
+
     // GENERIC FILTER
     const filterStock = function(req, res) {
         let stockFiltered = stockFilterService.serviceFilterAPI.genericFilter(Object.keys(req.params)[0], Object.values(req.params)[0]);

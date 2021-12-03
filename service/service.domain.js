@@ -22,6 +22,7 @@ var ServiceDomainAPI = (function singleDomainService() {
         return mockStockTwoVehicles;
     }
 
+    //! Esto ha cambiado, ahora se llama al update price para conseguir su precio original
     const restorePrice = function () {
         mockStockTwoVehicles.forEach(vehicle => {
             Vehicle.setPrototypeVehicle(vehicle);
@@ -36,7 +37,7 @@ var ServiceDomainAPI = (function singleDomainService() {
         let vehicleToBook = mockStockTwoVehicles.find(vehicle => vehicle.brand === brand && vehicle.model === model);
         if (vehicleToBook) {
             vehicleToBook.available = false;
-            return mockStockTwoVehicles;
+            return vehicleToBook;
         }
         return null;
     }
