@@ -135,6 +135,7 @@ describe('Define vehicle and category for getters test cases', () => {
         Vehicle.setPrototypeVehicle(leon);
     });
 
+    //TODO: functionMock
     const percentageMock = jest
     .fn()
     .mockImplementation((priceVehicle) => priceVehicle * 0.4)
@@ -146,10 +147,15 @@ describe('Define vehicle and category for getters test cases', () => {
     });
 
     test('Test closure get Personal Assitance', () => {
-        leon.getPresonalAssistance('Mc Claren');
+        golf.getPresonalAssistance('Mc Claren');
 
-        expect(leon).toHaveProperty('personalAssistance');
-        expect(leon.personalAssistance()).toEqual(expect.stringMatching('Assitance notified, please remain at your location Mc Claren'));
+        expect(golf).toHaveProperty('personalAssistance');
+        expect(golf.personalAssistance()).toEqual(expect.stringMatching('Assitance notified, please remain at your location Mc Claren'));
+
+        expect(leon.hasOwnProperty('personalAssistance')).toBeFalsy();
+        
+        let vehicleProto = Object.getPrototypeOf(Vehicle);
+        expect(vehicleProto).not.toHaveProperty('personalAssistance');
     });
 
     // test('Update price vehicles', () => {
