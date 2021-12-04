@@ -4,10 +4,19 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-// ROUTERS //
+ //* MongoDB CONNECTION *//
+var mongoose = require('mongoose');
+var mongoDB = `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@cluster0-ud3ms.mongodb.net/pushmees_pullmees?retryWrites=true&w=majority`;
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+//* ROUTERS *//
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var stockRouter = require('./routes/stock');
+
+//* App setup *//
 
 var app = express();
 
@@ -21,19 +30,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//* MIDELWARE *//
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
-// MIDELWARE STOCK //
 app.use('/stock', stockRouter);
 
+
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
