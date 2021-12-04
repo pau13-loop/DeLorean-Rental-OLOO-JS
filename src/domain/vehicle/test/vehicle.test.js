@@ -6,6 +6,7 @@ var Category = require('../../category/category');
 var category = Object.create(Category).init('classic', 30);
 var fordMustang = Object.create(Vehicle).init('mustang', 'ford', category, 4, 1999, 70, true);
 
+//TODO: describe()
 describe('Test object attributes and getters', () => {
     test('Check vehicle props accessed directly', () => {
         expect(fordMustang.model).toBe('mustang');
@@ -74,11 +75,12 @@ describe("Set prototype of Vehicle and check it's ORIGINALPRICE", () => {
         available: true
     };
 
+    //TODO: beforeAll()
     beforeAll(() => {
         Vehicle.setPrototypeVehicle(newVehicle);
     });
 
-    test('Check prototype of Vehicle already SET', () => {  
+    test('Check prototype of Vehicle already SET', () => {
         // Two different ways of check the prototype of an obj      
         expect(Vehicle.isPrototypeOf(newVehicle)).toBe(true);
         expect(Object.getPrototypeOf(newVehicle) === Vehicle).toBe(true);
@@ -103,7 +105,7 @@ describe("Set prototype of Vehicle and check it's ORIGINALPRICE", () => {
     });
 });
 
-describe('Define vehicle and category for getters test cases', () => {
+describe('Tests for closure and update price', () => {
 
     // CATEGORIES
     var commonCategory = Object.create(Category).init('common', 60);
@@ -130,6 +132,7 @@ describe('Define vehicle and category for getters test cases', () => {
         available: true
     };
 
+    //TODO: beforeEach()
     beforeEach(() => {
         Vehicle.setPrototypeVehicle(golf);
         Vehicle.setPrototypeVehicle(leon);
@@ -137,9 +140,9 @@ describe('Define vehicle and category for getters test cases', () => {
 
     //TODO: functionMock
     const percentageMock = jest
-    .fn()
-    .mockImplementation((priceVehicle) => priceVehicle * 0.4)
-    .mockName('percentageMock');
+        .fn()
+        .mockImplementation((priceVehicle) => priceVehicle * 0.4)
+        .mockName('percentageMock');
 
     test('Check minimum price', () => {
         expect(leon.getMinPrice()).toBe(percentageMock(leon.price));
@@ -153,44 +156,77 @@ describe('Define vehicle and category for getters test cases', () => {
         expect(golf.personalAssistance()).toEqual(expect.stringMatching('Assitance notified, please remain at your location Mc Claren'));
 
         expect(leon.hasOwnProperty('personalAssistance')).toBeFalsy();
-        
+
         let vehicleProto = Object.getPrototypeOf(Vehicle);
         expect(vehicleProto).not.toHaveProperty('personalAssistance');
     });
 
-    // test('Update price vehicles', () => {
-    //     expect(golf.getPrice()).toBe(35);
-    //     expect(leon.getPrice()).toBe(20);
-    //     fordMustang.updatePrice();
-    //     expect(fordMustang.getPrice()).toBe(percentageOfFiveOverSeventy);
-    // });
+    // Set current year
+    Date.now = jest
+        .fn(() => new Date());
 
-//     test('Error try to update price under minimum', () => {
-//         expect(fordMustang.getPrice()).toBe(70);
-//         fordMustang.price = 5;
-//         expect(fordMustang.getPrice()).toBe(5);
-//         fordMustang.updatePrice();
-//         expect(fordMustang.getPrice()).toBe(5);
-//     });
+    const updateLeonPrice = jest
+        .fn()
+        .mockImplementation((ORIGINALPRICE, year) => Math.round(ORIGINALPRICE - ORIGINALPRICE * (0.1 * (Date.now().getFullYear() - year))))
+        .mockName('updateLeonPrice');
 
-//     //* Movidos a Category.test.js
-//     // test('Discount vehicle price', () => {
-//     //     // Get price before update
-//     //     expect(fordMustang.getPrice()).toBe(70);
-//     //     expect(fordMustang.getOriginalPrice()).toBe(70);
-//     //     // Update price
-//     //     let percentatgeOfSeventy = Math.floor((100 * 30) / 70);
-//     //     fordMustang.applyDiscount();
-//     //     // Check price has updated correcty but original price still with the same value
-//     //     expect(fordMustang.getPrice()).toBe(percentatgeOfSeventy);
-//     //     expect(fordMustang.getDiscountedPrice()).toBe(`Discount applied successfully! \nPrice: ${percentatgeOfSeventy}`);
-//     //     expect(fordMustang.getOriginalPrice()).toBe(70);
-//     // });
+    test('Update price vehicles', () => {
+        expect(golf.getPrice()).toBe(35);
+        expect(leon.getPrice()).toBe(20);
 
-//     // test('Error try to applyDiscount with price under minimum', () => {
-//     //     expect(fordMustang.getPrice()).toBe(70);
-//     //     fordMustang.price = 5;
-//     //     expect(fordMustang.getPrice()).toBe(5);
-//     //     expect(fordMustang.applyDiscount()).toEqual(expect.stringContaining(('Price can not go under minimum')));
-//     // })
+        golf.updatePrice();
+        leon.updatePrice();
+
+        expect(golf.price).toBe(35);
+        expect(leon.price).toBe(updateLeonPrice(leon.ORIGINALPRICE, leon.year));
+
+        // Change year
+        Date.now = jest
+            .fn(() => new Date(2023, 1, 1));
+
+        golf.updatePrice();
+        leon.updatePrice();
+
+        expect(Date.now().getFullYear()).toBe(2023);
+        expect(golf.price).toBe(35);
+        expect(leon.price).toBe(updateLeonPrice(leon.ORIGINALPRICE, leon.year));
+    });
+
+    test('Try to update price under minimum, return min price', () => {
+        expect(golf.getPrice()).toBe(35);
+        expect(leon.getPrice()).toBe(20);
+
+        // Change year
+        Date.now = jest
+            .fn(() => new Date(2030, 1, 1));
+
+        golf.updatePrice();
+        leon.updatePrice();
+
+        expect(Date.now().getFullYear()).toBe(2030);
+        expect(golf.price).toBe(35);
+        expect(leon.price).toBe(leon.getMinPrice());
+    });
+
+
+    //     //* Movidos a Category.test.js
+    //     // test('Discount vehicle price', () => {
+    //     //     // Get price before update
+    //     //     expect(fordMustang.getPrice()).toBe(70);
+    //     //     expect(fordMustang.getOriginalPrice()).toBe(70);
+    //     //     // Update price
+    //     //     let percentatgeOfSeventy = Math.floor((100 * 30) / 70);
+    //     //     fordMustang.applyDiscount();
+    //     //     // Check price has updated correcty but original price still with the same value
+    //     //     expect(fordMustang.getPrice()).toBe(percentatgeOfSeventy);
+    //     //     expect(fordMustang.getDiscountedPrice()).toBe(`Discount applied successfully! \nPrice: ${percentatgeOfSeventy}`);
+    //     //     expect(fordMustang.getOriginalPrice()).toBe(70);
+    //     // });
+
+    //     // test('Error try to applyDiscount with price under minimum', () => {
+    //     //     expect(fordMustang.getPrice()).toBe(70);
+    //     //     fordMustang.price = 5;
+    //     //     expect(fordMustang.getPrice()).toBe(5);
+    //     //     expect(fordMustang.applyDiscount()).toEqual(expect.stringContaining(('Price can not go under minimum')));
+    //     // })
 });

@@ -69,19 +69,20 @@ var Vehicle = {
         });
     },
     //! para chequear si son clásicos, aquí o en el service ???
-    updatePrice: function (vehicle) {
-        if (vehicle.category !== 'classic') {
-            const actualYear = new Date().getFullYear();
-            let updatePercentatge = 0.1 * (actualYear - vehicle.year);
-            //* Al actualizar el precio queremos redondearlo
+    updatePrice: function () {
+        if (this.category.name !== 'classic') {
+            const actualYear = Date.now().getFullYear();
+            let updatePercentatge = 0.1 * (actualYear - this.year);
+            
             //? Conseguimos el nuevo precio multiplicando el porcentaje por el precio original, porque el precio podría ya tener un descuento aplicdo, y el descuento del 10% por año siempre se realizará sobre el precio original
-            let newPrice = Math.round(vehicle.ORIGINALPRICE - vehicle.ORIGINALPRICE * updatePercentatge);
+            //* Al actualizar el precio queremos redondearlo
+            let newPrice = Math.round(this.ORIGINALPRICE - this.ORIGINALPRICE * updatePercentatge);
     
             if (newPrice > this.getMinPrice()) {
-                vehicle.price = newPrice; 
+                this.price = newPrice; 
             }
             else {
-                vehicle.price = this.getMinPrice(); 
+                this.price = this.getMinPrice(); 
             }
         }
     }
