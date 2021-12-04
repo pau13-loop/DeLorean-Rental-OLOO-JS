@@ -1,54 +1,24 @@
 var Vehicle = {
     init: function (
-        brand, model, color, price, category, fuel, passengers, year, available) {
-        this.brand = brand;
+        model, brand, category, passengers, year, price, available) {
         this.model = model;
-        this.color = color;
-        this.price = price;
+        this.brand = brand;
         this.category = category;
-        this.fuel = fuel;
         this.passengers = passengers;
         this.year = year;
+        this.price = price;
         this.available = available;
-        //
-        // this.characteristics = characteristics;
-        //
-        //! No la qiuiero inicializar ahora, sino cuando reciba el precio de bd, así me ahorro un campo en la bd !!!
-        Object.defineProperty(this, "originalPrice", {
-            value: price,
-            writeable: false,
-            enumerable: false,
-        });
-        //? Donde explico que la regla de mi negocio no permite bajar el valor de los coches una vez llegué al 30% de su valor inicial ???
-        //TODO: creo que no hará falta utilizarla ya que se puede aplicar directamente sobre el precioOriginal, para saber si se puede descontar o no
-        Object.defineProperty(this, "minPrice", {
-            value: price * 0.3,
-            writeable: false,
-            enumerable: false,
-        });
         return this;
     },
-    // GETTERS
-    getBrand: function () {
-        return this.brand;
-    },
+    // Prop getters
     getModel: function () {
         return this.model;
     },
-    getName: function () {
-        return `Vehicle name: ${this.brand} ${this.model}`;
-    },
-    getColor: function () {
-        return this.color;
+    getBrand: function () {
+        return this.brand;
     },
     getCategory: function () {
         return this.category;
-    },
-    getPrice: function () {
-        return this.price;
-    },
-    getFuel: function() {
-        return this.fuel;
     },
     getPassengers: function() {
         return this.passengers;
@@ -56,31 +26,64 @@ var Vehicle = {
     getYear: function() {
         return this.year;
     },
-    getAvailability: function() {
+    getPrice: function () {
+        return this.price;
+    },
+    getAvailable: function() {
         return this.available;
     },
-    getDiscountedPrice: function () {
-        return `Discount applied successfully! \nPrice: ${this.price}`;
+    getName: function () {
+        return `Vehicle name: ${this.brand} ${this.model}`;
     },
-    // GETTERS NON ENUMREABLE OR WRITEABLE PROPS
+    // Other necessary getters
     getOriginalPrice: function () {
-        return this.originalPrice;
+        return this.ORIGINALPRICE;
     },
-    //TODO: el preicio mínimo no puede ser inferior al 30% del precio original
-    //! Esta función sobra  ???
     getMinPrice: function() {
-        return this.getOriginalPrice * 0.3;
+        return this.ORIGINALPRICE * 0.4;
     },
-    // DATA MANIPULATION
-    //? Porque si accedo al método getDiscountTax() me devuelve NaN ???
+    //TODO: Object.defineProperty()
+    setPrototypeVehicle: function (vehicle) {
+        if (Object.getPrototypeOf(vehicle) !== Vehicle) {
+            let newVehicle = Object.setPrototypeOf(vehicle, Vehicle.init(vehicle.model, vehicle.brand, vehicle.category, vehicle.passengers, vehicle.year, vehicle.price, vehicle.available));
+            Object.defineProperty(newVehicle, "ORIGINALPRICE", {
+                value: newVehicle.price,
+                writeable: false,
+                enumerable: false,
+                configurable: false
+            });
+            return vehicle;
+        }
+    },
+    //TODO: closure
+    //! Esta función se debería poder llamar únicamente cuando el vehiculo este reservado ???
+    getPresonalAssistance: function (subject) {
+        let closure = function (name) {
+            function notifyAssistance() {
+                return `Assitance notified, please remain at your location ${name}`
+            } 
+            return notifyAssistance;
+        }
+        Object.defineProperty(Vehicle, "personalAssistance", {
+            value: closure(subject)
+        });
+    },
+    //! para chequear si son clásicos, aquí o en el service ???
     updatePrice: function () {
-        //TODO: aplicar prog. defensiva, chequear que el precio no se puede descontar si es inferior al precioOriginal
-        // Siempre el descuento será de un 5% en todos los vehiculos cuando cumplena año
-        //! Lo calculo directamente o accediendo al método getMinPrice() ???
-        // let original = this.originalPrice;
-        if (this.price > this.originalPrice * 0.3) {
+        if (this.category.name !== 'classic') {
+            const actualYear = Date.now().getFullYear();
+            let updatePercentatge = 0.1 * (actualYear - this.year);
+            
+            //? Conseguimos el nuevo precio multiplicando el porcentaje por el precio original, porque el precio podría ya tener un descuento aplicdo, y el descuento del 10% por año siempre se realizará sobre el precio original
             //* Al actualizar el precio queremos redondearlo
-            this.price -= Math.round(this.price * 0.1); 
+            let newPrice = Math.round(this.ORIGINALPRICE - this.ORIGINALPRICE * updatePercentatge);
+    
+            if (newPrice > this.getMinPrice()) {
+                this.price = newPrice; 
+            }
+            else {
+                this.price = this.getMinPrice(); 
+            }
         }
     }
 };

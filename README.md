@@ -113,11 +113,6 @@ The views (templates) are stored in the /views directory (as specified in app.js
 > https://stackoverflow.com/questions/33455026/not-sharing-object-properties-in-oloo-inheritance
 
 
-
-# Lógica de negocio a aplicar:
-
-- Los obj tendrán el precio inicial de cuando se obtuvieron por primera vez de BD. Por esta razón una vez acabe el "Black Friday" podrán restablecer su valor original sin hacer una query costosa, tan solo tendrán que acceder a su atributo "originalPRice" que será [no enumerable, no configurable y no writeable]. El atributo no vendrá definido de BD por lo que nos ahorramos el campo en los obj a la hora de meterlos en BD y lo creamos al inicializar el obj.
-
 ## Atribs a aplicar (en los prototipos)
 
 - originalPrice 
@@ -176,10 +171,40 @@ The views (templates) are stored in the /views directory (as specified in app.js
 
 > La lógica de negocio debe ir encapsulada en el dominio. En el service solo se ataca la bd y se filtra u ordena si se desea pero la lógica de negocio, que es lo que planteo en este caso, la encapsulamos en el dominio
 
-4. 
+4. Esta función sobra  ???
+```
+        getMinPrice: function() {
+        return this.getOriginalPrice * 0.3;
+    },
+
+    if (this.price > this.originalPrice * 0.3)
+```
+
+> Si hubiera colocado el método dentro del condicional el lenguage del dominio sería mucho más intuitivo y facilitaria el antenimiento del código en el caso de que futuros programadores vinieran a trabjar en el proyecto
+
+5. Cuando le debo asignar el prototipo a los objetos ? 
+
+```
+    //TODO: asignar prototypo ???
+    //? Esto se debe hacer al inicializar la bd ???
+    //* Asignar la propiedad --> es el momento adecuado ???
+    const setPrototypeVehicle = function (vehicle) {
+        if (Object.getPrototypeOf(vehicle) !== Vehicle) {
+            return Object.setPrototypeOf(vehicle, Vehicle.init(vehicle.brand, vehicle.model, vehicle.color, vehicle.price, vehicle.category));
+        }
+    }
+```
+
+> La asignación o lincamiento de prototipos debe producirse en el domain, en la lógica de dominio. Cada entidad deberá ser la encargada de lincar su prototipo a los objetos.
+
+6. Cuando ordeno los aobjetos ?
+
+> En la llamada a la BD ya puedo hacer que me de los obj ordenados según como me interesa
+
+
+
 
 # ACUERDATE PAU PORFAVOR !!!
-- Debería comprobar que al actualizar los coches su disponibilidad está seteada a "true"
 
 - Implementar un único método para los filtros, que sea generico y filtre por cualquier campo del vehiculo. El método sería algo así
 ```
@@ -195,3 +220,49 @@ const filterVehicle = function(keyFilter, filter) {
 }
 ```
 Ahora tenemos que ver cuando queremos ordenar la lista o si solo lo implementamos para los filtros en los cual no haga falta ordenar la lista
+
+
+
+# Historias de usuario
+
+- Los obj tendrán el precio inicial de cuando se obtuvieron por primera vez de BD. Por esta razón una vez acabe el "Black Friday" podrán restablecer su valor original sin hacer una query costosa, tan solo tendrán que acceder a su atributo "originalPRice" que será [no enumerable, no configurable y no writeable]. El atributo no vendrá definido de BD por lo que nos ahorramos el campo en los obj a la hora de meterlos en BD y lo creamos al inicializar el obj
+
+- El precio mínimo nunca podrá ser inferior al 40% del precio original o en ese caso al precio se le asignará el valor devuelto por la función getMinPrice(). Cuando hay oferta de descuento como el Black Friday, no se le aplicará está lógica, cualquier descuento sobre el precio está permitido, la ocasión lo merece, rebajas sin control, no ? Política Black Friday consumista !
+
+- Cada vez que un vehiculo cumple un año se le actualizará el 10% del precio original
+
+- Los vehiculos que tienen un descuento son todos, pero los clasicos no actualizarán su precio (solo lo descuentan en BF), su precio mantiene a lo largo del programa.
+
+- Los vehiculos clasicos no se eliminaran nunca de la flota, solo se eliminaran coches con una antiguedad superior a cinco años y categoria no clasica
+
+- Solo se pueden añadir vehiculos a la flota con una antiguedad inferior a cinco años
+
+- Debería comprobar que al actualizar los coches su disponibilidad está seteada a "true". Solo actualizan los vehiculos con disponibilidad seteada a "true"
+
+- Closure para conseguir asistencia técnica ??? Cuando un vehiculo es reservado se define una propiedad del objeto que trata sobre conseguir asistencia técnica. Solo se puede acceder a ella mientras su prop available este seteada a false. Basicamente lo que hace es pasarle un nombre por parametro y devolver un mensaje diciendo: "Asistencia técninca en camino para <nombre>"
+
+### Ciclo de vida del precio del Vehiculo
+
+Seteamos property ORIGINALPRICE
+> precio = ORIGINALPRICE
+
+Black Friday
+> precio = precio * tasaDescuento
+
+Update Price
+> precio = ORIGINALPRICE * (0.1 * añosVehiculo hasta día de hoy)
+
+Restore Price
+> updatePrice()
+
+
+# Service
+
+-  Número de pasajeros me parece más improtante que el color para actualizar la lista, tenemos que ver si el filtro generico funciona y ordenar la lista de menor a mayor. Porque esa lista filtra por año y por núm. de pasajeros.
+
+- Si el filtro generico después ordena de menor a mayor probablemente se pueda incluir el precio. 
+    
+    > Porque yo quiero que me muestre vehiculos a partir de determinado número de pasajeros
+    > A partir de determinado año
+    > A partir de determinado precio (o el precio es a partir de este como máximo ??? )
+

@@ -4,7 +4,7 @@ const stockDomainService = require('../service/service.domain');
 
 var stockAPI = (function singleStockController() {
 
-    // STOCK
+    // STOCK //! COMPLETED
     const stockList = function (req, res) {
         let stock = stockFilterService.serviceFilterAPI.getStockList();
         checkResponseIsDefined(stock) 
@@ -44,7 +44,7 @@ var stockAPI = (function singleStockController() {
     const bookVehicle = function(req, res) {
         let bookedVehicle = stockDomainService.ServiceDomainAPI.bookVehicle(req.params.brand, req.params.model);
         checkResponseIsDefined(bookedVehicle)
-        ? res.status(200).type('json').json(bookedVehicle)
+        ? res.status(200).send('Your vehicle has been booked')
         : res.status(404).send("The vehicle is not available");
     }
 
@@ -55,7 +55,8 @@ var stockAPI = (function singleStockController() {
         : res.status(404).send("This vehicle never was booked");
     }
 
-    // UNTOUCHABLE bcs need .sort()
+    //! COMPLETED
+    // FIND ALL
 
     const vehicleFindAllByPrice = function(req, res) {
         let allVehiclesByPrice = stockFilterService.serviceFilterAPI.getAllByPrice(req.params.price);
@@ -79,16 +80,9 @@ var stockAPI = (function singleStockController() {
         
     }
 
-    // FILTERS
-
-    const filterStock = function(req, res) {
-        let stockFiltered = stockFilterService.serviceFilterAPI.genericFilter(Object.keys(req.params)[0], Object.values(req.params)[0]);
-        checkResponseIsDefined(stockFiltered)
-        ? res.status(200).type('json').json(stockFiltered)
-        : res.status(404).send("The request couldn't be supplied sorry");
-    }
-
+    //! COMPLETED
     // FIND ONE
+
     // Solamanete nos interesa saber que ese modelo está disponible o existe, no cuantos hay
     const vehicleFindOneByModel = function(req, res) {
         let vehicleModel = stockFilterService.serviceFilterAPI.getOneByModel(req.params.model);
@@ -97,11 +91,19 @@ var stockAPI = (function singleStockController() {
         : res.status(404).send("Currently we don't have this model available");
     }
 
+    //! COMPLETED
+
+    // GENERIC FILTER
+    const filterStock = function(req, res) {
+        let stockFiltered = stockFilterService.serviceFilterAPI.genericFilter(Object.keys(req.params)[0], Object.values(req.params)[0]);
+        checkResponseIsDefined(stockFiltered)
+        ? res.status(200).type('json').json(stockFiltered)
+        : res.status(404).send("The request couldn't be supplied sorry");
+    }
+
     // RESPONSE CHECKER
-    //! Los json obj único no los deveulve como true, ejemplo con findByModel
-    //TODO: este error se produce al chequear la length, alguna ayuda ???
     const checkResponseIsDefined = function(response) {
-        if (response !== undefined && response !== null && response.length > 0) {
+        if (response !== undefined && response !== null && (response.length > 0 || Object.keys(response).length > 0)) {
             return true;
         }
         return false;
