@@ -132,10 +132,16 @@ describe('Tests for closure and update price', () => {
         available: true
     };
 
-    //TODO: beforeEach()
-    beforeEach(() => {
+    //TODO: beforeAll()
+    beforeAll(() => {
         Vehicle.setPrototypeVehicle(golf);
         Vehicle.setPrototypeVehicle(leon);
+    });
+
+    //TODO: beforeEach()
+    beforeEach(() => {
+        golf.price = golf.ORIGINALPRICE;
+        leon.price = leon.ORIGINALPRICE;
     });
 
     //TODO: functionMock
@@ -192,6 +198,7 @@ describe('Tests for closure and update price', () => {
         expect(leon.price).toBe(updateLeonPrice(leon.ORIGINALPRICE, leon.year));
     });
 
+    // This test case is in conflict with another one, bcs by executed alone get passed but in group fails
     test('Try to update price under minimum, return min price', () => {
         expect(golf.getPrice()).toBe(35);
         expect(leon.getPrice()).toBe(20);
