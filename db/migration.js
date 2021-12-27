@@ -7,7 +7,7 @@ const categoryCollection = require('./collections/categoryCollection');
 
 //* URI *//
 const uri =
-    `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@proyectodual.4q26o.mongodb.net/?retryWrites=true&w=majority`
+    `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@proyectodual.4q26o.mongodb.net/?retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri);
 

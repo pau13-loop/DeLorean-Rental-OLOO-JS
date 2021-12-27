@@ -1,4 +1,5 @@
-const Category = require("../src/domain/category/category");
+var mongoose = require('mongoose');
+const Category = require("./category");
 
 var Schema = mongoose.Schema;
 
@@ -34,5 +35,4 @@ var VehicleModelSchema = new Schema({
     }
 });
 
-module.exports = mongoose.mdodel('VehicleModel', VehicleModelSchema);
-
+module.exports = mongoose.model('VehicleModel', VehicleModelSchema);

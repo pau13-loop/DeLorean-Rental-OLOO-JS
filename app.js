@@ -18,7 +18,8 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 //* DOMAIN ROUTERS *//
-var stockRouter = require('./routes/stock');
+// var stockRouter = require('./routes/stock');
+var stockRouter = require('./routes/stockDB');
 //! Need to implement
 // var categoryRouter = require('./routes/category');
 

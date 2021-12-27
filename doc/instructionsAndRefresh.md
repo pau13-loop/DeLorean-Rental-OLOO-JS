@@ -70,3 +70,12 @@ How you model your data depends-entirely-on your particular aplication's data ac
 
 > Basically it let you run scripts that set and use environment variables across platforms.
 
+## Security 
+
+To be able to use the environment variables at the file .env you'll have to install the following dependency:
+```bash
+     npm install dotenv --save
+```
+
+And now add at the top of the files the following `require('dotenv').config()` to be able to user the environment variables saved at the .env
+
