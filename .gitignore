@@ -1,7 +1,7 @@
 ### CUSTOM ###
 mock
 .vscode
-
+.env
 
 ### PRESET ###
 
