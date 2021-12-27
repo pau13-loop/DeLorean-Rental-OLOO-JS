@@ -1,3 +1,4 @@
+// EXPRESS DEFAULT // 
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -7,14 +8,24 @@ var logger = require('morgan');
  //* MongoDB CONNECTION *//
 
 
-//* ROUTERS *//
+// DEFAULT ROUTERS //
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+//* DOMAIN ROUTERS *//
 var stockRouter = require('./routes/stock');
+//! Need to implement
+// var categoryRouter = require('./routes/category');
 
-//* App setup *//
+//* APP SETUP *//
 
 var app = express();
+
+//* DB CONNECTION *//
+var mongoose = require('mongoose');
+var mongoDB = 'mongodb+srv://admin:admin@proyectodual.4q26o.mongodb.net/Rent-a-car?retryWrites=true&w=majority';
+mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
