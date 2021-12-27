@@ -1,4 +1,5 @@
 const { MongoClient } = require("mongodb");
+require('dotenv').config();
 
 //* COLLECTIONS *//
 const vehicleCollection = require('./collections/vehicleCollection');
@@ -6,7 +7,7 @@ const categoryCollection = require('./collections/categoryCollection');
 
 //* URI *//
 const uri =
-    `mongodb+srv://admin:admin@proyectodual.4q26o.mongodb.net/Rent-a-car?retryWrites=true&w=majority`
+    `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@proyectodual.4q26o.mongodb.net/?retryWrites=true&w=majority`
 
 const client = new MongoClient(uri);
 
@@ -14,7 +15,7 @@ async function run() {
     try {
         await client.connect();
 
-        const database = client.db('Rent-a-car');
+        const database = client.db('Rent-a-car_test');
         const vehicles = database.collection('vehicles');
         const categories = database.collection('categories');
 
