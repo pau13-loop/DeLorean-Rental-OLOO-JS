@@ -65,3 +65,8 @@ How you model your data depends-entirely-on your particular aplication's data ac
 - Many to Many
 
 > Prefer Referencing
+
+## Cross-env 
+
+> Basically it let you run scripts that set and use environment variables across platforms.
+
