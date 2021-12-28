@@ -79,3 +79,14 @@ To be able to use the environment variables at the file .env you'll have to inst
 
 And now add at the top of the files the following `require('dotenv').config()` to be able to user the environment variables saved at the .env
 
+# ATENTION
+
+The DB from production has not to be touch at any moment. This means we wont do any insert or deletion. 
+
+# This I've Forgot
+
+## app.js
+
+En la app se definen las rutas y los midelware. A partir de cada ruta definida se le añade la extensión que se le quiera dar y las rutas del endpoint definido comenzarán a partir de dicha extensión. <br/>
+Por ejemplo:<br/>
+Queremos definir el endpoint para el **stock**. En la app añadiremos el siguiente statement `app.use('/stock', stockRouter)`. Todos los endpoints de stock serán creado a a partir de, `/stock/<name new endpoint of stock>`.  

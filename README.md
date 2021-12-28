@@ -120,6 +120,9 @@ The views (templates) are stored in the /views directory (as specified in app.js
 ###### FreeCodeCamp course
 > https://www.freecodecamp.org/learn/back-end-development-and-apis/#mongodb-and-mongoose
 
+###### All methods able to execute with Models
+> https://mongoosejs.com/docs/api/model.html
+
 
 ## Node JS
 

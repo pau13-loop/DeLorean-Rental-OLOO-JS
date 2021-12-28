@@ -11,33 +11,6 @@ router.use(function (req, res, next) {
     next();
 });
 
-//! COMPLETED
-// STOCK ROUTES //
 router.get('/', stockController.stockAPI.stockList);
-router.get('/available', stockController.stockAPI.availableStockList);
-
-//  DOMAIN
-router.get('/update', stockController.stockAPI.updatePriceStock);
-router.get('/blackFriday', stockController.stockAPI.applyDiscount);
-router.get('/blackFriday/restore', stockController.stockAPI.restorePrice);
-router.put('/book/:brand/:model', stockController.stockAPI.bookVehicle);
-router.get('/return/:brand/:model', stockController.stockAPI.returnVehicle);
-
-//! COMPLETED
-// FIND ALLs
-router.get('/price/:price', stockController.stockAPI.vehicleFindAllByPrice);
-router.get('/discount/:discountTax', stockController.stockAPI.vehicleByDiscountTax);
-router.get('/category/:category', stockController.stockAPI.vehicleByCategory);
-
-//! COMPLETED
-// FIND ONE
-router.get('/model/:model', stockController.stockAPI.vehicleFindOneByModel);
-
-//! COMPLETED
-// GENERIC FINDS
-router.get('/brand/:brand', stockController.stockAPI.filterStock);
-router.get('/year/:year', stockController.stockAPI.filterStock);
-
-router.get('/category', stockController.stockAPI.categoryList);
 
 module.exports = router;

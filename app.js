@@ -7,21 +7,18 @@ var logger = require('morgan');
 
 
 //* DB CONNECTION *//
-
 var mongoConfig = require('./db/mongoConfig');
 mongoConfig.connect();
-// connection es el constructor de la conexion
 var db = mongoConfig.mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-// DEFAULT ROUTERS //
+
+// ROUTERS //
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-//* DOMAIN ROUTERS *//
-// var stockRouter = require('./routes/stock');
+var categoryRouter = require('./routes/category');
+//! Not implemented correctly
 var stockRouter = require('./routes/stockDB');
-//! Need to implement
-// var categoryRouter = require('./routes/category');
 
 
 //* APP SETUP *//
@@ -43,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/stock', stockRouter);
+app.use('/category', categoryRouter);
 
 
 // ERROR HANDLING //
@@ -50,16 +48,15 @@ app.use('/stock', stockRouter);
 app.use(function (req, res, next) {
   next(createError(404));
 });
-
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
   // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;
