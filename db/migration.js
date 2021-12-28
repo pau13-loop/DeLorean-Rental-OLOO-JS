@@ -2,7 +2,7 @@ const { MongoClient } = require("mongodb");
 require('dotenv').config();
 
 //* COLLECTIONS *//
-const vehicleCollection = require('./collections/vehicleCollection');
+const vehicleCollection = require('./collections/vehicleCollectionShortList');
 const categoryCollection = require('./collections/categoryCollection');
 
 //* URI *//
@@ -15,7 +15,9 @@ async function run() {
     try {
         await client.connect();
 
-        const database = client.db('Rent-a-car_test');
+        //! Cambiado para poder hace llamadas con Hoppscotch
+        // const database = client.db('Rent-a-car_test');
+        const database = client.db('Rent-a-car');
         const vehicles = database.collection('vehicles');
         const categories = database.collection('categories');
 
