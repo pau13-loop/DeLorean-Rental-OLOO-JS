@@ -15,8 +15,10 @@ const CategoryServiceAPI = (function singletonCategoryService() {
     }
 
     const updateCategory = (categoryNameFilter, discountTaxToUpdate) => {
+        let filter = { name: categoryNameFilter };
+        let update = { discountTax: discountTaxToUpdate}
         // Set new to true to return the document after the update
-        return Category.findOneAndUpdate(categoryNameFilter, discountTaxToUpdate, {new: true});
+        return Category.findOneAndUpdate(filter, update, {new: true});
     }
     
     return {

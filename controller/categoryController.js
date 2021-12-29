@@ -1,10 +1,10 @@
-const category = require('../models/category');
 const categoryService = require('../service/categoryService');
 
 const categoryAPI = (function singletonCategoryController() {
 
     const categoryFindAll = ((req, res, next) => {
         let response = categoryService.CategoryServiceAPI.getAllCategories();
+        console.log('Find all: ', response);
         responseChecker(res, next, response);
     });
 
@@ -19,8 +19,7 @@ const categoryAPI = (function singletonCategoryController() {
     });
 
     const categoryUpdateOne = ((req, res, next) => {
-        categoryService.CategoryServiceAPI.updateCategory(req.params.name, req.params.discountTax);
-        let response = categoryService.CategoryServiceAPI.getOneCategory(req.params.name);
+        let response = categoryService.CategoryServiceAPI.updateCategory(req.params.name, req.params.discountTax);
         responseChecker(res, next, response);
     });
 
