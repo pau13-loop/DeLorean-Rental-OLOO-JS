@@ -8,7 +8,7 @@ var databaseUri = {
 
     development: `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@proyectodual.4q26o.mongodb.net/Rent-a-car?retryWrites=true&w=majority`,
     
-    test: `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@proyectodual.4q26o.mongodb.net/Rent-a-car-test?retryWrites=true&w=majority`
+    test: `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@proyectodual.4q26o.mongodb.net/Rent-a-car_test?retryWrites=true&w=majority`
 }
 
 module.exports = {
