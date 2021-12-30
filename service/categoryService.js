@@ -20,12 +20,22 @@ const CategoryServiceAPI = (function singletonCategoryService() {
         // Set new to true to return the document after the update
         return Category.findOneAndUpdate(filter, update, {new: true});
     }
+
+    const createCategory = (newCategoryName, newCategoryDiscountTax) => {
+        let categoriesList = Category.find();
+        console.log('Cat list: ', categoriesList);
+        return new Category({
+            name: newCategoryName,
+            discountTax: newCategoryDiscountTax
+        });
+    }
     
     return {
         getAllCategories,
         getOneCategory,
         deleteCategory,
-        updateCategory
+        updateCategory,
+        createCategory
     }
 })();
 

@@ -1,10 +1,10 @@
+const Category = require('../models/category');
 const categoryService = require('../service/categoryService');
 
 const categoryAPI = (function singletonCategoryController() {
 
     const categoryFindAll = ((req, res, next) => {
         let response = categoryService.CategoryServiceAPI.getAllCategories();
-        console.log('Find all: ', response);
         responseChecker(res, next, response);
     });
 
@@ -23,6 +23,19 @@ const categoryAPI = (function singletonCategoryController() {
         responseChecker(res, next, response);
     });
 
+    const createCategory =((req, res, next) => {
+        let response = categoryService.CategoryServiceAPI.createCategory(req.params.name, req.params.discountTax);
+        response.save(function (err) {
+            if (err) {
+                //? Status code error 400 vs 500
+                res.status(500).send('Sorry unable to create the category');
+                return next(err)
+            }
+            console.log('Document created successfully !');
+            res.status(200).type('json').json(response);
+        });
+    });
+
     const responseChecker = ((res, next, object) => {
         object.exec(function (err, result) {
             if (err) {
@@ -36,7 +49,8 @@ const categoryAPI = (function singletonCategoryController() {
         categoryFindAll,
         categoryFindOne,
         categoryDeleteOne,
-        categoryUpdateOne
+        categoryUpdateOne,
+        createCategory
     }
 })();
 

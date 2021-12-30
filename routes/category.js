@@ -16,5 +16,6 @@ router.get('/', categoryController.categoryAPI.categoryFindAll);
 router.get('/:name', categoryController.categoryAPI.categoryFindOne);
 router.get('/delete/:name', categoryController.categoryAPI.categoryDeleteOne);
 router.get('/update/:name/:discountTax', categoryController.categoryAPI.categoryUpdateOne)
+router.get('/create/:name/:discountTax', categoryController.categoryAPI.createCategory);
 
 module.exports = router;
