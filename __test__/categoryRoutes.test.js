@@ -137,7 +137,7 @@ describe("Category Routes", () => {
             .get('/category')
             .then(res => {
                 expect(res.get('Content-Type')).toEqual(expect.stringMatching('/json'));
-                expect(res.statusCode).toEqual(201);
+                expect(res.statusCode).toEqual(200);
                 expect(res.body.length).toBe(3);
                 expect(res.body).toEqual(
                     expect.arrayContaining([

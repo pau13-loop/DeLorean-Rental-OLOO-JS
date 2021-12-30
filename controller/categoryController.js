@@ -31,7 +31,7 @@ const categoryAPI = (function singletonCategoryController() {
                 return next(err)
             }
             console.log('Document created successfully !');
-            res.status(200).type('json').json(response);
+            res.status(201).type('json').json(response);
         });
     });
 
