@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-// Controller modules 
-var stockController = require('../controller/stockControllerDB');
+// CONTROLLER
+var vehicleController = require('../controller/vehicleController');
 
 // ROUTER LEVEL MIDDLEWARE
 router.use(function (req, res, next) {
@@ -11,6 +11,7 @@ router.use(function (req, res, next) {
     next();
 });
 
-router.get('/', stockController.stockAPI.stockList);
+//* CATEGORY ROUTES *//
+router.get('/', vehicleController.vehicleAPI.vehicleFindAll);
 
 module.exports = router;
