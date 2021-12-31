@@ -16,8 +16,8 @@ async function run() {
         await client.connect();
 
         //! Cambiado para poder hace llamadas con Hoppscotch
-        const database = client.db('Rent-a-car_test');
-        // const database = client.db('Rent-a-car');
+        // const database = client.db('Rent-a-car_test');
+        const database = client.db('Rent-a-car');
         const vehicles = database.collection('vehicles');
         const categories = database.collection('categories');
 

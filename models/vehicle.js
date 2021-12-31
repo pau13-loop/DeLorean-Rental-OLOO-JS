@@ -3,7 +3,7 @@ const Category = require("./category");
 
 var Schema = mongoose.Schema;
 
-var VehicleModelSchema = new Schema({
+var VehicleSchema = new Schema({
     model: {
         type: String,
         required: true
@@ -35,4 +35,9 @@ var VehicleModelSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('VehicleModel', VehicleModelSchema);
+VehicleSchema.pre(['find', 'findOne', 'findOneAndDelete', 'findOneAndUpdate'], function () {
+    this.select('_id model brand category passengers year priec available');
+});
+
+
+module.exports = mongoose.model('vehicle', VehicleSchema);
