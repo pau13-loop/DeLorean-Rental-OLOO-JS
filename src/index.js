@@ -15,11 +15,8 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // ROUTERS //
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var categoryRouter = require('./routes/category');
 var vehicleRouter = require('./routes/vehicle');
-//! Not implemented correctly
-// var stockRouter = require('./routes/stockDB');
 
 
 //* APP SETUP *//
@@ -27,23 +24,20 @@ var app = express();
 
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 
 //* MIDELWARE *//
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/category', categoryRouter);
 app.use('/vehicle', vehicleRouter);
-//! dont't know if to implement the logic here instead of be in vehicle router
-// app.use('/stock', stockRouter);
 
 
 // ERROR HANDLING //
