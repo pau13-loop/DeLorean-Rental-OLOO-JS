@@ -14,7 +14,7 @@ const CategoryServiceAPI = (function singletonCategoryService() {
         return Category.findOneAndDelete({name: categoryName});
     }
 
-    const updateCategory = (categoryNameFilter, discountTaxToUpdate) => {
+    const updateCategoryDiscountTax = (categoryNameFilter, discountTaxToUpdate) => {
         let filter = { name: categoryNameFilter };
         let update = { discountTax: discountTaxToUpdate}
         // Set new to true to return the document after the update
@@ -34,7 +34,7 @@ const CategoryServiceAPI = (function singletonCategoryService() {
         getAllCategories,
         getOneCategory,
         deleteCategory,
-        updateCategory,
+        updateCategoryDiscountTax,
         createCategory
     }
 })();

@@ -1,6 +1,7 @@
 const ObjectId = require('mongodb').ObjectId;
 
 module.exports = [
+    //TODO: Add ObjectId to obj to insert into DB manually
     {
         _id: ObjectId("61b0f513646886f408bd0730"),
         name: "common",

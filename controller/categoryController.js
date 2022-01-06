@@ -18,7 +18,7 @@ const categoryAPI = (function singletonCategoryController() {
     });
 
     const categoryUpdateOne = ((req, res, next) => {
-        let response = categoryService.CategoryServiceAPI.updateCategory(req.params.name, req.params.discountTax);
+        let response = categoryService.CategoryServiceAPI.updateCategoryDiscountTax(req.params.name, req.params.discountTax);
         responseChecker(res, next, response);
     });
 
