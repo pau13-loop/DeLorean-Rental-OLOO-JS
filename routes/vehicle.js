@@ -13,5 +13,9 @@ router.use(function (req, res, next) {
 
 //* CATEGORY ROUTES *//
 router.get('/', vehicleController.vehicleAPI.vehicleFindAll);
+router.get('/:model', vehicleController.vehicleAPI.vehiclesFindOne);
+router.get('/delete/:model', vehicleController.vehicleAPI.vehicleDeleteOne);
+// Business logic 
+router.get('/update/price', vehicleController.vehicleAPI.updatePrice);
 
 module.exports = router;
