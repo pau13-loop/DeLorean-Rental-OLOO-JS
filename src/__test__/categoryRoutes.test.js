@@ -3,7 +3,7 @@ const { expect } = require('@jest/globals');
 const request = require('supertest');
 const app = require('../app');
 
-const db = require('../db/mongoConfig');
+const db = require('../app/db/mongoConfig');
 
 /**
  * SCOPING

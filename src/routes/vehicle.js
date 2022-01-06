@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 // CONTROLLER
-var vehicleController = require('../controller/vehicleController');
+var vehicleController = require('../db/controller/vehicleController');
 
 // ROUTER LEVEL MIDDLEWARE
 router.use(function (req, res, next) {
