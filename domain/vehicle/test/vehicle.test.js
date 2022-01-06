@@ -132,10 +132,16 @@ describe('Tests for closure and update price', () => {
         available: true
     };
 
-    //TODO: beforeEach()
-    beforeEach(() => {
+    //TODO: beforeAll()
+    beforeAll(() => {
         Vehicle.setPrototypeVehicle(golf);
         Vehicle.setPrototypeVehicle(leon);
+    });
+
+    //TODO: beforeEach()
+    beforeEach(() => {
+        golf.price = golf.ORIGINALPRICE;
+        leon.price = leon.ORIGINALPRICE;
     });
 
     //TODO: functionMock
@@ -192,6 +198,7 @@ describe('Tests for closure and update price', () => {
         expect(leon.price).toBe(updateLeonPrice(leon.ORIGINALPRICE, leon.year));
     });
 
+    // This test case is in conflict with another one, bcs by executed alone get passed but in group fails
     test('Try to update price under minimum, return min price', () => {
         expect(golf.getPrice()).toBe(35);
         expect(leon.getPrice()).toBe(20);
@@ -207,26 +214,4 @@ describe('Tests for closure and update price', () => {
         expect(golf.price).toBe(35);
         expect(leon.price).toBe(leon.getMinPrice());
     });
-
-
-    //     //* Movidos a Category.test.js
-    //     // test('Discount vehicle price', () => {
-    //     //     // Get price before update
-    //     //     expect(fordMustang.getPrice()).toBe(70);
-    //     //     expect(fordMustang.getOriginalPrice()).toBe(70);
-    //     //     // Update price
-    //     //     let percentatgeOfSeventy = Math.floor((100 * 30) / 70);
-    //     //     fordMustang.applyDiscount();
-    //     //     // Check price has updated correcty but original price still with the same value
-    //     //     expect(fordMustang.getPrice()).toBe(percentatgeOfSeventy);
-    //     //     expect(fordMustang.getDiscountedPrice()).toBe(`Discount applied successfully! \nPrice: ${percentatgeOfSeventy}`);
-    //     //     expect(fordMustang.getOriginalPrice()).toBe(70);
-    //     // });
-
-    //     // test('Error try to applyDiscount with price under minimum', () => {
-    //     //     expect(fordMustang.getPrice()).toBe(70);
-    //     //     fordMustang.price = 5;
-    //     //     expect(fordMustang.getPrice()).toBe(5);
-    //     //     expect(fordMustang.applyDiscount()).toEqual(expect.stringContaining(('Price can not go under minimum')));
-    //     // })
 });

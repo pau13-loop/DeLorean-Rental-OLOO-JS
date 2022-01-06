@@ -1,4 +1,3 @@
-const vehicle = require('../src/domain/vehicle/vehicle');
 const stockFilterService = require('../service/service.filter');
 const stockDomainService = require('../service/service.domain');
 

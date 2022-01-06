@@ -23,7 +23,10 @@ describe('Define vehicle and category for getters test cases', () => {
         expect(category.getDiscountTax()).toEqual(30);
     });
 
+    //* Chequeamos que el descuento y el redondeo del mismo se aplique correctamente
     test('Apply discount over price', () => {
         expect(category.applyDiscount(70)).toEqual(49);
+        expect(category.applyDiscount(70)).not.toEqual(48);
+        expect(category.applyDiscount(70)).not.toEqual(50);
     });
 })

@@ -16,6 +16,7 @@ Implement the business logic of a Rent a car, create an ApiRestfull connected to
 - http-errors
 - jade
 - morgan
+- mongoose
 
 ###### Development
 
@@ -86,6 +87,8 @@ The views (templates) are stored in the /views directory (as specified in app.js
 
 # Bibliography
 
+## OLOO
+
 ###### OLOO explanation
 > https://chamikakasun.medium.com/javascript-prototype-and-prototype-chain-explained-fdc2ec17dd04
 > https://www.debuggr.io/js-prototype-in-depth/
@@ -111,6 +114,40 @@ The views (templates) are stored in the /views directory (as specified in app.js
 
 ###### Respuesta para linkar objetos hata tres niveles ???
 > https://stackoverflow.com/questions/33455026/not-sharing-object-properties-in-oloo-inheritance
+
+## MongoDB and mongoose
+
+###### FreeCodeCamp course
+> https://www.freecodecamp.org/learn/back-end-development-and-apis/#mongodb-and-mongoose
+
+###### All methods able to execute with Models
+> https://mongoosejs.com/docs/api/model.html
+
+###### How find() works in mongoose
+> https://thecodebarbarian.com/how-find-works-in-mongoose.html
+
+###### mongoose query helpers
+> https://mongoosejs.com/docs/api/query.html
+
+###### mongoose API Docs
+> https://mongoosejs.com/docs/api.html
+
+
+## Node JS
+
+###### Official course from Node.js "all you need to know"
+> https://nodejs.dev/learn/introduction-to-nodejs
+
+
+## Jest
+
+Official Jest documentation
+> https://jestjs.io/docs/getting-started
+
+## Cross-env
+
+Official README documentation
+> https://github.com/kentcdodds/cross-env
 
 
 ## Atribs a aplicar (en los prototipos)
@@ -227,7 +264,9 @@ Ahora tenemos que ver cuando queremos ordenar la lista o si solo lo implementamo
 
 - Los obj tendrán el precio inicial de cuando se obtuvieron por primera vez de BD. Por esta razón una vez acabe el "Black Friday" podrán restablecer su valor original sin hacer una query costosa, tan solo tendrán que acceder a su atributo "originalPRice" que será [no enumerable, no configurable y no writeable]. El atributo no vendrá definido de BD por lo que nos ahorramos el campo en los obj a la hora de meterlos en BD y lo creamos al inicializar el obj
 
-- El precio mínimo nunca podrá ser inferior al 40% del precio original o en ese caso al precio se le asignará el valor devuelto por la función getMinPrice(). Cuando hay oferta de descuento como el Black Friday, no se le aplicará está lógica, cualquier descuento sobre el precio está permitido, la ocasión lo merece, rebajas sin control, no ? Política Black Friday consumista !
+- El precio mínimo nunca podrá ser inferior al 40% del precio original o en ese caso al precio se lelos obj a la hora de meterlos en BD y lo creamos al inicializar el obj
+
+- El precio mínimo nunca podrá ser inferior al 40% del precio original o en ese caso al precio se le asignará el valor devuelto por la función getMinPrice(). Cuando hay oferta de descuent asignará el valor devuelto por la función getMinPrice(). Cuando hay oferta de descuento como el Black Friday, no se le aplicará está lógica, cualquier descuento sobre el precio está permitido, la ocasión lo merece, rebajas sin control, no ? Política Black Friday consumista !
 
 - Cada vez que un vehiculo cumple un año se le actualizará el 10% del precio original
 
@@ -265,4 +304,13 @@ Restore Price
     > Porque yo quiero que me muestre vehiculos a partir de determinado número de pasajeros
     > A partir de determinado año
     > A partir de determinado precio (o el precio es a partir de este como máximo ??? )
+
+
+## TODO
+
+- Refactorizar código
+- Reducir estructura de directorios
+- Simplificar Api-Rest
+- Crear nuevo prototipo, Vehiculo "general" y Vehiculo "específico" (como coche o moto)
+
 
