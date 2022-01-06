@@ -123,6 +123,15 @@ The views (templates) are stored in the /views directory (as specified in app.js
 ###### All methods able to execute with Models
 > https://mongoosejs.com/docs/api/model.html
 
+###### How find() works in mongoose
+> https://thecodebarbarian.com/how-find-works-in-mongoose.html
+
+###### mongoose query helpers
+> https://mongoosejs.com/docs/api/query.html
+
+###### mongoose API Docs
+> https://mongoosejs.com/docs/api.html
+
 
 ## Node JS
 
@@ -295,4 +304,13 @@ Restore Price
     > Porque yo quiero que me muestre vehiculos a partir de determinado número de pasajeros
     > A partir de determinado año
     > A partir de determinado precio (o el precio es a partir de este como máximo ??? )
+
+
+## TODO
+
+- Refactorizar código
+- Reducir estructura de directorios
+- Simplificar Api-Rest
+- Crear nuevo prototipo, Vehiculo "general" y Vehiculo "específico" (como coche o moto)
+
 
