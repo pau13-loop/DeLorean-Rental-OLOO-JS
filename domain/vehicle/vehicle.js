@@ -57,6 +57,7 @@ var Vehicle = {
     },
     //TODO: closure
     //! Esta función se debería poder llamar únicamente cuando el vehiculo este reservado ???
+    //! Implementar en el caso de que se añada el proto general de Vehiculo y los determinado de coche, moto, ...
     getPresonalAssistance: function (subject) {
         let closure = function (name) {
             function notifyAssistance() {
@@ -68,7 +69,6 @@ var Vehicle = {
             value: closure(subject)
         });
     },
-    //! para chequear si son clásicos, aquí o en el service ???
     updatePrice: function () {
         if (this.category.name !== 'classic') {
             const actualYear = Date.now().getFullYear();
