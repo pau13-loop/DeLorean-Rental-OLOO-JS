@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 // CONTROLLER
-var categoryController = require('../db/controller/categoryController');
+var categoryController = require('../controller/categoryController');
 
 // ROUTER LEVEL MIDDLEWARE
 router.use(function (req, res, next) {

@@ -23,7 +23,7 @@ const CategoryServiceAPI = (function singletonCategoryService() {
 
     const createCategory = (newCategoryName, newCategoryDiscountTax) => {
         let categoriesList = Category.find();
-        console.log('Cat list: ', categoriesList);
+        // console.log('Cat list: ', categoriesList);
         return new Category({
             name: newCategoryName,
             discountTax: newCategoryDiscountTax
