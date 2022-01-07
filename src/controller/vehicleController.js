@@ -9,7 +9,6 @@ const vehicleAPI = (function singletonVehicleController() {
     });
 
     const vehiclesFindOne = ((req, res, next) => {
-        console.log('Im in find One !');
         let response = vehicleService.VehicleServiceAPI.getOneVehicle(req.params.model);
         responseChecker(res, next, response);
     });
@@ -21,7 +20,6 @@ const vehicleAPI = (function singletonVehicleController() {
 
     // UPDATE PRICE DOMAIN
     const updatePrice = ((req, res, next) => {
-        console.log('Im in !!!!');
         const query = {};
         const update = {};
         const options = {"upster": false};

@@ -5,13 +5,6 @@ const VehicleServiceAPI = (function singletonVehicleService() {
     const getAllVehicles = () => {
         //! Aplicar set para devolver obj únicos en lugar de repetidos también
         return Vehicle.find();
-        // return Vehicle.aggregate([
-        //     {"$group": {
-        //         "_id": {
-        //             "model": "$model"
-        //         }
-        //     }}
-        // ]);
     }
 
     //! Transofmrar en filtro genérico para coche
