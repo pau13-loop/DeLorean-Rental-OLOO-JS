@@ -26,8 +26,7 @@ const categoryAPI = (function singletonCategoryController() {
         let response = categoryService.CategoryServiceAPI.createCategory(req.params.name, req.params.discountTax);
         response.save(function (err) {
             if (err) {
-                //? Status code error 400 vs 500
-                res.status(500).send('Sorry unable to create the category');
+                res.status(400).send('Sorry unable to create the category');
                 return next(err)
             }
             console.log('Document created successfully !');

@@ -14,16 +14,16 @@
   },
   "homepage": "https://github.com/pau13-loop/Rent-a-car-OLOO-JS#readme",
   "scripts": {
-    "main": "node ./main.js",
     "lint": "eslint src/*.js",
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
     "serverstart": "cross-env NODE_ENV=development DEBUG=rent_a_car:* npm run devstart",
-    "migrate": "node ./db/migration.js",
+    "migrate": "node ./src/db/migration.js",
     "pretest": "cross-env NODE_ENV=test npm run migrate",
     "test": "cross-env NODE_ENV=test jest --runInBand --detectOpenHandles",
     "pulltest": "cross-env NODE_ENV=test jest --runInBand",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "pre-commit": "npm run lint && npm test"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",

@@ -42,6 +42,12 @@ var Vehicle = {
     getMinPrice: function() {
         return this.ORIGINALPRICE * 0.4;
     },
+    bookVehicle: function () {
+        this.available = false;
+    },
+    finishBookingVehicle: function () {
+        this.available = true;
+    },
     //TODO: Object.defineProperty()
     setPrototypeVehicle: function (vehicle) {
         if (Object.getPrototypeOf(vehicle) !== Vehicle) {
