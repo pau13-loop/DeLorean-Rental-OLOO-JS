@@ -149,6 +149,20 @@ Official Jest documentation
 Official README documentation
 > https://github.com/kentcdodds/cross-env
 
+## Another necessary resources to understand the domain logic
+
+#### How to calculate the DNI letter
+> https://www.letranif.com/formula-para-calcular-nif/
+> https://www.ordenacionjuego.es/en/calculo-digito-control
+> https://gist.github.com/afgomez/5691823
+> https://testingdatagenerator.com/doi.html
+
+#### Working with dates and operate with them in JS
+> https://stackabuse.com/javascript-get-number-of-days-between-dates/
+> https://dev.to/dailydevtips1/vanilla-javascript-days-between-two-dates-3d1i
+> https://pretagteam.com/question/how-check-if-a-form-date-is-before-today-javascript
+> https://stackoverflow.com/questions/27317437/how-to-check-if-one-date-is-before-another-date-using-javascript-jquery/27317897
+
 
 ## Atribs a aplicar (en los prototipos)
 
