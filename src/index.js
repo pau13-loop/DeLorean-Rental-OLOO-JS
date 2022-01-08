@@ -7,7 +7,7 @@ var logger = require('morgan');
 
 
 //* DB CONNECTION *//
-var mongoConfig = require('./db/mongoConfig');
+var mongoConfig = require('./db/connection/mongoConfig');
 mongoConfig.connect();
 var db = mongoConfig.mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
@@ -17,6 +17,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 var indexRouter = require('./routes/index');
 var categoryRouter = require('./routes/category');
 var vehicleRouter = require('./routes/vehicle');
+var customerRouter = require('./routes/customer');
 
 
 //* APP SETUP *//
@@ -38,6 +39,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use('/', indexRouter);
 app.use('/category', categoryRouter);
 app.use('/vehicle', vehicleRouter);
+app.use('/customer', customerRouter);
 
 
 // ERROR HANDLING //
@@ -45,7 +47,6 @@ app.use('/vehicle', vehicleRouter);
 app.use(function (req, res, next) {
   next(createError(404));
 });
-// error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
