@@ -6,6 +6,10 @@ var CustomerSchema = new Schema({
         type: String,
         required: true
     },
+    lastName: {
+        type: String,
+        required: false
+    },
     birthDate: {
         type: Date,
         required: true
@@ -21,7 +25,7 @@ var CustomerSchema = new Schema({
 });
 
 CustomerSchema.pre(['find', 'findOne', 'findOneAndDelete', 'findOneAndUpdate'], function () {
-    this.select('_id name birthDate dniNumber dniLetter');
+    this.select('_id name lastName birthDate dniNumber dniLetter');
 });
 
 module.exports = mongoose.model('customers', CustomerSchema);

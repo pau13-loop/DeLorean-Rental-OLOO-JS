@@ -2,10 +2,10 @@ const { MongoClient } = require("mongodb");
 require('dotenv').config();
 
 //* COLLECTIONS *//
-const vehicleCollection = require('./collections/vehicleCollectionShortList');
-const categoryCollection = require('./collections/categoryCollection');
-const customersCollection = require("./collections/customersCollection");
-const rentalsCollection = require("./collections/rentalsCollection");
+const vehicleCollection = require('../collections/vehicleCollectionShortList');
+const categoryCollection = require('../collections/categoryCollection');
+const customersCollection = require("../collections/customersCollection");
+const rentalsCollection = require("../collections/rentalsCollection");
 
 //* URI *//
 const uri =
