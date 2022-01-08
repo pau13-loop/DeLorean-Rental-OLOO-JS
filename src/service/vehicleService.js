@@ -1,4 +1,4 @@
-const Vehicle = require('../models/vehicle');
+const Vehicle = require('../db/models/vehicle');
 
 const VehicleServiceAPI = (function singletonVehicleService() {
 

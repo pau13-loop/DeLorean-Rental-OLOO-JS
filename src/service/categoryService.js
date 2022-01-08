@@ -1,4 +1,4 @@
-const Category = require('../models/category');
+const Category = require('../db/models/category');
 
 const CategoryServiceAPI = (function singletonCategoryService() {
 
