@@ -2,7 +2,7 @@
   "name": "vehicle",
   "version": "1.0.0",
   "description": "",
-  "main": "Vehicle.js",
+  "main": "vehicle.js",
   "scripts": {
     "test": "jest"
   },

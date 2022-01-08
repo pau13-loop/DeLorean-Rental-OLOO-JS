@@ -1,0 +1,14 @@
+{
+  "name": "rental",
+  "version": "1.0.0",
+  "description": "",
+  "main": "rental.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Pau Llinas Amat",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^27.4.7"
+  }
+}

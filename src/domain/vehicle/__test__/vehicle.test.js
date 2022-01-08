@@ -1,3 +1,4 @@
+
 const { expect } = require('@jest/globals');
 var Vehicle = require('../vehicle');
 var Category = require('../../category/category');
