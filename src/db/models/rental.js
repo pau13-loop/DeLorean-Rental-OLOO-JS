@@ -14,11 +14,11 @@ var RentalSchema = new Schema({
     },
     customer: {
         type: Schema.Types.ObjectId,
-        ref: Customer.name,
+        ref: Customer,
     },
     vehicle: {
         type: Schema.Types.ObjectId,
-        ref: Vehicle.model
+        ref: Vehicle
     }
 });
 
@@ -26,4 +26,4 @@ RentalSchema.pre(['find', 'findOne', 'findOneAndDelete', 'findOneAndUpdate'], fu
     this.select('_id startDate endDate customer vehicle');
 });
 
-module.exports = mongoose.model('rental', RentalSchema);
+module.exports = mongoose.model('rentals', RentalSchema);

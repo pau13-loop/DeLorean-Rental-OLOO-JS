@@ -13,7 +13,6 @@ var VehicleSchema = new Schema({
     },
     category: {
         type: Schema.Types.ObjectId, 
-        enum: ['premium', 'common', 'classic'],
         ref: Category
     },
     passengers: {

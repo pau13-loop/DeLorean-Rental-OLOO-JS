@@ -17,19 +17,26 @@ async function run() {
         await client.connect();
 
         const database = client.db('Rent-a-car_test');
-        const vehicles = database.collection('vehicles');
         const categories = database.collection('categories');
+        const customers = database.collection('customers');
+        const vehicles = database.collection('vehicles');
 
-        // Query of vehicles category
-        const query = {
-            'name': 'category vehicles'
+        const queryCategory = {
+            'name': 'classic'
+        };
+        const queryVehicle = {
+            'model': 'DeLorean'
+        };
+        const queryCustomer = {
+            'name': 'Marty McFly'
         }
-        const category = await categories.findOne(query);
-        // Query of vehicles
-        const vehicle = await vehicles.findOne();
+        const category = await categories.findOne(queryCategory);
+        const vehicle = await vehicles.findOne(queryVehicle);
+        const customer = await customers.findOne(queryCustomer);
 
         console.log("I still alive!!")
         console.log(JSON.stringify(category, null, 2));
+        console.log(JSON.stringify(customer, null, 2));
         console.log(JSON.stringify(vehicle, null, 2));
 
     } finally {
