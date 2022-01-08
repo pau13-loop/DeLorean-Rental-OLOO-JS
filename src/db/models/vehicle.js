@@ -14,7 +14,7 @@ var VehicleSchema = new Schema({
     category: {
         type: Schema.Types.ObjectId, 
         enum: ['premium', 'common', 'classic'],
-        ref: Category.name
+        ref: Category
     },
     passengers: {
         type: Number, 
@@ -39,4 +39,4 @@ VehicleSchema.pre(['find', 'findOne', 'findOneAndDelete', 'findOneAndUpdate'], f
 });
 
 
-module.exports = mongoose.model('vehicle', VehicleSchema);
+module.exports = mongoose.model('vehicles', VehicleSchema);

@@ -24,4 +24,4 @@ CustomerSchema.pre(['find', 'findOne', 'findOneAndDelete', 'findOneAndUpdate'], 
     this.select('_id name birthDate dniNumber dniLetter');
 });
 
-module.exports = mongoose.model('customer', CustomerSchema);
+module.exports = mongoose.model('customers', CustomerSchema);
