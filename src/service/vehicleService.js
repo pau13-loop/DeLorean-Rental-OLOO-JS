@@ -9,23 +9,23 @@ const VehicleServiceAPI = (function singletonVehicleService() {
     }
 
     const getOneVehicle = (key, value) => {
-        return (key === 'id' 
-        ? Vehicle.findById(value)
-        : Vehicle.findOne({[key]: value}))
+        return (key === 'id'
+            ? Vehicle.findById(value)
+            : Vehicle.findOne({ [key]: value }))
             .exec()
             .then(objectParsers.ObjectParsers.vehicleDataParser);
     }
 
     const deleteVehicle = (key, value) => {
-        return (key === 'id' 
-        ? Vehicle.findByIdAndDelete(value)
-        : Vehicle.findOneAndDelete({[key]: value}))
-        .exec()
-        .then(objectParsers.ObjectParsers.vehicleDataParser);
+        return (key === 'id'
+            ? Vehicle.findByIdAndDelete(value)
+            : Vehicle.findOneAndDelete({ [key]: value }))
+            .exec()
+            .then(objectParsers.ObjectParsers.vehicleDataParser);
     }
 
     const createVehicle = async (data) => {
-        let categoryVehicle = await Category.findOne({name: data.category});
+        let categoryVehicle = await Category.findOne({ name: data.category });
         let newVehicle = new Vehicle({
             model: data.model,
             brand: data.brand,
@@ -38,7 +38,7 @@ const VehicleServiceAPI = (function singletonVehicleService() {
     }
 
     const updateVehicle = async (id, data) => {
-        let categoryVehicle = await Category.findOne({name: data.category});
+        let categoryVehicle = await Category.findOne({ name: data.category });
         let update = {
             model: data.model,
             brand: data.brand,
@@ -52,7 +52,16 @@ const VehicleServiceAPI = (function singletonVehicleService() {
         return Vehicle.findByIdAndUpdate(id, update, { new: true })
             .exec()
             .then(objectParsers.ObjectParsers.vehicleDataParser);
+    }
 
+    const findAvailableVehicles = async () => {
+        //TODO: Set
+        //! I was not able to use the set with a collection of objects, just with primitive types to get a collection of unique elements
+        // return [...new Set(vehiclesList)];
+        let vehiclesList = await Vehicle.find({ available: true });
+        return vehiclesList.length > 0
+        ? [...new Map(vehiclesList.map((vehicle) => [vehicle['model'], vehicle]))]
+        : null; 
     }
 
     return {
@@ -60,7 +69,8 @@ const VehicleServiceAPI = (function singletonVehicleService() {
         getOneVehicle,
         deleteVehicle,
         createVehicle,
-        updateVehicle
+        updateVehicle,
+        findAvailableVehicles
     }
 })();
 
