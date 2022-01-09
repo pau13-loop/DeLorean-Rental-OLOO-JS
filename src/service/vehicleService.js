@@ -1,25 +1,31 @@
 const Vehicle = require('../db/models/vehicle');
+const objectParsers = require('../utils/objectParsers');
 
 const VehicleServiceAPI = (function singletonVehicleService() {
 
     const getAllVehicles = () => {
         //! Aplicar set para devolver obj únicos en lugar de repetidos también
-        return Vehicle.find();
+        return Vehicle.find().then(objectParsers.ObjectParsers.vehicleDataParser);
     }
 
     //! Transofmrar en filtro genérico para coche
-    const getOneVehicle = (modelName) => {
-        //! Conseguimos lista json de objectos
-        // let response = await Vehicle.findOne({model: modelName});
-        // console.log('Response find one:  ', response);
-        // return response;
-        return Vehicle.findOne({model: modelName});
+    const getOneVehicle = (key, value) => {
+        return (key === 'id' 
+        ? Vehicle.findById(value)
+        : Vehicle.findOne({[key]: value}))
+            .exec()
+            .then(objectParsers.ObjectParsers.vehicleDataParser);
     }
 
-    const deleteVehicle = (modelName) => {
-        return Vehicle.findOneAndDelete({model: modelName})
+    const deleteVehicle = (key, value) => {
+        return (key === 'id' 
+        ? Vehicle.findByIdAndDelete(value)
+        : Vehicle.findOneAndDelete({[key]: value}))
+        .exec()
+        .then(objectParsers.ObjectParsers.vehicleDataParser);
     }
 
+    //! REFACTOR
     //! Pasar número no determinado de argumantos para actualizar ???
     const updateVehicle = () => {
 

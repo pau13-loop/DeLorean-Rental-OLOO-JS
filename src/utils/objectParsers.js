@@ -32,6 +32,7 @@ const ObjectParsers = (function singletonObjectParsers() {
                 //TODO: Map
                 let vehiclesList = data.map(vehicle => {
                     return {
+                        id: vehicle._id,
                         model: vehicle.model,
                         brand: vehicle.brand,
                         category: vehicle.category,
@@ -41,8 +42,11 @@ const ObjectParsers = (function singletonObjectParsers() {
                         available: vehicle.available
                     };
                 });
+                //! REFACTORING --> que pasa con los vehiculos no availables ?
                 //TODO: Set
-                return [...new Set(vehiclesList)];
+                //! I was not able to use the set with a collection of objects, just with primitive types to get a collection of unique elements
+                // return [...new Set(vehiclesList)];
+                return [...new Map(vehiclesList.map((vehicle) => [vehicle['model'], vehicle])).values()];
             }
             return {
                 id: data._id,
