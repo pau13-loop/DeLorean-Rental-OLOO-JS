@@ -15,5 +15,6 @@ router.use(function (req, res, next) {
 router.get('/', RentalController.rentalAPI.rentalFindAll);
 router.get('/:key/:value', RentalController.rentalAPI.rentalFindOne);
 router.delete('/delete/:key/:value', RentalController.rentalAPI.rentalDeleteOne);
+router.post('/create', RentalController.rentalAPI.rentalCreate);
 
 module.exports = router;

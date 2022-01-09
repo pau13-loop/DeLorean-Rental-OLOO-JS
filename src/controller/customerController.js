@@ -43,7 +43,7 @@ const CustomerAPI = (function singletonCustomerController() {
     const createCustomer = ((req, res, next) => {
         customerService.CustomerServiceAPI.createCustomer(req.body)
         .then((data) => {
-            const response = responseFormatter(null, data, 'Request create customer succesfull')
+            const response = responseFormatter(null, data, 'Request create customer succesfull');
             res.status(202).type('json').json(response);
         })
         .catch((err) => {

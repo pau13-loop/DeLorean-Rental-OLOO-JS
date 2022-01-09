@@ -41,10 +41,26 @@ const rentalAPI = (function singletonRentalController() {
             });
     });
 
+    const rentalCreate = ((req, res, next) => {
+        rentalService.RentalServiceAPI.createRental(req.body)
+        .then((data) => {
+            // const response = data
+            // ? responseFormatter(null, data, 'Request create rental succesfull')
+            // : responseFormatter(null, data, 'Requested to make a booking couldn\'t be make, check parametres specified please and try again !');
+            // res.status(202).type('json').json(response);
+            res.send('Successfull !');
+        })
+        .catch((err) => {
+            const response = responseFormatter(err);
+            res.status(400).type('json').json(response);
+        });
+    });
+
     return {
         rentalFindAll,
         rentalFindOne,
-        rentalDeleteOne
+        rentalDeleteOne,
+        rentalCreate
     }
 })();
 
