@@ -12,10 +12,10 @@ router.use(function (req, res, next) {
 });
 
 //* CATEGORY ROUTES *//
-router.get('/', categoryController.categoryAPI.categoryFindAll);
-router.get('/:key/:value', categoryController.categoryAPI.categoryFindOne);
-router.delete('/delete/:key/:value', categoryController.categoryAPI.categoryDeleteOne);
-router.put('/update/:name/:discountTax', categoryController.categoryAPI.categoryUpdateOne);
-router.get('/create/:name/:discountTax', categoryController.categoryAPI.createCategory);
+router.get('/', categoryController.CategoryAPI.categoryFindAll);
+router.get('/:key/:value', categoryController.CategoryAPI.categoryFindOne);
+router.delete('/delete/:key/:value', categoryController.CategoryAPI.categoryDeleteOne);
+router.put('/update/:name/:discountTax', categoryController.CategoryAPI.categoryUpdateOne);
+router.post('/create', categoryController.CategoryAPI.createCategory);
 
 module.exports = router;

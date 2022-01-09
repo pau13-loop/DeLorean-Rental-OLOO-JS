@@ -1,7 +1,7 @@
 const customerService = require('../service/customerService');
 const responseFormatter = require('../utils/responseFormatter');
 
-const customerAPI = (function singletonCustomerController() {
+const CustomerAPI = (function singletonCustomerController() {
 
     const customerFindAll = ((req, res, next) => {
         customerService.CustomerServiceAPI.getAllCustomers()
@@ -48,4 +48,4 @@ const customerAPI = (function singletonCustomerController() {
     }
 })();
 
-exports.customerAPI = customerAPI;
+exports.CustomerAPI = CustomerAPI;

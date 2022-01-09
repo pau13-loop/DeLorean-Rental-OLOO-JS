@@ -5,11 +5,11 @@ var Schema = mongoose.Schema;
 
 var RentalSchema = new Schema({
     startDate: { 
-        type: Date,
+        type: String,
         required: true
     },
     endDate: {
-        type: Date,
+        type: String,
         required: true
     },
     customer: {

@@ -33,12 +33,13 @@ const CategoryServiceAPI = (function singletonCategoryService() {
     }
 
     //! REFACTOR
-    const createCategory = (newCategoryName, newCategoryDiscountTax) => {
-        let categoriesList = Category.find();
-        return new Category({
-            name: newCategoryName,
-            discountTax: newCategoryDiscountTax
-        });
+    const createCategory = (data) => {
+        // let categoriesList = Category.find();
+        // return new Category({
+        //     name: newCategoryName,
+        //     discountTax: newCategoryDiscountTax
+        // });
+        console.log('Service data: ', data);
     }
 
     return {

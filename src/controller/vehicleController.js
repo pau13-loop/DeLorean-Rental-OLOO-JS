@@ -2,7 +2,7 @@ const vehicle = require('../db/models/vehicle');
 const vehicleService = require('../service/vehicleService');
 const responseFormatter = require('../utils/responseFormatter');
 
-const vehicleAPI = (function singletonVehicleController() {
+const VehicleAPI = (function singletonVehicleController() {
 
     const vehicleFindAll = ((req, res, next) => {
         vehicleService.VehicleServiceAPI.getAllVehicles()
@@ -70,4 +70,4 @@ const vehicleAPI = (function singletonVehicleController() {
     }
 })();
 
-exports.vehicleAPI = vehicleAPI;
+exports.VehicleAPI = VehicleAPI;

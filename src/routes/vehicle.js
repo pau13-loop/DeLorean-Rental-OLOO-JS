@@ -12,10 +12,10 @@ router.use(function (req, res, next) {
 });
 
 //* CATEGORY ROUTES *//
-router.get('/', vehicleController.vehicleAPI.vehicleFindAll);
-router.get('/:key/:value', vehicleController.vehicleAPI.vehiclesFindOne);
-router.delete('/delete/:key/:value', vehicleController.vehicleAPI.vehicleDeleteOne);
+router.get('/', vehicleController.VehicleAPI.vehicleFindAll);
+router.get('/:key/:value', vehicleController.VehicleAPI.vehiclesFindOne);
+router.delete('/delete/:key/:value', vehicleController.VehicleAPI.vehicleDeleteOne);
 // Business logic 
-router.put('/update/price', vehicleController.vehicleAPI.updatePrice);
+router.put('/update/price', vehicleController.VehicleAPI.updatePrice);
 
 module.exports = router;

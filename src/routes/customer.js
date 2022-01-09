@@ -12,8 +12,8 @@ router.use(function (req, res, next) {
 });
 
 //* CUSTOMER ROUTES *//
-router.get('/', customerController.customerAPI.customerFindAll);
-router.get('/:key/:value', customerController.customerAPI.customerFindOne);
-router.delete('/delete/:key/:value', customerController.customerAPI.customerDeleteOne);
+router.get('/', customerController.CustomerAPI.customerFindAll);
+router.get('/:key/:value', customerController.CustomerAPI.customerFindOne);
+router.delete('/delete/:key/:value', customerController.CustomerAPI.customerDeleteOne);
 
 module.exports = router;
