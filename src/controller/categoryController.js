@@ -1,46 +1,72 @@
 const categoryService = require('../service/categoryService');
+const responseFormatter = require('../utils/responseFormatter');
 
-const categoryAPI = (function singletonCategoryController() {
+const CategoryAPI = (function singletonCategoryController() {
 
     const categoryFindAll = ((req, res, next) => {
-        let response = categoryService.CategoryServiceAPI.getAllCategories();
-        responseChecker(res, next, response);
+        categoryService.CategoryServiceAPI.getAllCategories()
+            .then((data) => {
+                const response = responseFormatter(null, data, 'Request category findAll succesfull');
+                console.log('Response: ', response);
+                res.status(200).type('json').json(response);
+            }).catch((err) => {
+                const response = responseFormatter(err);
+                res.status(400).type('json').json(response);
+            });
     });
 
     const categoryFindOne = ((req, res, next) => {
-        let response = categoryService.CategoryServiceAPI.getOneCategory(req.params.name);
-        responseChecker(res, next, response);
+        categoryService.CategoryServiceAPI.getOneCategory(req.params.key, req.params.value)
+            .then((data) => {
+                const response = responseFormatter(null, data, 'Request category findOne succesfull');
+                res.status(200).type('json').json(response);
+            })
+            .catch((err) => {
+                const response = responseFormatter(err);
+                res.status(400).type('json').json(response);
+            });
     });
 
     const categoryDeleteOne = ((req, res, next) => {
-        let response = categoryService.CategoryServiceAPI.deleteCategory(req.params.name);
-        responseChecker(res, next, response);
+        categoryService.CategoryServiceAPI.deleteCategory(req.params.key, req.params.value)
+            .then((data) => {
+                // Not sending body response when status code is 204 --> No Content
+                data 
+                ? res.status(204).send("Success!")
+                : res.status(200).send("Category to delete not found");
+            })
+            .catch((err) => {
+                const response = responseFormatter(err);
+                res.status(400).type('json').json(response);
+            });
     });
 
     const categoryUpdateOne = ((req, res, next) => {
-        let response = categoryService.CategoryServiceAPI.updateCategoryDiscountTax(req.params.name, req.params.discountTax);
-        responseChecker(res, next, response);
+        categoryService.CategoryServiceAPI.updateCategoryDiscountTax(req.params.name, req.params.discountTax)
+            .then((data) => {
+                const response = data 
+                ? responseFormatter(null, data, 'Request category updateOne succesfull')
+                : responseFormatter(null, data, 'Requested category to update not found');
+                res.status(202).type('json').json(response);
+            })
+            .catch((err) => {
+                const response = responseFormatter(err);
+                res.status(400).type('json').json(response);
+            });
     });
 
-    const createCategory =((req, res, next) => {
-        let response = categoryService.CategoryServiceAPI.createCategory(req.params.name, req.params.discountTax);
-        response.save(function (err) {
-            if (err) {
-                res.status(400).send('Sorry unable to create the category');
-                return next(err)
-            }
-            console.log('Document created successfully !');
-            res.status(201).type('json').json(response);
-        });
-    });
-
-    const responseChecker = ((res, next, object) => {
-        object.exec(function (err, result) {
-            if (err) {
-                return next(err);
-            }
-            res.status(200).type('json').json(result);
+    const createCategory = ((req, res, next) => {
+        categoryService.CategoryServiceAPI.createCategory(req.body)
+        .then((data) => {
+            const response = data 
+            ? responseFormatter(null, data, 'Request create category succesfull')
+            : responseFormatter(null, data, 'Category already exists !');
+            res.status(202).type('json').json(response);
         })
+        .catch((err) => {
+            const response = responseFormatter(err);
+            res.status(400).type('json').json(response);
+        });
     });
 
     return {
@@ -52,4 +78,4 @@ const categoryAPI = (function singletonCategoryController() {
     }
 })();
 
-exports.categoryAPI = categoryAPI;
+exports.CategoryAPI = CategoryAPI;

@@ -1,34 +1,66 @@
-const Vehicle = require('../models/vehicle');
+const Vehicle = require('../db/models/vehicle');
+const Category = require('../db/models/category');
+const objectParsers = require('../utils/objectParsers');
 
 const VehicleServiceAPI = (function singletonVehicleService() {
 
     const getAllVehicles = () => {
-        //! Aplicar set para devolver obj únicos en lugar de repetidos también
-        return Vehicle.find();
+        return Vehicle.find().then(objectParsers.ObjectParsers.vehicleDataParser);
     }
 
-    //! Transofmrar en filtro genérico para coche
-    const getOneVehicle = (modelName) => {
-        //! Conseguimos lista json de objectos
-        // let response = await Vehicle.findOne({model: modelName});
-        // console.log('Response find one:  ', response);
-        // return response;
-        return Vehicle.findOne({model: modelName});
+    const getOneVehicle = (key, value) => {
+        return (key === 'id' 
+        ? Vehicle.findById(value)
+        : Vehicle.findOne({[key]: value}))
+            .exec()
+            .then(objectParsers.ObjectParsers.vehicleDataParser);
     }
 
-    const deleteVehicle = (modelName) => {
-        return Vehicle.findOneAndDelete({model: modelName})
+    const deleteVehicle = (key, value) => {
+        return (key === 'id' 
+        ? Vehicle.findByIdAndDelete(value)
+        : Vehicle.findOneAndDelete({[key]: value}))
+        .exec()
+        .then(objectParsers.ObjectParsers.vehicleDataParser);
     }
 
-    //! Pasar número no determinado de argumantos para actualizar ???
-    const updateVehicle = () => {
+    const createVehicle = async (data) => {
+        let categoryVehicle = await Category.findOne({name: data.category});
+        let newVehicle = new Vehicle({
+            model: data.model,
+            brand: data.brand,
+            category: categoryVehicle.id,
+            passengers: data.passengers,
+            year: data.year,
+            price: data.price
+        });
+        return newVehicle.save().then(objectParsers.ObjectParsers.vehicleDataParser);
+    }
+
+    const updateVehicle = async (id, data) => {
+        let categoryVehicle = await Category.findOne({name: data.category});
+        let update = {
+            model: data.model,
+            brand: data.brand,
+            category: categoryVehicle.id,
+            passengers: data.passengers,
+            year: data.year,
+            price: data.price,
+            availalbe: data.available
+        };
+        // Set new to true to return the document after the update
+        return Vehicle.findByIdAndUpdate(id, update, { new: true })
+            .exec()
+            .then(objectParsers.ObjectParsers.vehicleDataParser);
 
     }
 
     return {
         getAllVehicles,
         getOneVehicle,
-        deleteVehicle
+        deleteVehicle,
+        createVehicle,
+        updateVehicle
     }
 })();
 

@@ -132,6 +132,19 @@ The views (templates) are stored in the /views directory (as specified in app.js
 ###### mongoose API Docs
 > https://mongoosejs.com/docs/api.html
 
+###### ObjectId()
+> https://docs.mongodb.com/manual/reference/method/ObjectId/#ObjectIDs-BSONObjectIDSpecification
+> https://observablehq.com/@hugodf/mongodb-objectid-generator
+
+###### Mongo relations
+> https://vegibit.com/mongoose-relationships-tutorial/
+> https://dev.to/mkilmer/how-create-relationships-with-mongoose-and-node-js-with-real-example-43ei
+
+###### Mongo Guide
+> https://mongoosejs.com/docs/guide.html
+
+###### Mongo Models
+> https://mongoosejs.com/docs/models.html
 
 ## Node JS
 
@@ -149,6 +162,9 @@ Official Jest documentation
 Official README documentation
 > https://github.com/kentcdodds/cross-env
 
+## Iconic cars from moveis
+> https://www.familyhandyman.com/list/iconic-cars-from-movies/
+
 ## Another necessary resources to understand the domain logic
 
 #### How to calculate the DNI letter
@@ -163,6 +179,37 @@ Official README documentation
 > https://pretagteam.com/question/how-check-if-a-form-date-is-before-today-javascript
 > https://stackoverflow.com/questions/27317437/how-to-check-if-one-date-is-before-another-date-using-javascript-jquery/27317897
 
+## Parsing 
+> https://dev.to/coolshaurya/what-is-the-difference-between-parsing-and-serialization-543b
+> https://blog.danielkapexhiu.com/difference-between-parsing-serialization-deserialization
+> https://stackoverflow.com/questions/6487699/best-way-to-serialize-unserialize-objects-in-javascript
+
+## Express responses and status code 200 and 204
+> https://www.rockyourcode.com/express.js-send-responses/
+
+## Make a set of obj from a collection of obj
+> https://yagisanatode.com/2021/07/03/get-a-unique-list-of-objects-in-an-array-of-object-in-javascript/
+
+## Express body parser and parse req.body from endpoint with application/json
+> https://masteringjs.io/tutorials/express/body
+> http://expressjs.com/en/resources/middleware/body-parser.html
+> https://www.telerik.com/blogs/what-is-json-how-to-handle-unexpected-token-error
+> https://stackoverflow.com/questions/10005939/how-do-i-consume-the-json-post-data-in-an-express-application
+> https://daveceddia.com/unexpected-token-in-json-at-position-0/
+> https://stackoverflow.com/questions/14432165/uncaught-syntaxerror-unexpected-token-with-json-parse/50730876
+
+## Become Git Master
+> https://dev.to/ruppysuppy/advanced-git-concepts-you-should-know-nle
+
+## Model example
+> https://vertabelo.com/blog/renting-out-cars-is-as-simple-as-driving-a-data-model-for-a-car-rental-company/
+
+## Test errors
+> https://github.com/visionmedia/supertest/issues/520
+> https://github.com/facebook/jest/issues/11665
+
+## Express 4.x API
+> https://expressjs.com/en/api.html
 
 ## Atribs a aplicar (en los prototipos)
 
