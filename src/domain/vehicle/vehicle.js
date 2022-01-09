@@ -35,7 +35,7 @@ var Vehicle = {
     getName: function () {
         return `Vehicle name: ${this.brand} ${this.model}`;
     },
-    // Other necessary getters
+    // Domain logic
     getOriginalPrice: function () {
         return this.ORIGINALPRICE;
     },
@@ -62,8 +62,6 @@ var Vehicle = {
         }
     },
     //TODO: closure
-    //! Esta función se debería poder llamar únicamente cuando el vehiculo este reservado ???
-    //! Implementar en el caso de que se añada el proto general de Vehiculo y los determinado de coche, moto, ...
     getPresonalAssistance: function (subject) {
         let closure = function (name) {
             function notifyAssistance() {
@@ -79,11 +77,9 @@ var Vehicle = {
         if (this.category.name !== 'classic') {
             const actualYear = Date.now().getFullYear();
             let updatePercentatge = 0.1 * (actualYear - this.year);
-            
             //? Conseguimos el nuevo precio multiplicando el porcentaje por el precio original, porque el precio podría ya tener un descuento aplicdo, y el descuento del 10% por año siempre se realizará sobre el precio original
             //* Al actualizar el precio queremos redondearlo
             let newPrice = Math.round(this.ORIGINALPRICE - this.ORIGINALPRICE * updatePercentatge);
-    
             if (newPrice > this.getMinPrice()) {
                 this.price = newPrice; 
             }
