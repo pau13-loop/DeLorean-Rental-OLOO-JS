@@ -89,10 +89,35 @@ const ObjectParsers = (function singletonObjectParsers() {
         return null;
     }
 
+    const rentalDataParser = (data) => {
+        if (data) {
+            if (data.length > 0) {
+                return data.map(rental => {
+                    return {
+                        id: rental._id,
+                        startDate: rental.startDate,
+                        endDate: rental.endDate,
+                        customer: rental.customer,
+                        vehicle: rental.vehicle
+                    }
+                });
+            }
+            return {
+                id: data._id,
+                startDate: data.startDate,
+                endDate: data.endDate,
+                customer: data.customer,
+                vehicle: data.vehicle
+            }
+        }
+        return null;
+    }
+
     return {
         categoryDataParser,
         vehicleDataParser,
-        customerDataParser
+        customerDataParser,
+        rentalDataParser
     }
 })();
 
