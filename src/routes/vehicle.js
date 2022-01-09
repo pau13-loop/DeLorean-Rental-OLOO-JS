@@ -15,7 +15,7 @@ router.use(function (req, res, next) {
 router.get('/', vehicleController.VehicleAPI.vehicleFindAll);
 router.get('/:key/:value', vehicleController.VehicleAPI.vehiclesFindOne);
 router.delete('/delete/:key/:value', vehicleController.VehicleAPI.vehicleDeleteOne);
-// Business logic 
-router.put('/update/price', vehicleController.VehicleAPI.updatePrice);
+router.post('/create', vehicleController.VehicleAPI.createVehicle);
+router.put('/update/:id', vehicleController.VehicleAPI.updateVehicle);
 
 module.exports = router;

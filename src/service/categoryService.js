@@ -1,5 +1,4 @@
 const Category = require('../db/models/category');
-const CategoryProto = require('../domain/category/category');
 const objectParsers = require('../utils/objectParsers');
 
 const CategoryServiceAPI = (function singletonCategoryService() {

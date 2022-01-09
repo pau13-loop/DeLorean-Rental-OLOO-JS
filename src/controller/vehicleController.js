@@ -1,4 +1,3 @@
-const vehicle = require('../db/models/vehicle');
 const vehicleService = require('../service/vehicleService');
 const responseFormatter = require('../utils/responseFormatter');
 
@@ -33,7 +32,7 @@ const VehicleAPI = (function singletonVehicleController() {
             // Not sending body response when status code is 204 --> No Content
             data 
             ? res.status(204).send("Success!")
-            : res.status(200).send("Category to delete not found");
+            : res.status(200).send("Vehicle to delete not found");
         })
         .catch((err) => {
             const response = responseFormatter(err);
@@ -41,32 +40,38 @@ const VehicleAPI = (function singletonVehicleController() {
         });
     });
 
-    //! REFACTOR
-    // UPDATE PRICE DOMAIN
-    const updatePrice = ((req, res, next) => {
-        const query = {};
-        const update = {};
-        const options = { "upster": false };
-
-        let response = vehicle.updateMany(query, update, options)
-            .then(result => {
-                const { matchedCount, modifiedCount } = result;
-                console.log(`Successfully matched ${matchedCount} and modified count ${modifiedCount} items`);
-                return result;
-            })
-            .catch(err => console.error(`Failed to update items: ${err}`));
-
-        response.exec(function (err, result) {
-            if (err) { return next(err) }
-            res.status(200).send(response);
+    const createVehicle = ((req, res, next) => {
+        vehicleService.VehicleServiceAPI.createVehicle(req.body)
+        .then((data) => {
+            const response = responseFormatter(null, data, 'Request create vehicle succesfull')
+            res.status(202).type('json').json(response);
         })
+        .catch((err) => {
+            const response = responseFormatter(err);
+            res.status(400).type('json').json(response);
+        });
+    });
+
+    const updateVehicle = ((req, res, next) => {
+        vehicleService.VehicleServiceAPI.updateVehicle(req.params.id, req.body)
+        .then((data) => {
+            const response = data 
+            ? responseFormatter(null, data, 'Request vehicle updated succesfully')
+            : responseFormatter(null, data, 'Requested vehicle to update not found');
+            res.status(202).type('json').json(response);
+        })
+        .catch((err) => {
+            const response = responseFormatter(err);
+            res.status(400).type('json').json(response);
+        });
     });
 
     return {
         vehicleFindAll,
         vehiclesFindOne,
         vehicleDeleteOne,
-        updatePrice
+        createVehicle,
+        updateVehicle
     }
 })();
 

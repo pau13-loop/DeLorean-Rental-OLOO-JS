@@ -29,12 +29,13 @@ var VehicleSchema = new Schema({
     },
     available: {
         type: Boolean,
-        required: true
+        required: true,
+        default: false
     }
 });
 
 VehicleSchema.pre(['find', 'findOne', 'findOneAndDelete', 'findOneAndUpdate'], function () {
-    this.select('_id model brand category passengers year priec available');
+    this.select('_id model brand category passengers year price available');
 });
 
 
