@@ -1,4 +1,5 @@
 const Category = require('../db/models/category');
+const CategoryProto = require('../domain/category/category');
 const objectParsers = require('../utils/objectParsers');
 
 const CategoryServiceAPI = (function singletonCategoryService() {
@@ -16,9 +17,9 @@ const CategoryServiceAPI = (function singletonCategoryService() {
     }
 
     const deleteCategory = (key, value) => {
-        return (key === 'id' 
+        return (key === 'id'
             ? Category.findByIdAndDelete(value)
-            : Category.findOneAndDelete({[key]: value}))
+            : Category.findOneAndDelete({ [key]: value }))
             .exec()
             .then(objectParsers.ObjectParsers.categoryDataParser);
     }
@@ -32,14 +33,16 @@ const CategoryServiceAPI = (function singletonCategoryService() {
             .then(objectParsers.ObjectParsers.categoryDataParser);
     }
 
-    //! REFACTOR
-    const createCategory = (data) => {
-        // let categoriesList = Category.find();
-        // return new Category({
-        //     name: newCategoryName,
-        //     discountTax: newCategoryDiscountTax
-        // });
-        console.log('Service data: ', data);
+    const createCategory = async (data) => {
+        let categoriesList = await Category.find();
+        if (!categoriesList.find(category => category.name === data.name)) {
+            let newCategory = new Category({
+                name: data.name,
+                discountTax: data.discountTax
+            });
+            return newCategory.save().then(objectParsers.ObjectParsers.categoryDataParser);
+        }
+        return null;
     }
 
     return {

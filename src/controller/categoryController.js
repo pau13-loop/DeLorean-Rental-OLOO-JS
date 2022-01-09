@@ -55,22 +55,18 @@ const CategoryAPI = (function singletonCategoryController() {
             });
     });
 
-    //! REFACTOR
     const createCategory = ((req, res, next) => {
-        // let response = categoryService.CategoryServiceAPI.createCategory(req.params.name, req.params.discountTax);
-        // response.save(function (err) {
-        //     if (err) {
-        //         res.status(400).send('Sorry unable to create the category');
-        //         return next(err)
-        //     }
-        //     console.log('Document created successfully !');
-        //     res.status(201).type('json').json(response);
-        // });
-        // console.log('Request: ', req);
-        // console.log('Request: ', req.body);
-        // console.log('Controller: ', req.body);
-        // categoryService.CategoryServiceAPI.createCategory(req.body);
-        res.send('Success !');
+        categoryService.CategoryServiceAPI.createCategory(req.body)
+        .then((data) => {
+            const response = data 
+            ? responseFormatter(null, data, 'Request create category succesfull')
+            : responseFormatter(null, data, 'Category already exists !');
+            res.status(202).type('json').json(response);
+        })
+        .catch((err) => {
+            const response = responseFormatter(err);
+            res.status(400).type('json').json(response);
+        });
     });
 
     return {

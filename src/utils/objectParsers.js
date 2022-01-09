@@ -26,7 +26,6 @@ const ObjectParsers = (function singletonObjectParsers() {
     }
 
     const vehicleDataParser = (data) => {
-        console.log(data);
         if (data) {
             if (data.length > 0) {
                 //TODO: Map
