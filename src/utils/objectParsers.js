@@ -43,6 +43,7 @@ const ObjectParsers = (function singletonObjectParsers() {
                     };
                 });
                 //! REFACTORING --> que pasa con los vehiculos no availables ?
+                //? Alomejor hacer un método para que solo muestre los disponibles
                 //TODO: Set
                 //! I was not able to use the set with a collection of objects, just with primitive types to get a collection of unique elements
                 // return [...new Set(vehiclesList)];
@@ -60,11 +61,38 @@ const ObjectParsers = (function singletonObjectParsers() {
             }
         }
         return null;
+    };
+
+    const customerDataParser = (data) => {
+        if (data) {
+            if (data.length > 0) {
+                return data.map(customer => {
+                    return {
+                        id: customer._id,
+                        name: customer.name,
+                        lastName: customer.lastName,
+                        birthDate: customer.birthDate,
+                        dniNumber: customer.dniNumber,
+                        dniLetter: customer.dniLetter
+                    }
+                });
+            }
+            return {
+                id: data._id,
+                name: data.name,
+                lastName: data.lastName,
+                birthDate: data.birthDate,
+                dniNumber: data.dniNumber,
+                dniLetter: data.dniLetter
+            }
+        }
+        return null;
     }
 
     return {
         categoryDataParser,
-        vehicleDataParser
+        vehicleDataParser,
+        customerDataParser
     }
 })();
 

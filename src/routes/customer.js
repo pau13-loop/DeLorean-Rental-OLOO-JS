@@ -13,6 +13,7 @@ router.use(function (req, res, next) {
 
 //* CUSTOMER ROUTES *//
 router.get('/', customerController.customerAPI.customerFindAll);
-router.get('/:name', customerController.customerAPI.customerFindOne);
+router.get('/:key/:value', customerController.customerAPI.customerFindOne);
+router.delete('/delete/:key/:value', customerController.customerAPI.customerDeleteOne);
 
 module.exports = router;
