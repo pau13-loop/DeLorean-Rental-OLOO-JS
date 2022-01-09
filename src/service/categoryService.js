@@ -1,10 +1,10 @@
 const Category = require('../db/models/category');
-const categoryDataParser = require('../utils/parsers/categoryParser');
+const objectParsers = require('../utils/objectParsers');
 
 const CategoryServiceAPI = (function singletonCategoryService() {
 
     const getAllCategories = () => {
-        return Category.find().then(categoryDataParser);
+        return Category.find().then(objectParsers.ObjectParsers.categoryDataParser);
     }
 
     const getOneCategory = (key, value) => {
@@ -12,7 +12,7 @@ const CategoryServiceAPI = (function singletonCategoryService() {
             ? Category.findById(value)
             : Category.findOne({ [key]: value }))
             .exec()
-            .then(categoryDataParser);
+            .then(objectParsers.ObjectParsers.categoryDataParser);
     }
 
     const deleteCategory = (key, value) => {
@@ -20,7 +20,7 @@ const CategoryServiceAPI = (function singletonCategoryService() {
             ? Category.findByIdAndDelete(value)
             : Category.findOneAndDelete({[key]: value}))
             .exec()
-            .then(categoryDataParser);
+            .then(objectParsers.ObjectParsers.categoryDataParser);
     }
 
     const updateCategoryDiscountTax = (categoryNameFilter, discountTaxToUpdate) => {
@@ -29,9 +29,10 @@ const CategoryServiceAPI = (function singletonCategoryService() {
         // Set new to true to return the document after the update
         return Category.findOneAndUpdate(filter, update, { new: true })
             .exec()
-            .then(categoryDataParser);
+            .then(objectParsers.ObjectParsers.categoryDataParser);
     }
 
+    //! REFACTOR
     const createCategory = (newCategoryName, newCategoryDiscountTax) => {
         let categoriesList = Category.find();
         return new Category({

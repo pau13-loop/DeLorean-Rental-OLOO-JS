@@ -1,7 +1,7 @@
 const ObjectId = require('mongodb').ObjectId;
 
 module.exports = [
-    // 2 Common
+    // 4 Common - 2 repeated
     {
         _id: ObjectId("61d9d405e27e034e2e2d52e1"),
         model: "Clio",
@@ -13,7 +13,27 @@ module.exports = [
         available: true,
     },
     {
+        _id: ObjectId("61da25c0bcbf3e5cd7af6655"),
+        model: "Clio",
+        brand: "renault",
+        category: ObjectId("61b0f513646886f408bd0730"),
+        passengers: 5,
+        year: 2018,
+        price: 10,
+        available: true,
+    },
+    {
         _id: ObjectId("61d9d40de380c7e6a6974668") ,
+        model: "Golf",
+        brand: "volkswagen",
+        category: ObjectId("61b0f513646886f408bd0730"),
+        passengers: 5,
+        year: 2019,
+        price: 13,
+        available: true
+    },
+    {
+        _id: ObjectId("61da25cab859aa8fe6b1b915") ,
         model: "Golf",
         brand: "volkswagen",
         category: ObjectId("61b0f513646886f408bd0730"),

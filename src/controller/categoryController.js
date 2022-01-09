@@ -55,6 +55,7 @@ const categoryAPI = (function singletonCategoryController() {
             });
     });
 
+    //! REFACTOR
     const createCategory = ((req, res, next) => {
         let response = categoryService.CategoryServiceAPI.createCategory(req.params.name, req.params.discountTax);
         response.save(function (err) {

@@ -58,7 +58,7 @@ async function run() {
         result = await customers.insertMany(customersCollection);
         console.log(`${result.insertedCount} == 5 customers inserted into DB`);
         result = await vehicles.insertMany(vehicleCollection);
-        console.log(`${result.insertedCount} == 8 vehicles inserted into DB`);
+        console.log(`${result.insertedCount} == 10 vehicles inserted into DB`);
         result = await rentals.insertMany(rentalsCollection);
         console.log(`${result.insertedCount} == 4 vehicles inserted into DB`);
     } finally {
