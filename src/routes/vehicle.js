@@ -12,8 +12,9 @@ router.use(function (req, res, next) {
 });
 
 //* CATEGORY ROUTES *//
-router.get('/', vehicleController.VehicleAPI.vehicleFindAll);
+router.get('/', vehicleController.VehicleAPI.vehiclesFindAll);
 router.get('/:key/:value', vehicleController.VehicleAPI.vehiclesFindOne);
+router.get('/available', vehicleController.VehicleAPI.vehiclesFindAvailables);
 router.delete('/delete/:key/:value', vehicleController.VehicleAPI.vehicleDeleteOne);
 router.post('/create', vehicleController.VehicleAPI.createVehicle);
 router.put('/update/:id', vehicleController.VehicleAPI.updateVehicle);

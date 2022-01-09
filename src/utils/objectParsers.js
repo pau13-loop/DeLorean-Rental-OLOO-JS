@@ -29,7 +29,7 @@ const ObjectParsers = (function singletonObjectParsers() {
         if (data) {
             if (data.length > 0) {
                 //TODO: Map
-                let vehiclesList = data.map(vehicle => {
+                return data.map(vehicle => {
                     return {
                         id: vehicle._id,
                         model: vehicle.model,
@@ -41,12 +41,6 @@ const ObjectParsers = (function singletonObjectParsers() {
                         available: vehicle.available
                     };
                 });
-                //! REFACTORING --> que pasa con los vehiculos no availables ?
-                //? Alomejor hacer un método para que solo muestre los disponibles
-                //TODO: Set
-                //! I was not able to use the set with a collection of objects, just with primitive types to get a collection of unique elements
-                // return [...new Set(vehiclesList)];
-                return [...new Map(vehiclesList.map((vehicle) => [vehicle['model'], vehicle])).values()];
             }
             return {
                 id: data._id,
