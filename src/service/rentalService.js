@@ -17,26 +17,28 @@ const RentalServiceAPI = (function singletonCategoryService() {
             .then(objectParsers.ObjectParsers.rentalDataParser);
     }
 
-    //! Volver a poner coche en available
-    const deleteRental = (key, value) => {
-        let bookingToDelete = key === 'id' 
-        ? Rental.findByIdAndDelete(value)
-        : Rental.findOneAndDelete({[key]: value});
+    const deleteRental = async (key, value) => {
+        let bookingToDelete = key === 'id'
+            ? await Rental.findById(value)
+            : await Rental.findOne({ [key]: value });
 
-        let vehicleToUnBook = Vehicle.findById(bookingToDelete.vehicle);
-        // return (key === 'id' 
-        //     ? Rental.findByIdAndDelete(value)
-        //     : Rental.findOneAndDelete({[key]: value}))
-        //     .exec()
-        //     .then(objectParsers.ObjectParsers.rentalDataParser);
+        if (bookingToDelete) {
+            // Vehicle comback to be available before delete the booking
+            let vehicleToUnBook = await Vehicle.findById(bookingToDelete.vehicle);
+            Vehicle.findByIdAndUpdate(vehicleToUnBook.id, { available: true }).exec();
+            return Rental.findByIdAndDelete(bookingToDelete.id)
+                .exec()
+                .then(objectParsers.ObjectParsers.rentalDataParser);
+        }
+        return null;
     }
 
     const createRental = async (data) => {
         // Necessary specify dni and the dni letter of a customer when try to make a booking, by this way we ensure that the customer found it by the query is the customer we are looking for
         //? Because the costumer never will know with which id he has been saved into the DB
-        let customerBooking = await Customer.findOne({dniNumber: data.dniNumber, dniLetter: data.dniLetter});
+        let customerBooking = await Customer.findOne({ dniNumber: data.dniNumber, dniLetter: data.dniLetter });
         // To match the desired vehicle
-        let vehicleBooking = await Vehicle.findOne({model: data.vehicleModel, brand: data.vehicleBrand});
+        let vehicleBooking = await Vehicle.findOne({ model: data.vehicleModel, brand: data.vehicleBrand });
         if (vehicleBooking.available && customerBooking) {
             let newBooking = new Rental({
                 startDate: data.startDate,
@@ -44,7 +46,7 @@ const RentalServiceAPI = (function singletonCategoryService() {
                 customer: customerBooking.id,
                 vehicle: vehicleBooking.id
             });
-            Vehicle.findByIdAndUpdate(vehicleBooking.id, {available: false}).exec();
+            Vehicle.findByIdAndUpdate(vehicleBooking.id, { available: false }).exec();
             return newBooking.save().then(objectParsers.ObjectParsers.rentalDataParser);
         }
         return null;
