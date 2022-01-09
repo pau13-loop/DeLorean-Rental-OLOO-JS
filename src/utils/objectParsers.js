@@ -74,19 +74,19 @@ const ObjectParsers = (function singletonObjectParsers() {
         };
     };
 
-    const rentalDataParser = (data) => {
+    const bookingDataParser = (data) => {
         if (data) {
             if (data.length > 0) {
-                return data.map(rental => {
-                    return getRentalParsed(rental);
+                return data.map(booking => {
+                    return getBookingParsed(booking);
                 });
             }
-            return getRentalParsed(data);
+            return getBookingParsed(data);
         }
         return null;
     };
 
-    const getRentalParsed = (data) => {
+    const getBookingParsed = (data) => {
         return {
             id: data._id,
             startDate: data.startDate,
@@ -100,7 +100,7 @@ const ObjectParsers = (function singletonObjectParsers() {
         categoryDataParser,
         vehicleDataParser,
         customerDataParser,
-        rentalDataParser
+        bookingDataParser
     };
 })();
 

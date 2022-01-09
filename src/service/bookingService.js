@@ -1,63 +1,64 @@
-const Rental = require('../db/models/rental');
+const Booking = require('../db/models/booking');
 const Customer = require('../db/models/customer');
 const Vehicle = require('../db/models/vehicle');
 const objectParsers = require('../utils/objectParsers');
 
-const RentalServiceAPI = (function singletonCategoryService() {
+const BookingServiceAPI = (function singletonCategoryService() {
 
-    const getAllRentals = () => {
-        return Rental.find().then(objectParsers.ObjectParsers.rentalDataParser);
+    const getAllBookings = () => {
+        return Booking.find().then(objectParsers.ObjectParsers.bookingDataParser);
     }
 
-    const getOneRental = (key, value) => {
+    const getOneBooking = (key, value) => {
         return (key === 'id'
-            ? Rental.findById(value)
-            : Rental.findOne({ [key]: value }))
+            ? Booking.findById(value)
+            : Booking.findOne({ [key]: value }))
             .exec()
-            .then(objectParsers.ObjectParsers.rentalDataParser);
+            .then(objectParsers.ObjectParsers.bookingDataParser);
     }
 
-    const deleteRental = async (key, value) => {
+    const deleteBooking = async (key, value) => {
         let bookingToDelete = key === 'id'
-            ? await Rental.findById(value)
-            : await Rental.findOne({ [key]: value });
+            ? await Booking.findById(value)
+            : await Booking.findOne({ [key]: value });
 
         if (bookingToDelete) {
             // Vehicle comback to be available before delete the booking
             let vehicleToUnBook = await Vehicle.findById(bookingToDelete.vehicle);
             Vehicle.findByIdAndUpdate(vehicleToUnBook.id, { available: true }).exec();
-            return Rental.findByIdAndDelete(bookingToDelete.id)
+            return Booking.findByIdAndDelete(bookingToDelete.id)
                 .exec()
-                .then(objectParsers.ObjectParsers.rentalDataParser);
+                .then(objectParsers.ObjectParsers.bookingDataParser);
         }
         return null;
     }
 
-    const createRental = async (data) => {
+    const createBooking = async (data) => {
         // Necessary specify dni and the dni letter of a customer when try to make a booking, by this way we ensure that the customer found it by the query is the customer we are looking for
         //? Because the costumer never will know with which id he has been saved into the DB
         let customerBooking = await Customer.findOne({ dniNumber: data.dniNumber, dniLetter: data.dniLetter });
         // To match the desired vehicle
         let vehicleBooking = await Vehicle.findOne({ model: data.vehicleModel, brand: data.vehicleBrand });
+        console.log('Vehicle: ', vehicleBooking)
         if (vehicleBooking.available && customerBooking) {
-            let newBooking = new Rental({
+            let newBooking = new Booking({
                 startDate: data.startDate,
                 endDate: data.endDate,
                 customer: customerBooking.id,
                 vehicle: vehicleBooking.id
             });
             Vehicle.findByIdAndUpdate(vehicleBooking.id, { available: false }).exec();
-            return newBooking.save().then(objectParsers.ObjectParsers.rentalDataParser);
+            return newBooking.save().then(objectParsers.ObjectParsers.bookingDataParser);
         }
         return null;
     }
 
     return {
-        getAllRentals,
-        getOneRental,
-        deleteRental,
-        createRental
+        getAllBookings,
+        getOneBooking,
+        deleteBooking,
+        createBooking
     }
 })();
 
-exports.RentalServiceAPI = RentalServiceAPI;
+exports.BookingServiceAPI = BookingServiceAPI;
