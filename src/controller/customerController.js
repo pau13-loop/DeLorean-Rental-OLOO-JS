@@ -7,7 +7,6 @@ const CustomerAPI = (function singletonCustomerController() {
         customerService.CustomerServiceAPI.getAllCustomers()
             .then((data) => {
                 const response = responseFormatter(null, data, 'Request customer findAll succesfull');
-                console.log('Response: ', response);
                 res.status(200).type('json').json(response);
             }).catch((err) => {
                 const response = responseFormatter(err);
@@ -41,10 +40,38 @@ const CustomerAPI = (function singletonCustomerController() {
             });
     });
 
+    const createCustomer = ((req, res, next) => {
+        customerService.CustomerServiceAPI.createCustomer(req.body)
+        .then((data) => {
+            const response = responseFormatter(null, data, 'Request create customer succesfull')
+            res.status(202).type('json').json(response);
+        })
+        .catch((err) => {
+            const response = responseFormatter(err);
+            res.status(400).type('json').json(response);
+        });
+    });
+
+    const updateCustomer = ((req, res, next) => {
+        customerService.CustomerServiceAPI.updateCustomer(req.params.id, req.body)
+            .then((data) => {
+                const response = data 
+                ? responseFormatter(null, data, 'Request customer updated succesfully')
+                : responseFormatter(null, data, 'Requested customer to update not found');
+                res.status(202).type('json').json(response);
+            })
+            .catch((err) => {
+                const response = responseFormatter(err);
+                res.status(400).type('json').json(response);
+            });
+    });
+
     return {
         customerFindAll,
         customerFindOne,
-        customerDeleteOne
+        customerDeleteOne,
+        createCustomer,
+        updateCustomer
     }
 })();
 

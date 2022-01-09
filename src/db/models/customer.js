@@ -16,15 +16,19 @@ var CustomerSchema = new Schema({
     },
     dniNumber: {
         type: Number,
-        required: true
+        required: true,
+        //! No funciona de momento
+        maxLength: 8
     },
     dniLetter: {
         type: String,
-        required: true
+        required: true,
+        //! No funciona de momento
+        maxLength: 1
     }
 });
 
-CustomerSchema.pre(['find', 'findOne', 'findOneAndDelete', 'findOneAndUpdate'], function () {
+CustomerSchema.pre(['find', 'findOne', 'findOneAndDelete', 'findOneAndUpdate', 'findByIdAndUpdate'], function () {
     this.select('_id name lastName birthDate dniNumber dniLetter');
 });
 

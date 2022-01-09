@@ -15,5 +15,7 @@ router.use(function (req, res, next) {
 router.get('/', customerController.CustomerAPI.customerFindAll);
 router.get('/:key/:value', customerController.CustomerAPI.customerFindOne);
 router.delete('/delete/:key/:value', customerController.CustomerAPI.customerDeleteOne);
+router.post('/create', customerController.CustomerAPI.createCustomer);
+router.put('/update/:id', customerController.CustomerAPI.updateCustomer);
 
 module.exports = router;
