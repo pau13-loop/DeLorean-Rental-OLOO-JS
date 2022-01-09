@@ -3,115 +3,105 @@ const ObjectParsers = (function singletonObjectParsers() {
     const categoryDataParser = (data) => {
         if (data) {
             if (data.length > 0) {
-                var parsedData = [];
+                let parsedData = [];
                 //TODO: forEach
                 data.forEach(category => {
-                    let parsedCategory = {
-                        id: category._id,
-                        name: category.name,
-                        discountTax: category.discountTax
-                    };
+                    let parsedCategory = getCategoryParsed(category);
                     //TODO: Structuring
                     parsedData = [...parsedData, parsedCategory];
                 });
                 return parsedData;
             }
-            return {
-                id: data._id,
-                name: data.name,
-                discountTax: data.discountTax
-            }
+            return getCategoryParsed(data);
         }
         return null;
-    }
+    };
+
+    const getCategoryParsed = (data) => {
+        return {
+            id: data._id,
+            name: data.name,
+            discountTax: data.discountTax
+        };
+    };
 
     const vehicleDataParser = (data) => {
         if (data) {
             if (data.length > 0) {
                 //TODO: Map
                 return data.map(vehicle => {
-                    return {
-                        id: vehicle._id,
-                        model: vehicle.model,
-                        brand: vehicle.brand,
-                        category: vehicle.category,
-                        passengers: vehicle.passengers,
-                        year: vehicle.year,
-                        price: vehicle.price,
-                        available: vehicle.available
-                    };
+                    return getVehicleParsed(vehicle);
                 });
             }
-            return {
-                id: data._id,
-                model: data.model,
-                brand: data.brand,
-                category: data.category,
-                passengers: data.passengers,
-                year: data.year,
-                price: data.price,
-                available: data.available
-            }
+            return getVehicleParsed(data);
         }
         return null;
+    };
+
+    const getVehicleParsed = (data) => {
+        return {
+            id: data._id,
+            model: data.model,
+            brand: data.brand,
+            category: data.category,
+            passengers: data.passengers,
+            year: data.year,
+            price: data.price,
+            available: data.available
+        };
     };
 
     const customerDataParser = (data) => {
         if (data) {
             if (data.length > 0) {
                 return data.map(customer => {
-                    return {
-                        id: customer._id,
-                        name: customer.name,
-                        lastName: customer.lastName,
-                        birthDate: customer.birthDate,
-                        dniNumber: customer.dniNumber,
-                        dniLetter: customer.dniLetter
-                    }
+                    return getCustomerParsed(customer);
                 });
             }
-            return {
-                id: data._id,
-                name: data.name,
-                lastName: data.lastName,
-                birthDate: data.birthDate,
-                dniNumber: data.dniNumber,
-                dniLetter: data.dniLetter
-            }
+            return getCustomerParsed(data);
         }
         return null;
     }
+
+    const getCustomerParsed = (data) => {
+        return {
+            id: data._id,
+            name: data.name,
+            lastName: data.lastName,
+            birthDate: data.birthDate,
+            dniNumber: data.dniNumber,
+            dniLetter: data.dniLetter
+        };
+    };
 
     const rentalDataParser = (data) => {
         if (data) {
             if (data.length > 0) {
                 return data.map(rental => {
-                    return {
-                        id: rental._id,
-                        startDate: rental.startDate,
-                        endDate: rental.endDate,
-                        customer: rental.customer,
-                        vehicle: rental.vehicle
-                    }
+                    return getRentalParsed(rental);
                 });
             }
-            return {
-                id: data._id,
-                startDate: data.startDate,
-                endDate: data.endDate,
-                customer: data.customer,
-                vehicle: data.vehicle
-            }
+            return getRentalParsed(data);
         }
         return null;
-    }
+    };
+
+    const getRentalParsed = (data) => {
+        return {
+            id: data._id,
+            startDate: data.startDate,
+            endDate: data.endDate,
+            customer: data.customer,
+            vehicle: data.vehicle
+        };
+    };
 
     return {
         categoryDataParser,
         vehicleDataParser,
         customerDataParser,
         rentalDataParser
-    }
+    };
 })();
 
 exports.ObjectParsers = ObjectParsers;
