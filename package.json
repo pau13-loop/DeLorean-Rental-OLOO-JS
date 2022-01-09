@@ -18,7 +18,7 @@
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
     "serverstart": "cross-env NODE_ENV=development DEBUG=rent_a_car:* npm run devstart",
-    "migrate": "node ./src/db/migration.js",
+    "migrate": "node ./src/db/migrations/migration.js",
     "pretest": "cross-env NODE_ENV=test npm run migrate",
     "test": "cross-env NODE_ENV=test jest --runInBand --detectOpenHandles",
     "pulltest": "cross-env NODE_ENV=test jest --runInBand",

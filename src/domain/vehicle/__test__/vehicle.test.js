@@ -1,8 +1,8 @@
+
 const { expect } = require('@jest/globals');
 var Vehicle = require('../vehicle');
 var Category = require('../../category/category');
 
-//! La category en el interior del describe me devuelve "ReferenceError: category is not defined", porque ???
 var category = Object.create(Category).init('classic', 30);
 var fordMustang = Object.create(Vehicle).init('mustang', 'ford', category, 4, 1999, 70, true);
 
@@ -103,6 +103,30 @@ describe("Set prototype of Vehicle and check it's ORIGINALPRICE", () => {
         expect(newVehicle.ORIGINALPRICE).not.toBe(20);
         expect(newVehicle.ORIGINALPRICE).toBe(15);
     });
+});
+
+describe("Check book vehicle and finish booking", () => {
+    test('Check booking is made correctly', () => {
+        expect(fordMustang.getAvailable()).toBeTruthy();
+        expect(fordMustang.getAvailable()).not.toBeFalsy();
+        
+        // book vehicle
+        fordMustang.bookVehicle();
+
+        expect(fordMustang.getAvailable()).toBeFalsy();
+        expect(fordMustang.getAvailable()).not.toBeTruthy();
+    });
+
+    test("Check booking is finished correctly", () => {
+        expect(fordMustang.getAvailable()).toBeFalsy();
+        expect(fordMustang.getAvailable()).not.toBeTruthy();
+        
+        // unbook vehicle
+        fordMustang.finishBookingVehicle();
+
+        expect(fordMustang.getAvailable()).toBeTruthy();
+        expect(fordMustang.getAvailable()).not.toBeFalsy();
+    })
 });
 
 describe('Tests for closure and update price', () => {

@@ -1,58 +1,92 @@
-const vehicle = require('../models/vehicle');
 const vehicleService = require('../service/vehicleService');
+const responseFormatter = require('../utils/responseFormatter');
 
-const vehicleAPI = (function singletonVehicleController() {
-    
-    const vehicleFindAll =((req, res, next) => {
-        let response = vehicleService.VehicleServiceAPI.getAllVehicles();
-        responseChecker(res, next, response);
+const VehicleAPI = (function singletonVehicleController() {
+
+    const vehiclesFindAll = ((req, res, next) => {
+        vehicleService.VehicleServiceAPI.getAllVehicles()
+            .then((data) => {
+                const response = responseFormatter(null, data, 'Request vehicle findAll succesfull');
+                res.status(200).type('json').json(response);
+            }).catch((err) => {
+                const response = responseFormatter(err);
+                res.status(400).type('json').json(response);
+            });
     });
 
     const vehiclesFindOne = ((req, res, next) => {
-        let response = vehicleService.VehicleServiceAPI.getOneVehicle(req.params.model);
-        responseChecker(res, next, response);
+        vehicleService.VehicleServiceAPI.getOneVehicle(req.params.key, req.params.value)
+            .then((data) => {
+                const response = responseFormatter(null, data, 'Request vehicle findOne succesfull');
+                res.status(200).type('json').json(response);
+            }).catch((err) => {
+                const response = responseFormatter(err);
+                res.status(400).type('json').json(response);
+            });
+
     });
 
     const vehicleDeleteOne = ((req, res, next) => {
-        let response = vehicleService.VehicleServiceAPI.deleteVehicle(req.params.model);
-        responseChecker(res, next, response);
-    });
-
-    // UPDATE PRICE DOMAIN
-    const updatePrice = ((req, res, next) => {
-        const query = {};
-        const update = {};
-        const options = {"upster": false};
-
-        let response = vehicle.updateMany(query, update, options) 
-            .then(result => {
-                const { matchedCount, modifiedCount } = result;
-                console.log(`Successfully matched ${matchedCount} and modified count ${modifiedCount} items`);
-                return result;
+        vehicleService.VehicleServiceAPI.deleteVehicle(req.params.key, req.params.value)
+            .then((data) => {
+                // Not sending body response when status code is 204 --> No Content
+                data
+                    ? res.status(204).send("Success!")
+                    : res.status(200).send("Vehicle to delete not found");
             })
-            .catch(err => console.error(`Failed to update items: ${err}`));
-
-        response.exec(function (err, result) {
-            if (err) {return next(err)}
-            res.status(200).send(response);
-        })
+            .catch((err) => {
+                const response = responseFormatter(err);
+                res.status(400).type('json').json(response);
+            });
     });
 
-    const responseChecker = ((res, next, object) => {
-        object.exec(function (err, result) {
-            if (err) {
-                return next(err);
-            }
-            res.status(200).type('json').json(result);
-        })
+    const createVehicle = ((req, res, next) => {
+        vehicleService.VehicleServiceAPI.createVehicle(req.body)
+            .then((data) => {
+                const response = responseFormatter(null, data, 'Request create vehicle succesfull')
+                res.status(202).type('json').json(response);
+            })
+            .catch((err) => {
+                const response = responseFormatter(err);
+                res.status(400).type('json').json(response);
+            });
+    });
+
+    const updateVehicle = ((req, res, next) => {
+        vehicleService.VehicleServiceAPI.updateVehicle(req.params.id, req.body)
+            .then((data) => {
+                const response = data
+                    ? responseFormatter(null, data, 'Request vehicle updated succesfully')
+                    : responseFormatter(null, data, 'Requested vehicle to update not found');
+                res.status(202).type('json').json(response);
+            })
+            .catch((err) => {
+                const response = responseFormatter(err);
+                res.status(400).type('json').json(response);
+            });
+    });
+
+    const vehiclesFindAvailables = ((req, res, next) => {
+        vehicleService.VehicleServiceAPI.findAvailableVehicles()
+            .then((data) => {
+                const response = data
+                    ? responseFormatter(null, data, 'Request vehicle availables succesfully')
+                    : responseFormatter(null, data, 'Can not be found vehicles availables');
+                res.status(200).type('json').json(response);
+            }).catch((err) => {
+                const response = responseFormatter(err);
+                res.status(400).type('json').json(response);
+            });
     });
 
     return {
-        vehicleFindAll,
+        vehiclesFindAll,
         vehiclesFindOne,
         vehicleDeleteOne,
-        updatePrice
+        createVehicle,
+        updateVehicle,
+        vehiclesFindAvailables
     }
 })();
 
-exports.vehicleAPI = vehicleAPI;
+exports.VehicleAPI = VehicleAPI;

@@ -12,10 +12,11 @@ router.use(function (req, res, next) {
 });
 
 //* CATEGORY ROUTES *//
-router.get('/', vehicleController.vehicleAPI.vehicleFindAll);
-router.get('/:model', vehicleController.vehicleAPI.vehiclesFindOne);
-router.get('/delete/:model', vehicleController.vehicleAPI.vehicleDeleteOne);
-// Business logic 
-router.get('/update/price', vehicleController.vehicleAPI.updatePrice);
+router.get('/', vehicleController.VehicleAPI.vehiclesFindAll);
+router.get('/:key/:value', vehicleController.VehicleAPI.vehiclesFindOne);
+router.get('/available', vehicleController.VehicleAPI.vehiclesFindAvailables);
+router.delete('/delete/:key/:value', vehicleController.VehicleAPI.vehicleDeleteOne);
+router.post('/create', vehicleController.VehicleAPI.createVehicle);
+router.put('/update/:id', vehicleController.VehicleAPI.updateVehicle);
 
 module.exports = router;

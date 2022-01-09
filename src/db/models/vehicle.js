@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 const Category = require("./category");
-
 var Schema = mongoose.Schema;
 
 var VehicleSchema = new Schema({
@@ -14,8 +13,7 @@ var VehicleSchema = new Schema({
     },
     category: {
         type: Schema.Types.ObjectId, 
-        enum: ['premium', 'common', 'classic'],
-        ref: Category.name
+        ref: Category
     },
     passengers: {
         type: Number, 
@@ -31,13 +29,14 @@ var VehicleSchema = new Schema({
     },
     available: {
         type: Boolean,
-        required: true
+        required: true,
+        default: true
     }
 });
 
 VehicleSchema.pre(['find', 'findOne', 'findOneAndDelete', 'findOneAndUpdate'], function () {
-    this.select('_id model brand category passengers year priec available');
+    this.select('_id model brand category passengers year price available');
 });
 
 
-module.exports = mongoose.model('vehicle', VehicleSchema);
+module.exports = mongoose.model('vehicles', VehicleSchema);

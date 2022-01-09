@@ -20,4 +20,4 @@ CategorySchema.pre(['find', 'findOne', 'findOneAndDelete', 'findOneAndUpdate'], 
 });
 
 
-module.exports = mongoose.model('category', CategorySchema);
+module.exports = mongoose.model('categories', CategorySchema);
