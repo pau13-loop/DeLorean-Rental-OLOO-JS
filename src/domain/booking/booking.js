@@ -1,4 +1,4 @@
-var Rental = {
+var Booking = {
     init: function (startDate, endDate, customer, vehicle) {
         this.startDate = startDate; // format YYYY/MM/DD
         this.endDate = endDate; // format YYYY/MM/DD
@@ -28,10 +28,10 @@ var Rental = {
         return null;
     },
     //! Si se tienenq ue aplicar algún descuento deberían ejecutarse antes los métodos para aplicar un descuento sobre el precio y calcular el precio ya sobre el valor del coche con el descuento aplicado sobre él
-    calculatePriceRental: function () {
-        let totalRentalDays = this.calculateBookingDaysNum();
-        return (totalRentalDays ? totalRentalDays * this.vehicle.price : null);
+    calculatePriceBooking: function () {
+        let totalBookingDays = this.calculateBookingDaysNum();
+        return (totalBookingDays ? totalBookingDays * this.vehicle.price : null);
     }
 }
 
-module.exports = Rental;
+module.exports = Booking;

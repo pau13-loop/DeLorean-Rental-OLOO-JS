@@ -10,7 +10,7 @@ var indexRouter = require('./routes/index');
 var categoryRouter = require('./routes/category');
 var vehicleRouter = require('./routes/vehicle');
 var customerRouter = require('./routes/customer');
-var rentalRouter = require('./routes/rental');
+var bookingRouter = require('./routes/booking');
 
 //* APP SETUP *//
 var app = express();
@@ -40,7 +40,7 @@ app.use('/', indexRouter);
 app.use('/category', categoryRouter);
 app.use('/vehicle', vehicleRouter);
 app.use('/customer', customerRouter);
-app.use('/rental', rentalRouter);
+app.use('/booking', bookingRouter);
 
 
 //* ERROR HANDLING *//

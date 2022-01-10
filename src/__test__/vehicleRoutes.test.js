@@ -16,7 +16,7 @@ describe("Vehicle Routes FINDS", () => {
 
     //FIND ALL
 
-    //! En uin futuro deberá cambiarse por el número de vehiculos de producción
+    //! En un futuro deberá cambiarse por el número de vehiculos de producción
     test("Test get all vehicles /vehicle", () => {
         return request(app)
             .get('/vehicle')

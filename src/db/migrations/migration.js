@@ -5,7 +5,7 @@ require('dotenv').config();
 const vehicleCollection = require('../collections/vehicleCollectionShortList');
 const categoryCollection = require('../collections/categoryCollection');
 const customersCollection = require("../collections/customersCollection");
-const rentalsCollection = require("../collections/rentalsCollection");
+const bookingsCollection = require("../collections/bookingsCollection");
 
 //* URI *//
 const uri =
@@ -23,7 +23,7 @@ async function run() {
         const categories = database.collection('categories');
         const customers = database.collection('customers')
         const vehicles = database.collection('vehicles');
-        const rentals = database.collection("rentals");
+        const bookings = database.collection("bookings");
 
         let numCategoriesDocs = await categories.estimatedDocumentCount();
         if (numCategoriesDocs > 0) {
@@ -46,10 +46,10 @@ async function run() {
             });
         }
 
-        let numRentalsDocs = await rentals.estimatedDocumentCount();
-        if (numRentalsDocs > 0) {
-            await rentals.drop().then((successMessage) => {
-                console.log(`Droped rentals ${successMessage}`);
+        let numBookingsDocs = await bookings.estimatedDocumentCount();
+        if (numBookingsDocs > 0) {
+            await bookings.drop().then((successMessage) => {
+                console.log(`Droped bookings ${successMessage}`);
             });
         }
 
@@ -59,8 +59,8 @@ async function run() {
         console.log(`${result.insertedCount} == 5 customers inserted into DB`);
         result = await vehicles.insertMany(vehicleCollection);
         console.log(`${result.insertedCount} == 10 vehicles inserted into DB`);
-        result = await rentals.insertMany(rentalsCollection);
-        console.log(`${result.insertedCount} == 4 vehicles inserted into DB`);
+        result = await bookings.insertMany(bookingsCollection);
+        console.log(`${result.insertedCount} == 4 bookings inserted into DB`);
     } finally {
         // Ensures that the client will close when you finish/error
         await client.close();
