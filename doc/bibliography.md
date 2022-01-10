@@ -37,7 +37,7 @@
 ###### Examples OLOO
 > https://www.learngamedevelopment.net/blog/40
 
-
+**[⬆ back to top](#table-of-contents)**
 
 #### JS Features
 
@@ -59,13 +59,17 @@
 
 > https://stackoverflow.com/questions/27317437/how-to-check-if-one-date-is-before-another-date-using-javascript-jquery/27317897
 
+---
+**[⬆ back to top](#table-of-contents)**
+
 
 #### Cross-env
 
 ###### Official README documentation
 > https://github.com/kentcdodds/cross-env
 
-
+**[⬆ back to top](#table-of-contents)**
+---
 
 #### Node JS
 
