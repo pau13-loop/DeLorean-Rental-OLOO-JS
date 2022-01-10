@@ -100,7 +100,7 @@ describe("Customer Routes", () => {
             });
     }, 10000);
 
-        test("Test customer has been deleted succesfully by name", () => {
+        test("Test customer by name has been deleted succesfully by name", () => {
         return request(app)
             .get('/customer')
             .then(res => {
@@ -148,7 +148,7 @@ describe("Customer Routes", () => {
                 });
         }, 10000);
 
-        test("Test customer has been deleted succesfully by id", () => {
+        test("Test customer by id has been deleted succesfully by id", () => {
             return request(app)
                 .get('/customer')
                 .then(res => {
