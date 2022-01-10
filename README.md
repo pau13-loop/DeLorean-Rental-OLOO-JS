@@ -1,29 +1,32 @@
 # Rent-a-car-OLOO-JS
 Implement the business logic of a Rent a car, create an ApiRestfull connected to MongoAtlas and implement the object composition. Introduction to linked objects by prototypes of JS
 
+## Table of Contents
 
 
-# Install the required dependencies
+## Dependencies
 
 ###### Production
 
-- node 
-- npm
-- express
-- express-generator
 - cookie-parser
 - debug
+- dotenv
+- express
 - http-errors
 - jade
-- morgan
 - mongoose
+- morgan
+- node 
+- npm
+- express-generator
 
 ###### Development
 
-- jest
+- cross-env
 - eslint
+- jest
 - nodemon
-
+- supertest
 
 
 # Node.js server
@@ -174,27 +177,6 @@ The views (templates) are stored in the /views directory (as specified in app.js
 > En la llamada a la BD ya puedo hacer que me de los obj ordenados según como me interesa
 
 
-
-
-# ACUERDATE PAU PORFAVOR !!!
-
-- Implementar un único método para los filtros, que sea generico y filtre por cualquier campo del vehiculo. El método sería algo así
-```
-const filterVehicle = function(keyFilter, filter) {
-    let stockFiltered = [];
-    mockStockList.forEach(vehicle => {
-        //! en vehicle.filter será la key del filtro, vehicle.keyFilter
-        if (vehicle.keyFilter === filter) {
-            stockFiltered = [...stockFiltered, vehicle];
-        }
-    });
-    return stockFiltered;
-}
-```
-Ahora tenemos que ver cuando queremos ordenar la lista o si solo lo implementamos para los filtros en los cual no haga falta ordenar la lista
-
-
-
 # Historias de usuario
 
 - Los obj tendrán el precio inicial de cuando se obtuvieron por primera vez de BD. Por esta razón una vez acabe el "Black Friday" podrán restablecer su valor original sin hacer una query costosa, tan solo tendrán que acceder a su atributo "originalPRice" que será [no enumerable, no configurable y no writeable]. El atributo no vendrá definido de BD por lo que nos ahorramos el campo en los obj a la hora de meterlos en BD y lo creamos al inicializar el obj
@@ -239,13 +221,4 @@ Restore Price
     > Porque yo quiero que me muestre vehiculos a partir de determinado número de pasajeros
     > A partir de determinado año
     > A partir de determinado precio (o el precio es a partir de este como máximo ??? )
-
-
-## TODO
-
-- Refactorizar código
-- Reducir estructura de directorios
-- Simplificar Api-Rest
-- Crear nuevo prototipo, Vehiculo "general" y Vehiculo "específico" (como coche o moto)
-
 
