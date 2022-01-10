@@ -7,7 +7,6 @@ const bookingAPI = (function singletonBookingController() {
         bookingService.BookingServiceAPI.getAllBookings()
             .then((data) => {
                 const response = responseFormatter(null, data, 'Request booking findAll succesfull');
-                console.log('Response: ', response);
                 res.status(200).type('json').json(response);
             }).catch((err) => {
                 const response = responseFormatter(err);
