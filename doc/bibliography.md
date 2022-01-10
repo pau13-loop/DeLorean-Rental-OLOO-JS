@@ -15,7 +15,7 @@
 
 ---
 
-#### OLOO
+### OLOO
 
 ###### OLOO explanation
 > https://chamikakasun.medium.com/javascript-prototype-and-prototype-chain-explained-fdc2ec17dd04
@@ -42,7 +42,7 @@
 ---
 
 
-#### JS Features
+### JS Features
 
 ###### How it works Object.create() ? 
 > https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create
@@ -67,7 +67,7 @@
 ---
 
 
-#### Cross-env
+### Cross-env
 
 ###### Official README documentation
 > https://github.com/kentcdodds/cross-env
@@ -76,7 +76,7 @@
 
 ---
 
-## Node JS
+### Node JS
 
 ###### Official course from Node.js "all you need to know"
 > https://nodejs.dev/learn/introduction-to-nodejs
@@ -101,7 +101,7 @@
 ---
 
 
-#### Express
+### Express
 
 ###### Express 4.x API
 > https://expressjs.com/en/api.html
@@ -137,7 +137,7 @@
 ---
 
 
-## MongoDB and mongoose
+### MongoDB and mongoose
 
 ###### FreeCodeCamp course
 > https://www.freecodecamp.org/learn/back-end-development-and-apis/#mongodb-and-mongoose
@@ -178,7 +178,7 @@
 ---
 
 
-#### Git
+### Git
 
 ## Become Git Master
 > https://dev.to/ruppysuppy/advanced-git-concepts-you-should-know-nle
@@ -188,7 +188,7 @@
 ---
 
 
-#### Resources to understand the domain logic
+### Resources to understand the domain logic
 
 ###### Iconic cars from moveis
 > https://www.familyhandyman.com/list/iconic-cars-from-movies/
@@ -207,7 +207,7 @@
 ---
 
 
-#### Inspirational projects, role models and sources of ideas
+### Inspirational projects, role models and sources of ideas
 
 > https://github.com/bezkoder/node-express-mongodb
 
