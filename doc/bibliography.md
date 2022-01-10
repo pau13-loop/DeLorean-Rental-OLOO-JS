@@ -180,7 +180,7 @@
 
 ### Git
 
-## Become Git Master
+###### Become Git Master
 > https://dev.to/ruppysuppy/advanced-git-concepts-you-should-know-nle
 
 **[⬆ back to top](#table-of-contents)**
