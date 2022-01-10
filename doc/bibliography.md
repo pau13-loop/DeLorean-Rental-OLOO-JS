@@ -39,6 +39,9 @@
 
 **[⬆ back to top](#table-of-contents)**
 
+---
+
+
 #### JS Features
 
 ###### How it works Object.create() ? 
@@ -59,8 +62,9 @@
 
 > https://stackoverflow.com/questions/27317437/how-to-check-if-one-date-is-before-another-date-using-javascript-jquery/27317897
 
----
 **[⬆ back to top](#table-of-contents)**
+
+---
 
 
 #### Cross-env
@@ -69,6 +73,7 @@
 > https://github.com/kentcdodds/cross-env
 
 **[⬆ back to top](#table-of-contents)**
+
 ---
 
 #### Node JS
@@ -76,6 +81,9 @@
 ###### Official course from Node.js "all you need to know"
 > https://nodejs.dev/learn/introduction-to-nodejs
 
+**[⬆ back to top](#table-of-contents)**
+
+---
 
 
 #### Jest
@@ -88,6 +96,9 @@
 
 > https://github.com/facebook/jest/issues/11665
 
+**[⬆ back to top](#table-of-contents)**
+
+---
 
 
 #### Express
@@ -121,6 +132,9 @@
 
 > https://stackoverflow.com/questions/6487699/best-way-to-serialize-unserialize-objects-in-javascript
 
+**[⬆ back to top](#table-of-contents)**
+
+---
 
 
 ## MongoDB and mongoose
@@ -159,6 +173,9 @@
 ## Model example
 > https://vertabelo.com/blog/renting-out-cars-is-as-simple-as-driving-a-data-model-for-a-car-rental-company/
 
+**[⬆ back to top](#table-of-contents)**
+
+---
 
 
 #### Git
@@ -166,6 +183,9 @@
 ## Become Git Master
 > https://dev.to/ruppysuppy/advanced-git-concepts-you-should-know-nle
 
+**[⬆ back to top](#table-of-contents)**
+
+---
 
 
 #### Resources to understand the domain logic
@@ -182,6 +202,9 @@
 
 > https://testingdatagenerator.com/doi.html
 
+**[⬆ back to top](#table-of-contents)**
+
+---
 
 
 #### Inspirational projects, role models and sources of ideas
@@ -205,3 +228,7 @@
 > https://github.com/pbatey/express-mongo-rest
 
 > https://github.com/davellanedam/node-express-mongodb-jwt-rest-api-skeleton
+
+**[⬆ back to top](#table-of-contents)**
+
+---
