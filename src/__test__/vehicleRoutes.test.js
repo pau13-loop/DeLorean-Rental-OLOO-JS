@@ -42,7 +42,7 @@ describe("Vehicle Routes FINDS", () => {
                 expect(res.body.data.model).toEqual(expect.stringMatching('Clio'));
                 expect(res.body.data.brand).toEqual(expect.stringMatching('renault'));
                 expect(res.body.data.passengers).toBe(5);
-                expect(res.body.data.passengers).toBe(2018);
+                expect(res.body.data.year).toBe(2018);
                 expect(res.body.data.price).toBe(10);
                 expect(res.body.data).not.toHaveProperty('_id', 'name');
                 expect(res.body.data.id).not.toBeNull();
@@ -52,8 +52,8 @@ describe("Vehicle Routes FINDS", () => {
 
     // FIND ONE BY ID
 
-    test('Test Find One vehicle by id /vehicle/:name', () => {
-        let idVehicle = 'clio';
+    test('Test Find One vehicle by id /vehicle/:key/:value', () => {
+        let idVehicle = '61d9d41e563bce29bd5181c2';
         return request(app)
             .get(`/vehicle/id/${idVehicle}`)
             .then(res => {
@@ -64,7 +64,7 @@ describe("Vehicle Routes FINDS", () => {
                 expect(res.body.data.brand).toEqual(expect.stringMatching('Motor Company'));
                 expect(res.body.data.category).toBe("61b0f62a88d0be4b41bc1003");
                 expect(res.body.data.passengers).toBe(4);
-                expect(res.body.data.year).toBe(1980);
+                expect(res.body.data.year).toBe(1983);
                 expect(res.body.data.price).toBe(35);
                 expect(res.body.data).not.toHaveProperty('_id', 'name');
                 expect(res.body.data.id).not.toBeNull();
@@ -98,7 +98,7 @@ describe("Vehicle Routes FINDS", () => {
     }, 1000)
 
     // DELETE BY ID
-    test("Test delete vehicle by name /vehicle/delete/:key/:value", () => {
+    test("Test delete vehicle by id /vehicle/delete/:key/:value", () => {
         let idVehicle = '61d9d42295bf779ca13223ac';
         return request(app)
             .delete(`/vehicle/delete/id/${idVehicle}`)

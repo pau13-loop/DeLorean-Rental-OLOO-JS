@@ -20,13 +20,14 @@ module.exports = [
         startDate: '2020/11/20',
         endDate: '2020/11/24',
         customer: ObjectId("61d9d05197c1997053d02eae"), // Nicky Lauda
-        vehicle: ObjectId("61d9d42d2338c9151f929b57")   // Batmobile
+        vehicle: ObjectId("61d9d4165ccb5e87237f1de1")   // Model S
     },
     {
         _id: ObjectId("61d9da9f7c664f0817d33034"),
         startDate: '2022/01/04',
         endDate: '2022/01/08',
         customer: ObjectId("61d9d05c823d65cd8ca11194"), // Travis Bickle
-        vehicle: ObjectId("61d9d4165ccb5e87237f1de1")   // Model S
+        vehicle: ObjectId("61d9d42d2338c9151f929b57")   // Batmobile
+        
     }
 ];
