@@ -76,7 +76,7 @@
 
 ---
 
-#### Node JS
+## Node JS
 
 ###### Official course from Node.js "all you need to know"
 > https://nodejs.dev/learn/introduction-to-nodejs
@@ -86,7 +86,7 @@
 ---
 
 
-#### Jest
+### Jest
 
 ###### Official Jest documentation
 > https://jestjs.io/docs/getting-started
@@ -170,7 +170,7 @@
 ###### Mongo Models
 > https://mongoosejs.com/docs/models.html
 
-## Model example
+###### Model example
 > https://vertabelo.com/blog/renting-out-cars-is-as-simple-as-driving-a-data-model-for-a-car-rental-company/
 
 **[⬆ back to top](#table-of-contents)**
