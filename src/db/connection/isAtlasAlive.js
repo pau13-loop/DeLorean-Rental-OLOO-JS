@@ -1,6 +1,6 @@
 /**
  * Ejecutar en terminal:
- * $ node ./db/isAtlasAlive.js
+ * $ node ./src/db/connection/isAtlasAlive.js
  * 
  * Deben observarse las dos queries
  */

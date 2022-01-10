@@ -1,8 +1,8 @@
 {
-  "name": "rental",
+  "name": "booking",
   "version": "1.0.0",
   "description": "",
-  "main": "rental.js",
+  "main": "booking.js",
   "scripts": {
     "test": "jest"
   },

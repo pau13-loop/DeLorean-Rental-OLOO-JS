@@ -3,7 +3,7 @@ const Customer = require("./customer");
 const Vehicle = require('./vehicle');
 var Schema = mongoose.Schema;
 
-var RentalSchema = new Schema({
+var BookingSchema = new Schema({
     startDate: { 
         type: String,
         required: true
@@ -22,8 +22,8 @@ var RentalSchema = new Schema({
     }
 });
 
-RentalSchema.pre(['find', 'findOne', 'findOneAndDelete', 'findOneAndUpdate'], function () {
+BookingSchema.pre(['find', 'findOne', 'findOneAndDelete', 'findOneAndUpdate'], function () {
     this.select('_id startDate endDate customer vehicle');
 });
 
-module.exports = mongoose.model('rentals', RentalSchema);
+module.exports = mongoose.model('bookings', BookingSchema);
