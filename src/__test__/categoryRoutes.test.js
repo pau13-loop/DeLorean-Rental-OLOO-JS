@@ -127,7 +127,7 @@ describe("Category Routes", () => {
     // DELETE BY ID
 
     test("Test delete category by id /category/delete/:key/:value", () => {
-        let categoryId = '61b0f513646886f408bd0731';
+        let categoryId = '61b0f513646886f408bd0731';    // premium
         return request(app)
             .delete(`/category/delete/id/${categoryId}`)
             .then(res => {
@@ -167,41 +167,52 @@ describe("Category Routes", () => {
 
     // CREATE 
 
-    // test("Test create category /category/create/:name/:discountTax", () => {
-    //     let name = 'classic';
-    //     let discountTax = 30;
-    //     return request(app)
-    //         .get(`/category/create/${name}/${discountTax}`)
-    //         .then(res => {
-    //             expect(res.get('Content-Type')).toEqual(expect.stringMatching('/json'));
-    //             expect(res.statusCode).toEqual(201);
-    //             expect(res.body).toHaveProperty('_id', 'name', 'discountTax');
-    //             expect(res.body.name).toEqual(expect.stringMatching('classic'));
-    //             expect(res.body.discountTax).toBe(30);
-    //         });
-    // }, 10000);
+    test("Test create category /category/create", () => {
+        return request(app)
+            .post('/category/create')
+            .send({'name': 'classic', 'discountTax': 30})
+            .then(res => {
+                expect(res.get('Content-Type')).toEqual(expect.stringMatching('/json'));
+                expect(res.statusCode).toEqual(202);
+                expect(res.body.data).toHaveProperty('id', 'name', 'discountTax');
+                expect(res.body.data.name).toEqual(expect.stringMatching('classic'));
+                expect(res.body.data.discountTax).toBe(30);
+            });
+    }, 10000);
 
-    // test("Test check category has been created /category", () => {
-    //     return request(app)
-    //         .get('/category')
-    //         .then(res => {
-    //             expect(res.get('Content-Type')).toEqual(expect.stringMatching('/json'));
-    //             expect(res.statusCode).toEqual(200);
-    //             expect(res.body.length).toBe(3);
-    //             expect(res.body).toEqual(
-    //                 expect.arrayContaining([
-    //                     // Names category
-    //                     expect.objectContaining({ name: 'classic' }),
-    //                     expect.objectContaining({ name: 'common' }),
-    //                     expect.objectContaining({ name: 'premium' }),
-    //                     // DiscountTax Categories
-    //                     expect.objectContaining({ discountTax: 60 }),
-    //                     expect.objectContaining({ discountTax: 20 }),
-    //                     expect.objectContaining({ discountTax: 30 })
-    //                 ])
-    //             );
-    //         });
-    // }, 10000);
+    test("Test check category has been created /category", () => {
+        return request(app)
+            .get('/category')
+            .then(res => {
+                expect(res.get('Content-Type')).toEqual(expect.stringMatching('/json'));
+                expect(res.statusCode).toEqual(200);
+                expect(res.body.data.length).toBe(2);
+                expect(res.body.data).toEqual(
+                    expect.arrayContaining([
+                        // Names category
+                        expect.objectContaining({ name: 'classic' }),
+                        expect.objectContaining({ name: 'common' }),
+                        // DiscountTax Categories
+                        expect.objectContaining({ discountTax: 60 }),
+                        expect.objectContaining({ discountTax: 30 })
+                    ])
+                );
+            });
+    }, 10000);
+    // http://localhost:3000/category/update/premium/50
+    test("Test update discountTax category /category/update/:name/:value", () => {
+        let nameCategoryToUpdate = 'classic';
+        let newDiscountTax = 80;
+        return request(app)
+            .put(`/category/update/${nameCategoryToUpdate}/${newDiscountTax}`)
+            .then(res => {
+                expect(res.get('Content-Type')).toEqual(expect.stringMatching('/json'));
+                expect(res.statusCode).toEqual(202);
+                expect(res.body.data).toHaveProperty('id', 'name', 'discountTax');
+                expect(res.body.data.name).toEqual(expect.stringMatching('classic'));
+                expect(res.body.data.discountTax).toBe(80);
+            });
+    }, 10000);
 }, 10000);
 
     //! Falta testear 
