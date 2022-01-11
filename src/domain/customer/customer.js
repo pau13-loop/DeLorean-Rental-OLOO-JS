@@ -1,8 +1,9 @@
 var Customer = {
     init: function (
-        name, birthDate, dniNumber, dniLetter
+        name, lastName, birthDate, dniNumber, dniLetter
     ) {
         this.name = name;
+        this.lastName = lastName;
         this.birthDate = birthDate; // format YYYY/MM/DD
         this.dniNumber = dniNumber;
         this.dniLetter = dniLetter;
@@ -10,6 +11,9 @@ var Customer = {
     },
     getName: function () {
         return this.name;
+    },
+    getLastName: function() {
+        return this.lastName;
     },
     getBirthDate: function () {
         return this.birthDate;
@@ -19,6 +23,11 @@ var Customer = {
     },
     getDniLetter() {
         return this.dniLetter;
+    },
+    setPrototypeCustomer: function(customer) {
+        if (Object.getPrototypeOf(customer) != Customer) {
+            return Object.setPrototypeOf(customer, Customer.init(customer.name, customer.lastName, customer.birthDate, customer.dniNumber, customer.dniLetter));
+        }
     },
     checkIsAdult: function () {
         var actualDate = new Date();

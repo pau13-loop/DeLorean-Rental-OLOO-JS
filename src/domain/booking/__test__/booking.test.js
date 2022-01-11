@@ -11,7 +11,7 @@ var martyBooking = Object.create(Booking).init('2021/01/02', '2021/01/20', marty
 
 
 describe(
-    'Define booking, vehicle, category and customer to test the getters of the booking and the domain logic', () => {
+    'Define booking, vehicle, category and customer to test the getters of the booking', () => {
         test('Check booking properties', () => {
             expect(martyBooking).toHaveProperty('startDate', 'endDate', 'customer', 'vehicle');
             expect(Object.keys(martyBooking)).toHaveLength(4);
@@ -24,6 +24,26 @@ describe(
             expect(martyBooking.getCustomer()).toBe(marty);
             expect(martyBooking.getVehicle()).not.toBeUndefined();
             expect(martyBooking.getVehicle()).toBe(deLorean);
+        });
+
+        test('Check prototype of booking is defined', () => {
+            let bookingWithoutProto = {
+                startDate: '2022/01/01',
+                endDate: '2022/01/10',
+                customer: marty,
+                vehicle: deLorean
+            };
+    
+            expect(Booking.isPrototypeOf(martyBooking)).toBeTruthy();
+            expect(Booking.isPrototypeOf(bookingWithoutProto)).toBeFalsy()
+            expect(Object.getPrototypeOf(martyBooking) === Booking).toBeTruthy();
+            expect(Object.getPrototypeOf(bookingWithoutProto) === Booking).toBeFalsy();
+    
+            //* Set prototype Booking *//
+            Booking.setPrototypeBooking(bookingWithoutProto);
+    
+            expect(Booking.isPrototypeOf(bookingWithoutProto)).toBeTruthy();
+            expect(Object.getPrototypeOf(bookingWithoutProto) === Booking).toBeTruthy();
         });
     })
 

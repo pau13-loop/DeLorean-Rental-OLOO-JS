@@ -1,3 +1,4 @@
+
 var Booking = {
     init: function (startDate, endDate, customer, vehicle) {
         this.startDate = startDate; // format YYYY/MM/DD
@@ -17,6 +18,11 @@ var Booking = {
     },
     getVehicle: function () {
         return this.vehicle;
+    },
+    setPrototypeBooking: function(booking) {
+        if (Object.getPrototypeOf(booking) != Booking) {
+            return Object.setPrototypeOf(booking, Booking.init(booking.startDate, booking.endDate, booking.customer, booking.vehicle));
+        }
     },
     calculateBookingDaysNum: function () {
         var regexFormatDate = /^(([0-9]{4})\/[0-9]{2})\/([0-9]{2})$/;
