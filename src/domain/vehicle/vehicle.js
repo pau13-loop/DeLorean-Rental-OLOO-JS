@@ -73,11 +73,12 @@ var Vehicle = {
             value: closure(subject)
         });
     },
+    //! Añadir método para eliminar los vehiculos que cumplan la condición de tener más de cinco años 
     updatePrice: function () {
         if (this.category.name !== 'classic') {
             const actualYear = Date.now().getFullYear();
             let updatePercentatge = 0.1 * (actualYear - this.year);
-            //? Conseguimos el nuevo precio multiplicando el porcentaje por el precio original, porque el precio podría ya tener un descuento aplicdo, y el descuento del 10% por año siempre se realizará sobre el precio original
+            //? Conseguimos el nuevo precio multiplicando el porcentaje por el precio original, porque el precio podría ya tener un descuento aplicado, y el descuento del 10% por año siempre se realizará sobre el precio original
             //* Al actualizar el precio queremos redondearlo
             let newPrice = Math.round(this.ORIGINALPRICE - this.ORIGINALPRICE * updatePercentatge);
             if (newPrice > this.getMinPrice()) {

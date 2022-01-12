@@ -7,6 +7,9 @@ Implement the business logic of a Rent a car, create an ApiRestfull connected to
 1. [Motivation](#motivation)
 1. [Technologies Implemented](#technologies-implemented)
 1. [Required dependencies](#required-dependencies)
+1. [Required dependencies](#required-dependencies)
+1. [Bibliography](#bibliography)
+<!-- No desarrollados aún -->
 1. [Installation](#)
 1. [Contribuition](#)
 1. [Collaboration References](#)
@@ -60,31 +63,15 @@ This project has been created thanks to the motivation of our coding head teache
 
 ---
 
-## User stories
+## User Stories
 
-#### Basic CRUD Operations
+[***User Stories***](./doc/userStories.md)
 
-For each module of the proyect, **bookings, cutomers, vehicles and categories**, has been implemented the basic crud operations that all of us already now but just in case someone doesn't I'll specify them below:
+---
 
-- Get (Find all, Find one by property and Find one by id)
-- Delete (Delete one by property and delete one by id)
-- Put (Update one by property and Update one by id)
-- Post (Create one)
+## Bibliography
 
-#### Domain Logic
-
-Now we will explain the user stories that we imagine we had to supply to reach the goals and be able to develop the project following a guide lane. All this user storires you're going to read are not real for an actual **Rent a car** business, all them have been made up to create a business logic that will make the project as close as possible to a real implementation.
-
-
-###### Category
-
-1.  
-
-###### Vehicle
-
-###### Customer
-
-###### Booking
+[**Bibliography**](./doc/bibliography.md)
 
 ---
 
