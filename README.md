@@ -1,30 +1,79 @@
 # Rent-a-car-OLOO-JS
 Implement the business logic of a Rent a car, create an ApiRestfull connected to MongoAtlas and implement the object composition. Introduction to linked objects by prototypes of JS
 
+## Table of Contents
 
+1. [OLOO](#oloo)
+1. [Motivation](#motivation)
+1. [Technologies Implemented](#technologies-implemented)
+1. [Required dependencies](#required-dependencies)
+1. [Required dependencies](#required-dependencies)
+1. [Bibliography](#bibliography)
+<!-- No desarrollados aún -->
+1. [Installation](#)
+1. [Contribuition](#)
+1. [Collaboration References](#)
+1. [Domain Documentation](#)
+1. [License](#)
 
-# Install the required dependencies
+## OLOO
+
+What is it OLOO ?
+
+---
+
+## Motivation
+
+This project has been created thanks to the motivation of our coding head teacher to learn the paradigm of JavaScript in the lowest possible leevl. Create an api with Express and implement a connection to a no relationl data base, like MongoDB in this case. I've to say that it was a lot easier than I expected and thanks to projects like this kind if started to develop a big love for JavaScript language and the easy way that JS it turns out to be to give you freedom when you code. 
+
+---
+
+## Technologies Implemented
+
+- JS
+- Git
+- Node.js
+- NPM
+- Express
+- MongoDB
+
+## Required dependencies
 
 ###### Production
 
-- node 
-- npm
-- express
-- express-generator
 - cookie-parser
 - debug
+- dotenv
+- express
 - http-errors
 - jade
-- morgan
 - mongoose
+- morgan
+- node 
+- npm
+- express-generator
 
 ###### Development
 
-- jest
+- cross-env
 - eslint
+- jest
 - nodemon
+- supertest
 
+---
 
+## User Stories
+
+[***User Stories***](./doc/userStories.md)
+
+---
+
+## Bibliography
+
+[**Bibliography**](./doc/bibliography.md)
+
+---
 
 # Node.js server
 
@@ -84,132 +133,6 @@ One thing of interest above is that the callback function has the third argument
 ### Views (templates)
 The views (templates) are stored in the /views directory (as specified in app.js) and are given the file extension .pug. The method Response.render() is used to render a specified template along with the values of named variables passed in an object, and then send the result as a response. 
 
-
-# Bibliography
-
-## OLOO
-
-###### OLOO explanation
-> https://chamikakasun.medium.com/javascript-prototype-and-prototype-chain-explained-fdc2ec17dd04
-> https://www.debuggr.io/js-prototype-in-depth/
-
-###### OLOO, why to use it ? 
-> https://levelup.gitconnected.com/an-introduction-to-oloo-in-javascript-f2ba3445896a
-> https://medium.com/predict/javascript-prototypal-inheritance-constructors-vs-oloo-d90c482aaa55
-> https://stackoverflow.com/questions/29788181/kyle-simpsons-oloo-pattern-vs-prototype-design-pattern
-> https://stackoverflow.com/questions/34838294/what-is-difference-between-creating-object-using-object-create-and-object-assi#:~:text=at%2020%3A01-,Object.,Deep%20copying%20provides%20prototype%20chain.
-
-###### Object.create(), how it works ? 
-> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create
-
-###### Protypes and OLOO, by Kyle Simpson
-> https://pepa.holla.cz/wp-content/uploads/2016/08/You-Don-t-Know-JS-this-Object-Prototypes.pdf
-
-
-###### Examples OLOO
-> https://www.learngamedevelopment.net/blog/40
-
-###### Object.defineProperty in constructor:
-> https://stackoverflow.com/questions/18524652/how-to-use-javascript-object-defineproperty
-
-###### Respuesta para linkar objetos hata tres niveles ???
-> https://stackoverflow.com/questions/33455026/not-sharing-object-properties-in-oloo-inheritance
-
-## MongoDB and mongoose
-
-###### FreeCodeCamp course
-> https://www.freecodecamp.org/learn/back-end-development-and-apis/#mongodb-and-mongoose
-
-###### All methods able to execute with Models
-> https://mongoosejs.com/docs/api/model.html
-
-###### How find() works in mongoose
-> https://thecodebarbarian.com/how-find-works-in-mongoose.html
-
-###### mongoose query helpers
-> https://mongoosejs.com/docs/api/query.html
-
-###### mongoose API Docs
-> https://mongoosejs.com/docs/api.html
-
-###### ObjectId()
-> https://docs.mongodb.com/manual/reference/method/ObjectId/#ObjectIDs-BSONObjectIDSpecification
-> https://observablehq.com/@hugodf/mongodb-objectid-generator
-
-###### Mongo relations
-> https://vegibit.com/mongoose-relationships-tutorial/
-> https://dev.to/mkilmer/how-create-relationships-with-mongoose-and-node-js-with-real-example-43ei
-
-###### Mongo Guide
-> https://mongoosejs.com/docs/guide.html
-
-###### Mongo Models
-> https://mongoosejs.com/docs/models.html
-
-## Node JS
-
-###### Official course from Node.js "all you need to know"
-> https://nodejs.dev/learn/introduction-to-nodejs
-
-
-## Jest
-
-Official Jest documentation
-> https://jestjs.io/docs/getting-started
-
-## Cross-env
-
-Official README documentation
-> https://github.com/kentcdodds/cross-env
-
-## Iconic cars from moveis
-> https://www.familyhandyman.com/list/iconic-cars-from-movies/
-
-## Another necessary resources to understand the domain logic
-
-#### How to calculate the DNI letter
-> https://www.letranif.com/formula-para-calcular-nif/
-> https://www.ordenacionjuego.es/en/calculo-digito-control
-> https://gist.github.com/afgomez/5691823
-> https://testingdatagenerator.com/doi.html
-
-#### Working with dates and operate with them in JS
-> https://stackabuse.com/javascript-get-number-of-days-between-dates/
-> https://dev.to/dailydevtips1/vanilla-javascript-days-between-two-dates-3d1i
-> https://pretagteam.com/question/how-check-if-a-form-date-is-before-today-javascript
-> https://stackoverflow.com/questions/27317437/how-to-check-if-one-date-is-before-another-date-using-javascript-jquery/27317897
-
-## Parsing 
-> https://dev.to/coolshaurya/what-is-the-difference-between-parsing-and-serialization-543b
-> https://blog.danielkapexhiu.com/difference-between-parsing-serialization-deserialization
-> https://stackoverflow.com/questions/6487699/best-way-to-serialize-unserialize-objects-in-javascript
-
-## Express responses and status code 200 and 204
-> https://www.rockyourcode.com/express.js-send-responses/
-
-## Make a set of obj from a collection of obj
-> https://yagisanatode.com/2021/07/03/get-a-unique-list-of-objects-in-an-array-of-object-in-javascript/
-
-## Express body parser and parse req.body from endpoint with application/json
-> https://masteringjs.io/tutorials/express/body
-> http://expressjs.com/en/resources/middleware/body-parser.html
-> https://www.telerik.com/blogs/what-is-json-how-to-handle-unexpected-token-error
-> https://stackoverflow.com/questions/10005939/how-do-i-consume-the-json-post-data-in-an-express-application
-> https://daveceddia.com/unexpected-token-in-json-at-position-0/
-> https://stackoverflow.com/questions/14432165/uncaught-syntaxerror-unexpected-token-with-json-parse/50730876
-
-## Become Git Master
-> https://dev.to/ruppysuppy/advanced-git-concepts-you-should-know-nle
-
-## Model example
-> https://vertabelo.com/blog/renting-out-cars-is-as-simple-as-driving-a-data-model-for-a-car-rental-company/
-
-## Test errors
-> https://github.com/visionmedia/supertest/issues/520
-> https://github.com/facebook/jest/issues/11665
-
-## Express 4.x API
-> https://expressjs.com/en/api.html
 
 ## Atribs a aplicar (en los prototipos)
 
@@ -300,27 +223,6 @@ Official README documentation
 > En la llamada a la BD ya puedo hacer que me de los obj ordenados según como me interesa
 
 
-
-
-# ACUERDATE PAU PORFAVOR !!!
-
-- Implementar un único método para los filtros, que sea generico y filtre por cualquier campo del vehiculo. El método sería algo así
-```
-const filterVehicle = function(keyFilter, filter) {
-    let stockFiltered = [];
-    mockStockList.forEach(vehicle => {
-        //! en vehicle.filter será la key del filtro, vehicle.keyFilter
-        if (vehicle.keyFilter === filter) {
-            stockFiltered = [...stockFiltered, vehicle];
-        }
-    });
-    return stockFiltered;
-}
-```
-Ahora tenemos que ver cuando queremos ordenar la lista o si solo lo implementamos para los filtros en los cual no haga falta ordenar la lista
-
-
-
 # Historias de usuario
 
 - Los obj tendrán el precio inicial de cuando se obtuvieron por primera vez de BD. Por esta razón una vez acabe el "Black Friday" podrán restablecer su valor original sin hacer una query costosa, tan solo tendrán que acceder a su atributo "originalPRice" que será [no enumerable, no configurable y no writeable]. El atributo no vendrá definido de BD por lo que nos ahorramos el campo en los obj a la hora de meterlos en BD y lo creamos al inicializar el obj
@@ -365,13 +267,4 @@ Restore Price
     > Porque yo quiero que me muestre vehiculos a partir de determinado número de pasajeros
     > A partir de determinado año
     > A partir de determinado precio (o el precio es a partir de este como máximo ??? )
-
-
-## TODO
-
-- Refactorizar código
-- Reducir estructura de directorios
-- Simplificar Api-Rest
-- Crear nuevo prototipo, Vehiculo "general" y Vehiculo "específico" (como coche o moto)
-
 
