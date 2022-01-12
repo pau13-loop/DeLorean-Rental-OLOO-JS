@@ -11,9 +11,9 @@ var Category = {
         return this.discountTax;
     },
     setPrototypeCategory: function (category) {
-        if (Object.getPrototypeOf(category) !== Category) {
-            return Object.setPrototypeOf(category, Category.init(category.name, category.discountTax));
-        }
+        return Object.getPrototypeOf(category) !== Category
+        ? Object.setPrototypeOf(category, Category.init(category.name, category.discountTax))
+        : category;
     },
     applyDiscount: function (price) {
         //* Al aplicar el descuento siempre queremos redondear al menor número posible
