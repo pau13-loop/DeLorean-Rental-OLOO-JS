@@ -199,7 +199,9 @@ describe("Category Routes", () => {
                 );
             });
     }, 10000);
-    // http://localhost:3000/category/update/premium/50
+
+    // UPDATE
+
     test("Test update discountTax category /category/update/:name/:value", () => {
         let nameCategoryToUpdate = 'classic';
         let newDiscountTax = 80;

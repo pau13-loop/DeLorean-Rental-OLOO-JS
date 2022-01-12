@@ -72,6 +72,18 @@ describe("Vehicle Routes FINDS", () => {
             });
     }, 10000);
 
+    // FIND ALL AVAILABLES AND NON DUPLICATES
+    test("Test get all vehicles /vehicle", () => {
+        return request(app)
+            .get('/vehicle/available')
+            .then(res => {
+                expect(res.get('Content-Type')).toEqual(expect.stringMatching('/json'));
+                expect(res.statusCode).toEqual(200);
+                expect(res.body.data.length).toBe(7);
+                expect(res.body).not.toBeNull();
+            });
+    }, 100000);
+
     // DELETE BY NAME
 
     test("Test delete vehicle by name /vehicle/delete/:key/:value", () => {
@@ -127,5 +139,3 @@ describe("Vehicle Routes FINDS", () => {
             });
     }, 1000)
 }, 10000);
-
-// Missing test find all cars availables and non repeating
