@@ -18,5 +18,8 @@ router.get('/available', vehicleController.VehicleAPI.vehiclesFindAvailables);
 router.delete('/delete/:key/:value', vehicleController.VehicleAPI.vehicleDeleteOne);
 router.post('/create', vehicleController.VehicleAPI.createVehicle);
 router.put('/update/:id', vehicleController.VehicleAPI.updateVehicle);
+// router.put('./update/price', );
+// router.put('./update/discount', )
+// router.put('./update/restore',);
 
 module.exports = router;

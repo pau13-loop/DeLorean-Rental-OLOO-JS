@@ -47,6 +47,7 @@ const ObjectParsers = (function singletonObjectParsers() {
             passengers: data.passengers,
             year: data.year,
             price: data.price,
+            originalPrice: data.orginalPrice,
             available: data.available
         };
     };

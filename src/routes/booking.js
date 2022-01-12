@@ -14,7 +14,8 @@ router.use(function (req, res, next) {
 //* CUSTOMER ROUTES *//
 router.get('/', BookingController.bookingAPI.bookingFindAll);
 router.get('/:key/:value', BookingController.bookingAPI.bookingFindOne);
+// router.get('/price', );
 router.delete('/delete/:key/:value', BookingController.bookingAPI.bookingDeleteOne);
-router.post('/create', BookingController.bookingAPI.bookingCreate);
+router.post('/create', BookingController.bookingAPI.bookingCreate); //! Mejorar creación booking
 
 module.exports = router;
