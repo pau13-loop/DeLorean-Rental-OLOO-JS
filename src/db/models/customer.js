@@ -11,21 +11,26 @@ var CustomerSchema = new Schema({
         required: false
     },
     birthDate: {
-        type: Date,
+        type: String,
         required: true
     },
     dniNumber: {
         type: Number,
-        required: true,
-        //! No funciona de momento
-        maxLength: 8
+        required: true
     },
     dniLetter: {
         type: String,
         required: true,
-        //! No funciona de momento
+        minlength: 1,
         maxLength: 1
     }
+});
+
+// Pre hook for `findOneAndUpdate`
+//* Source: https://stackoverflow.com/questions/15627967/why-mongoose-doesnt-validate-on-update/53856167
+CustomerSchema.pre(['findOneAndUpdate', 'findByIdAndUpdate'], function (next) {
+    this.options.runValidators = true;
+    next();
 });
 
 CustomerSchema.pre(['find', 'findOne', 'findOneAndDelete', 'findOneAndUpdate', 'findByIdAndUpdate'], function () {
