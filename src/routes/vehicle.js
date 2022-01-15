@@ -18,8 +18,9 @@ router.get('/available', vehicleController.VehicleAPI.vehiclesFindAvailables);
 router.delete('/delete/:key/:value', vehicleController.VehicleAPI.vehicleDeleteOne);
 router.post('/create', vehicleController.VehicleAPI.createVehicle);
 router.put('/update/:id', vehicleController.VehicleAPI.updateVehicle);
+//? Added /stock to endpoint to not get conflict with the update endpoint by :id
 router.put('/update/stock/price', vehicleController.VehicleAPI.updatePriceVehicles);
-// router.put('./update/discount', )
+router.put('/update/stock/discount', vehicleController.VehicleAPI.applyDiscountTaxVehicles);
 // router.put('./update/restore',);
 
 module.exports = router;
