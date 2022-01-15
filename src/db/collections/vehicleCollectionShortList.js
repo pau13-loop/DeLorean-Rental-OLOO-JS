@@ -98,7 +98,7 @@ module.exports = [
         id: ObjectId("61d9d42d2338c9151f929b57"),
         model: "Batmobile",
         brand: "Lincoln Futura",
-        caegory: ObjectId("61b0f62a88d0be4b41bc1003"),
+        category: ObjectId("61b0f62a88d0be4b41bc1003"),
         passengers: 2,
         year: 1943,
         price: 45,
