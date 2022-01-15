@@ -1,5 +1,6 @@
 const Booking = require('../db/models/booking');
 const Customer = require('../db/models/customer');
+const CustomerProto = require('../domain/customer/customer');
 const Vehicle = require('../db/models/vehicle');
 const BookingParser = require('../utils/parsers/bookingParser');
 
@@ -38,14 +39,17 @@ const BookingServiceAPI = (function singletonCategoryService() {
         const {dniNumber, dniLetter, vehicleModel, vehicleBrand} = data;
         // Necessary specify dni number and the dni letter of a customer when try to make a booking, by this way we ensure that the customer found it by the query is the customer we are looking for
         //? Why is that ? Because the costumer never will know with which id he has been saved into the DB
-        let customerBooking = await Customer.findOne({ dniNumber: dniNumber, dniLetter: dniLetter });
+        let customer = await Customer.findOne({ dniNumber: dniNumber, dniLetter: dniLetter });
+        let {_id, ...customerBooking} = customer.toObject();
+        let customerPrototype = CustomerProto.setPrototypeCustomer(customerBooking);
+        console.log('customerPrototype: ', customerPrototype);
         // To match the desired vehicle
         let vehicleBooking = await Vehicle.findOne({ model: vehicleModel, brand: vehicleBrand });
-        if (vehicleBooking.available && customerBooking) {
+        if (vehicleBooking.available && customerPrototype.checkIsAdult()) {
             let newBooking = new Booking({
                 startDate: data.startDate,
                 endDate: data.endDate,
-                customer: customerBooking.id,
+                customer: _id,
                 vehicle: vehicleBooking.id
             });
             Vehicle.findByIdAndUpdate(vehicleBooking.id, { available: false }).exec();
