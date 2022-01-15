@@ -1,5 +1,6 @@
+const CategoryProto = require('../../domain/category/category');
 
-const categoryParser = (function singletonCategoryParser() {
+const CategoryParser = (function singletonCategoryParser() {
     const categoryDataParser = (data) => {
         if (data) {
             if (data.length > 0) {
@@ -30,4 +31,4 @@ const categoryParser = (function singletonCategoryParser() {
     };
 })();
 
-exports.categoryParser = categoryParser;
+exports.CategoryParser = CategoryParser;

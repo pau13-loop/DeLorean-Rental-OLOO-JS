@@ -1,6 +1,7 @@
-const VehicleProto = require('../domain/vehicle/vehicle');
+// const VehicleProto = require('../domain/vehicle/vehicle');
+const CategoryParser = require('./categoryParser');
 
-const vehicleParser = (function singletonVehicleParser() {
+const VehicleParser = (function singletonVehicleParser() {
 
     const vehicleDataParser = (data) => {
         if (data) {
@@ -15,8 +16,9 @@ const vehicleParser = (function singletonVehicleParser() {
         return null;
     };
 
+    //! Private
     const getVehicleParsed = (data) => {
-        let vehicle = {
+        return {
             id: data._id,
             model: data.model,
             brand: data.brand,
@@ -24,10 +26,9 @@ const vehicleParser = (function singletonVehicleParser() {
             passengers: data.passengers,
             year: data.year,
             price: data.price,
-            originalPrice: data.orginalPrice,
+            // originalPrice: data.orginalPrice,
             available: data.available
         };
-        return VehicleProto.setPrototypeVehicle(vehicle);
     };
 
     return {
@@ -35,4 +36,4 @@ const vehicleParser = (function singletonVehicleParser() {
     };
 })();
 
-exports.vehicleParser = vehicleParser;
+exports.VehicleParser = VehicleParser;

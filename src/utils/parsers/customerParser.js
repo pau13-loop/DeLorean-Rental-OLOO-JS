@@ -1,4 +1,4 @@
-const customerParser = (function singletonCustomerParser() {
+const CustomerParser = (function singletonCustomerParser() {
 
     const customerDataParser = (data) => {
         if (data) {
@@ -28,4 +28,4 @@ const customerParser = (function singletonCustomerParser() {
     };
 })();
 
-exports.customerParser = customerParser;
+exports.CustomerParser = CustomerParser;

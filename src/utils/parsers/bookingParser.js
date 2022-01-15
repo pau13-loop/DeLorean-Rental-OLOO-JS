@@ -1,4 +1,4 @@
-const bookingParser = (function singletonBookingParser() {
+const BookingParser = (function singletonBookingParser() {
 
     const bookingDataParser = (data) => {
         if (data) {
@@ -27,4 +27,4 @@ const bookingParser = (function singletonBookingParser() {
     };
 })();
 
-exports.bookingParser = bookingParser;
+exports.BookingParser = BookingParser;
