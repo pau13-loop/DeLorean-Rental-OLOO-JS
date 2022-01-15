@@ -1,10 +1,10 @@
 const Customer = require('../db/models/customer');
-const objectParsers = require('../utils/objectParsers');
+const CustomerParser = require('../utils/parsers/customerParser');
 
 const CustomerServiceAPI = (function singletonCustomerService() {
 
     const getAllCustomers = () => {
-        return Customer.find().then(objectParsers.ObjectParsers.customerDataParser);
+        return Customer.find().then(CustomerParser.CustomerParser.customerDataParser);
     };
 
     const getOneCustomer = (key, value) => {
@@ -12,7 +12,7 @@ const CustomerServiceAPI = (function singletonCustomerService() {
             ? Customer.findById(value)
             : Customer.findOne({ [key]: value }))
             .exec()
-            .then(objectParsers.ObjectParsers.customerDataParser);
+            .then(CustomerParser.CustomerParser.customerDataParser);
     };
 
     const deleteCustomer = (key, value) => {
@@ -20,7 +20,7 @@ const CustomerServiceAPI = (function singletonCustomerService() {
             ? Customer.findByIdAndDelete(value)
             : Customer.findOneAndDelete({ [key]: value }))
             .exec()
-            .then(objectParsers.ObjectParsers.customerDataParser);
+            .then(CustomerParser.CustomerParser.customerDataParser);
     };
 
     const createCustomer = (data) => {
@@ -31,7 +31,7 @@ const CustomerServiceAPI = (function singletonCustomerService() {
             dniNumber: data.dniNumber,
             dniLetter: data.dniLetter
         });
-        return newCustomer.save().then(objectParsers.ObjectParsers.customerDataParser);
+        return newCustomer.save().then(CustomerParser.CustomerParser.customerDataParser);
     }
 
     const updateCustomer = (id, data) => {
@@ -45,7 +45,7 @@ const CustomerServiceAPI = (function singletonCustomerService() {
         // Set new to true to return the document after the update
         return Customer.findByIdAndUpdate(id, update, { new: true })
             .exec()
-            .then(objectParsers.ObjectParsers.customerDataParser);
+            .then(CustomerParser.CustomerParser.customerDataParser);
     }
 
     return {

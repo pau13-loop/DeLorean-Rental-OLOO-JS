@@ -1,12 +1,12 @@
 const Booking = require('../db/models/booking');
 const Customer = require('../db/models/customer');
 const Vehicle = require('../db/models/vehicle');
-const objectParsers = require('../utils/objectParsers');
+const BookingParser = require('../utils/parsers/bookingParser');
 
 const BookingServiceAPI = (function singletonCategoryService() {
 
     const getAllBookings = () => {
-        return Booking.find().then(objectParsers.ObjectParsers.bookingDataParser);
+        return Booking.find().then(BookingParser.BookingParser.bookingDataParser);
     }
 
     const getOneBooking = (key, value) => {
@@ -14,7 +14,7 @@ const BookingServiceAPI = (function singletonCategoryService() {
             ? Booking.findById(value)
             : Booking.findOne({ [key]: value }))
             .exec()
-            .then(objectParsers.ObjectParsers.bookingDataParser);
+            .then(BookingParser.BookingParser.bookingDataParser);
     }
 
     const deleteBooking = async (key, value) => {
@@ -28,7 +28,7 @@ const BookingServiceAPI = (function singletonCategoryService() {
             Vehicle.findByIdAndUpdate(vehicleToUnBook.id, { available: true }).exec();
             return Booking.findByIdAndDelete(bookingToDelete.id)
                 .exec()
-                .then(objectParsers.ObjectParsers.bookingDataParser);
+                .then(BookingParser.BookingParser.bookingDataParser);
         }
         return null;
     }
@@ -49,7 +49,7 @@ const BookingServiceAPI = (function singletonCategoryService() {
                 vehicle: vehicleBooking.id
             });
             Vehicle.findByIdAndUpdate(vehicleBooking.id, { available: false }).exec();
-            return newBooking.save().then(objectParsers.ObjectParsers.bookingDataParser);
+            return newBooking.save().then(BookingParser.BookingParser.bookingDataParser);
         }
         return null;
     }
