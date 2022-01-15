@@ -1,4 +1,5 @@
 const Customer = require('../db/models/customer');
+const CustomerProto = require('../domain/customer/customer');
 const CustomerParser = require('../utils/parsers/customerParser');
 
 const CustomerServiceAPI = (function singletonCustomerService() {
@@ -23,17 +24,6 @@ const CustomerServiceAPI = (function singletonCustomerService() {
             .then(CustomerParser.CustomerParser.customerDataParser);
     };
 
-    const createCustomer = (data) => {
-        let newCustomer = new Customer({
-            name: data.name,
-            lastName: data.lastName,
-            birthDate: data.birthDate,
-            dniNumber: data.dniNumber,
-            dniLetter: data.dniLetter
-        });
-        return newCustomer.save().then(CustomerParser.CustomerParser.customerDataParser);
-    }
-
     const updateCustomer = (id, data) => {
         let update = {
             name: data.name,
@@ -48,12 +38,27 @@ const CustomerServiceAPI = (function singletonCustomerService() {
             .then(CustomerParser.CustomerParser.customerDataParser);
     }
 
+    const createCustomer = (data) => {
+        let custProto = CustomerProto.setPrototypeCustomer(data);
+        if (custProto.checkValidDni()) {
+            let newCustomer = new Customer({
+                name: data.name,
+                lastName: data.lastName,
+                birthDate: data.birthDate,
+                dniNumber: data.dniNumber,
+                dniLetter: data.dniLetter
+            });
+            return newCustomer.save().then(CustomerParser.CustomerParser.customerDataParser);
+        }
+        return Promise.resolve(null);
+    }
+
     return {
         getAllCustomers,
         getOneCustomer,
         deleteCustomer,
-        createCustomer,
-        updateCustomer
+        updateCustomer,
+        createCustomer
     }
 })();
 
