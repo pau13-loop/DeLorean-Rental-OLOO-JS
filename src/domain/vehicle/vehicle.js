@@ -1,12 +1,13 @@
 var Vehicle = {
     init: function (
-        model, brand, category, passengers, year, price, available) {
+        model, brand, category, year, price, ORIGINAL_PRICE, available) {
         this.model = model;
         this.brand = brand;
         this.category = category;
-        this.passengers = passengers;
+        // this.passengers = passengers;
         this.year = year;
         this.price = price;
+        this.ORIGINAL_PRICE = ORIGINAL_PRICE;
         this.available = available;
         return this;
     },
@@ -34,21 +35,6 @@ var Vehicle = {
     },
     getName: function () {
         return `Vehicle name: ${this.brand} ${this.model}`;
-    },
-    //* DOMAIN LOGIC *//
-    /**
-     * y = x / (1-0.1*(actual year - vehicle year))
-     */
-    setOriginalPrice: function () {
-        const actualYear = new Date().getFullYear();
-        let updatePercentatge = 0.1 * (actualYear - this.year);
-        let ORIGINAL_PRICE = Math.round(this.price / (1 - updatePercentatge));
-        Object.defineProperty(vehicle, "ORIGINAL_PRICE", {
-            value: ORIGINAL_PRICE,
-            writeable: false,
-            enumerable: false,
-            configurable: false
-        });
     },
     getOriginalPrice: function () {
         return this.ORIGINALPRICE;
@@ -83,17 +69,11 @@ var Vehicle = {
     //! Añadir método para eliminar los vehiculos que cumplan la condición de tener más de cinco años 
     updatePrice: function () {
         if (this.category.name !== 'classic') {
-
             const actualYear = new Date().getFullYear();
             let updatePercentatge = 0.1 * (actualYear - this.year);
-
-
             //? Conseguimos el nuevo precio multiplicando el porcentaje por el precio original, porque el precio podría ya tener un descuento aplicado, y el descuento del 10% por año siempre se realizará sobre el precio original
             //* Al actualizar el precio queremos redondearlo
-
-
             let newPrice = Math.round(this.ORIGINALPRICE - this.ORIGINALPRICE * updatePercentatge);
-
             if (newPrice > this.getMinPrice()) {
                 this.price = newPrice;
             }
