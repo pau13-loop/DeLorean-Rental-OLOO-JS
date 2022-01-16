@@ -80,6 +80,8 @@ const VehicleServiceAPI = (function singletonVehicleService() {
         }));
     }
 
+    
+
     const updatePriceVehicles = async () => {
         //! If we dont parse the mongoose object ot a json object when we will apply the destructing techique we will be getting all the internal cache of a mongoose object
         // let availableVehiclesList = await Vehicle.find({ available: true }).exec().then(VehicleParser.VehicleParser.vehicleDataParser);
