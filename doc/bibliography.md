@@ -177,6 +177,13 @@
 ###### Model example
 > https://vertabelo.com/blog/renting-out-cars-is-as-simple-as-driving-a-data-model-for-a-car-rental-company/
 
+###### Destructing and ...rest operator
+> https://www.freecodecamp.org/news/javascript-object-destructuring-spread-operator-rest-parameter/
+> https://dmitripavlutin.com/javascript-object-destructuring/
+
+###### Destructing mongoose objects
+> https://stackoverflow.com/questions/54951260/spread-syntax-returns-unexpected-object
+
 **[⬆ back to top](#table-of-contents)**
 
 ---
