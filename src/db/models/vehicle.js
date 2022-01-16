@@ -34,7 +34,7 @@ var VehicleSchema = new Schema({
     //     type: Number,
     //     required: false
     // },
-    available: {
+    isAvailable: {
         type: Boolean,
         required: true,
         default: true

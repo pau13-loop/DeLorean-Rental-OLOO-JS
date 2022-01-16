@@ -47,7 +47,7 @@ module.exports = [
         passengers: 5,
         year: 2018,
         price: 20,
-        available: true,
+        isAvailable: true,
     },
     {
         model: "clio",
@@ -59,7 +59,7 @@ module.exports = [
         passengers: 5,
         year: 2018,
         price: 20,
-        available: true,
+        isAvailable: true,
     },
     {
         model: "megane",
@@ -71,7 +71,7 @@ module.exports = [
         passengers: 5,
         year: 2020,
         price: 25,
-        available: true,
+        isAvailable: true,
     },
     {
         model: "4",
@@ -83,7 +83,7 @@ module.exports = [
         passengers: 5,
         year: 1992,
         price: 30,
-        available: true,
+        isAvailable: true,
     },
     {
         model: "alpine",
@@ -95,7 +95,7 @@ module.exports = [
         passengers: 4,
         year: 2021,
         price: 50,
-        available: true,
+        isAvailable: true,
     },
     // SEAT
     {
@@ -108,7 +108,7 @@ module.exports = [
         passengers: 5,
         year: 2017,
         price: 20,
-        available: true,
+        isAvailable: true,
     },
     {
         model: "leon",
@@ -120,7 +120,7 @@ module.exports = [
         passengers: 5,
         year: 2017,
         price: 20,
-        available: true,
+        isAvailable: true,
     },
     {
         model: "cordoba",
@@ -132,7 +132,7 @@ module.exports = [
         passengers: 5,
         year: 2018,
         price: 15,
-        available: true,
+        isAvailable: true,
     },
     {
         model: "ibiza",
@@ -144,7 +144,7 @@ module.exports = [
         passengers: 5,
         year: 1995,
         price: 25,
-        available: true,
+        isAvailable: true,
     },
     {
         model: "cupra",
@@ -156,7 +156,7 @@ module.exports = [
         passengers: 5,
         year: 2021,
         price: 45,
-        available: true,
+        isAvailable: true,
     },
     // VOLKSWAGEN
     {
@@ -169,7 +169,7 @@ module.exports = [
         passengers: 5,
         year: 2018,
         price: 20,
-        available: true,
+        isAvailable: true,
     },
     {
         model: "golf",
@@ -181,7 +181,7 @@ module.exports = [
         passengers: 5,
         year: 2018,
         price: 20,
-        available: true,
+        isAvailable: true,
     },
     {
         model: "polo",
@@ -193,7 +193,7 @@ module.exports = [
         passengers: 5,
         year: 2017,
         price: 15,
-        available: true,
+        isAvailable: true,
     },
     {
         model: "beattle",
@@ -205,7 +205,7 @@ module.exports = [
         passengers: 5,
         year: 1990,
         price: 30,
-        available: true,
+        isAvailable: true,
     },
     {
         model: "sirocco",
@@ -217,7 +217,7 @@ module.exports = [
         passengers: 4,
         year: 2020,
         price: 30,
-        available: true,
+        isAvailable: true,
     },
     // FORD
     {
@@ -230,7 +230,7 @@ module.exports = [
         passengers: 7,
         year: 2017,
         price: 25,
-        available: true,
+        isAvailable: true,
     },
     {
         model: "galaxy",
@@ -242,7 +242,7 @@ module.exports = [
         passengers: 7,
         year: 2017,
         price: 25,
-        available: true,
+        isAvailable: true,
     },
     {
         model: "focus",
@@ -254,7 +254,7 @@ module.exports = [
         passengers: 5,
         year: 2019,
         price: 15,
-        available: true,
+        isAvailable: true,
     },
     {
         model: "mustang",
@@ -266,7 +266,7 @@ module.exports = [
         passengers: 5,
         year: 1998,
         price: 65,
-        available: true,
+        isAvailable: true,
     },
     {
         model: "explorer",
@@ -278,7 +278,7 @@ module.exports = [
         passengers: 8,
         year: 2021,
         price: 50,
-        available: true,
+        isAvailable: true,
     },
     // TOYOTA
     {
@@ -291,7 +291,7 @@ module.exports = [
         passengers: 6,
         year: 2020,
         price: 15,
-        available: true,
+        isAvailable: true,
     },
     {
         model: "yaris",
@@ -303,7 +303,7 @@ module.exports = [
         passengers: 6,
         year: 2020,
         price: 15,
-        available: true,
+        isAvailable: true,
     },
     {
         model: "chr",
@@ -315,7 +315,7 @@ module.exports = [
         passengers: 6,
         year: 2021,
         price: 25,
-        available: true,
+        isAvailable: true,
     },
     {
         model: "corolla",
@@ -327,7 +327,7 @@ module.exports = [
         passengers: 4,
         year: 1999,
         price: 30,
-        available: true,
+        isAvailable: true,
     },
     {
         model: "gr",
@@ -339,7 +339,7 @@ module.exports = [
         passengers: 4,
         year: 2018,
         price: 45,
-        available: true,
+        isAvailable: true,
     },
 
     // AUDI
@@ -353,7 +353,7 @@ module.exports = [
         passengers: 6,
         year: 2019,
         price: 30,
-        available: true,
+        isAvailable: true,
     },
     {
         model: "a3",
@@ -365,7 +365,7 @@ module.exports = [
         passengers: 6,
         year: 2019,
         price: 30,
-        available: true,
+        isAvailable: true,
     },
     {
         model: "q5",
@@ -377,7 +377,7 @@ module.exports = [
         passengers: 6,
         year: 2018,
         price: 40,
-        available: true,
+        isAvailable: true,
     },
     {
         model: "tt",
@@ -389,7 +389,7 @@ module.exports = [
         passengers: 3,
         year: 2000,
         price: 35,
-        available: true,
+        isAvailable: true,
     },
     {
         model: "r8",
@@ -401,7 +401,7 @@ module.exports = [
         passengers: 2,
         year: 2020,
         price: 90,
-        available: true,
+        isAvailable: true,
     },
     // 
 ]
