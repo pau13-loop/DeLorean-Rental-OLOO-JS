@@ -2,7 +2,7 @@ const Booking = require('../db/models/booking');
 const Customer = require('../db/models/customer');
 const CustomerProto = require('../domain/customer/customer');
 const Vehicle = require('../db/models/vehicle');
-const BookingParser = require('../utils/parsers/bookingParser');
+const BookingParser = require('../utils/parsers/booking-parser');
 
 const BookingServiceAPI = (function singletonCategoryService() {
 

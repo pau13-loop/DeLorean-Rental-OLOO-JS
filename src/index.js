@@ -29,7 +29,7 @@ app.use(express.json());
 
 
 //* DB CONNECTION *//
-var mongoConfig = require('./db/connection/mongoConfig');
+var mongoConfig = require('./db/connection/mongo-config');
 mongoConfig.connect();
 var db = mongoConfig.mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));

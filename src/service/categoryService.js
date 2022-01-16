@@ -1,5 +1,5 @@
 const Category = require('../db/models/category');
-const CategoryParser = require('../utils/parsers/categoryParser');
+const CategoryParser = require('../utils/parsers/category-parser');
 
 const CategoryServiceAPI = (function singletonCategoryService() {
 

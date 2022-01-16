@@ -7,6 +7,8 @@ const categoryCollection = require('../collections/categoryCollection');
 const customersCollection = require("../collections/customersCollection");
 const bookingsCollection = require("../collections/bookingsCollection");
 
+//* Source: https://github.com/dfleta/pushmees_pullmees/blob/master/db/mongoConfig.js
+
 //* URI *//
 const uri =
     `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@proyectodual.4q26o.mongodb.net/?retryWrites=true&w=majority`;
@@ -18,8 +20,8 @@ async function run() {
         await client.connect();
 
         //! Cambiado para poder hace llamadas con Hoppscotch
-        const database = client.db('Rent-a-car_test');
-        // const database = client.db('Rent-a-car');
+        // const database = client.db('Rent-a-car_test');
+        const database = client.db('Rent-a-car');
         const categories = database.collection('categories');
         const customers = database.collection('customers')
         const vehicles = database.collection('vehicles');

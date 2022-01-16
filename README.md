@@ -65,7 +65,7 @@ This project has been created thanks to the motivation of our coding head teache
 
 ## User Stories
 
-[***User Stories***](./doc/userStories.md)
+[***User Stories***](./doc/user-stories.md)
 
 ---
 

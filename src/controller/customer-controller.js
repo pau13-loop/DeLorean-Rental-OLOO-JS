@@ -1,5 +1,5 @@
 const customerService = require('../service/customerService');
-const responseFormatter = require('../utils/responseFormatter');
+const responseFormatter = require('../utils/response-formatter');
 
 const CustomerAPI = (function singletonCustomerController() {
 

@@ -1,5 +1,5 @@
 var Customer = {
-    init: function (
+    _init: function (
         name, lastName, birthDate, dniNumber, dniLetter
     ) {
         this.name = name;
@@ -26,7 +26,7 @@ var Customer = {
     },
     setPrototypeCustomer: function(customer) {
         return Object.getPrototypeOf(customer) != Customer
-        ? Object.setPrototypeOf(customer, Customer.init(customer.name, customer.lastName, customer.birthDate, customer.dniNumber, customer.dniLetter))
+        ? Object.setPrototypeOf(customer, Customer._init(customer.name, customer.lastName, customer.birthDate, customer.dniNumber, customer.dniLetter))
         : customer;
     },
     checkIsAdult: function () {

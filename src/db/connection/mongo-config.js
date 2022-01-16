@@ -2,6 +2,8 @@
 var mongoose = require('mongoose');
 require('dotenv').config();
 
+//* Source: https://github.com/dfleta/pushmees_pullmees/blob/master/db/mongoConfig.js
+
 var databaseUri = {
     
     production: `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@proyectodual.4q26o.mongodb.net/Rent-a-car?retryWrites=true&w=majority`,

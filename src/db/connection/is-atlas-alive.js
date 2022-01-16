@@ -1,3 +1,4 @@
+const { MongoClient } = require("mongodb");
 /**
  * Ejecutar en terminal:
  * $ node ./src/db/connection/isAtlasAlive.js
@@ -5,7 +6,7 @@
  * Deben observarse las dos queries
  */
 
-const { MongoClient } = require("mongodb");
+//*Source: https://github.com/dfleta/pushmees_pullmees/blob/master/db/isAtlasAlive.js
 
 const uri =
     `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@proyectodual.4q26o.mongodb.net/?retryWrites=true&w=majority`
