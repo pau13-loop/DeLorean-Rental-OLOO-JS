@@ -1,8 +1,9 @@
 var Customer = {
     init: function (
-        name, birthDate, dniNumber, dniLetter
+        name, lastName, birthDate, dniNumber, dniLetter
     ) {
         this.name = name;
+        this.lastName = lastName;
         this.birthDate = birthDate; // format YYYY/MM/DD
         this.dniNumber = dniNumber;
         this.dniLetter = dniLetter;
@@ -10,6 +11,9 @@ var Customer = {
     },
     getName: function () {
         return this.name;
+    },
+    getLastName: function() {
+        return this.lastName;
     },
     getBirthDate: function () {
         return this.birthDate;
@@ -20,6 +24,11 @@ var Customer = {
     getDniLetter() {
         return this.dniLetter;
     },
+    setPrototypeCustomer: function(customer) {
+        return Object.getPrototypeOf(customer) != Customer
+        ? Object.setPrototypeOf(customer, Customer.init(customer.name, customer.lastName, customer.birthDate, customer.dniNumber, customer.dniLetter))
+        : customer;
+    },
     checkIsAdult: function () {
         var actualDate = new Date();
         var regexFormatDate = /^(([0-9]{4})\/[0-9]{2})\/([0-9]{2})$/;
@@ -27,7 +36,7 @@ var Customer = {
             let birthDateParsed = new Date(this.birthDate);
             var age = actualDate.getFullYear() - birthDateParsed.getFullYear();
             let month = actualDate.getMonth() - birthDateParsed.getMonth();
-            if (month < 0 || (month === 0 && actualDate.getDate() < birthDateParsed.getDate())) { age--; };
+            if (month < 0 || (month === 0 && actualDate.getDate() < birthDateParsed.getDate())) { age--; }
             if (age >= 21) {
                 return true;
             }

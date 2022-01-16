@@ -23,7 +23,8 @@
     "test": "cross-env NODE_ENV=test jest --runInBand --detectOpenHandles",
     "pulltest": "cross-env NODE_ENV=test jest --runInBand",
     "coverage": "jest --coverage",
-    "pre-commit": "npm run lint && npm test"
+    "pre-commit": "npm run lint && npm test",
+    "test-vanilla": "node ./src/db/migrations/migration.js && cross-env NODE_ENV=test jest"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
