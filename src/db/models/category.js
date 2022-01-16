@@ -13,15 +13,21 @@ var CategorySchema = new Schema({
         max: 80,
         required: true
     },
-    //! Añadir no modificable
     MIN_PRICE_CATEGORY: {
         type: Number,
-        required: true
+        required: true,
+        min: 10
     }
 });
 
+//* Source: https://stackoverflow.com/questions/15627967/why-mongoose-doesnt-validate-on-update/53856167
+CategorySchema.pre(['findOneAndUpdate', 'findByIdAndUpdate'], function (next) {
+    this.options.runValidators = true;
+    next();
+});
+
 CategorySchema.pre(['find', 'findOne', 'findOneAndDelete', 'findOneAndUpdate'], function () {
-    this.select('_id name discountTax');
+    this.select('_id name discountTax MIN_PRICE_CATEGORY');
 });
 
 module.exports = mongoose.model('categories', CategorySchema);

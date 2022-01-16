@@ -37,7 +37,8 @@ const CategoryServiceAPI = (function singletonCategoryService() {
         if (!categoriesList.find(category => category.name === data.name)) {
             let newCategory = new Category({
                 name: data.name,
-                discountTax: data.discountTax
+                discountTax: data.discountTax,
+                MIN_PRICE_CATEGORY: data.MIN_PRICE_CATEGORY
             });
             return newCategory.save().then(CategoryParser.CategoryParser.categoryDataParser);
         }
