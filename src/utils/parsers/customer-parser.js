@@ -4,15 +4,15 @@ const CustomerParser = (function singletonCustomerParser() {
         if (data) {
             if (data.length > 0) {
                 return data.map(customer => {
-                    return getCustomerParsed(customer);
+                    return _getCustomerParsed(customer);
                 });
             }
-            return getCustomerParsed(data);
+            return _getCustomerParsed(data);
         }
         return null;
     }
 
-    const getCustomerParsed = (data) => {
+    const _getCustomerParsed = (data) => {
         return {
             id: data._id,
             name: data.name,

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 // CONTROLLER
-var BookingController = require('../controller/bookingController');
+var BookingController = require('../controller/booking-controller');
 
 // ROUTER LEVEL MIDDLEWARE
 router.use(function (req, res, next) {
@@ -14,8 +14,7 @@ router.use(function (req, res, next) {
 //* CUSTOMER ROUTES *//
 router.get('/', BookingController.bookingAPI.bookingFindAll);
 router.get('/:key/:value', BookingController.bookingAPI.bookingFindOne);
-// router.get('/price', );
 router.delete('/delete/:key/:value', BookingController.bookingAPI.bookingDeleteOne);
-router.post('/create', BookingController.bookingAPI.bookingCreate); //! Mejorar creación booking
+router.post('/create', BookingController.bookingAPI.bookingCreate);
 
 module.exports = router;

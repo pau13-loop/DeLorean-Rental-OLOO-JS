@@ -7,18 +7,18 @@ const CategoryParser = (function singletonCategoryParser() {
                 let parsedData = [];
                 //TODO: forEach
                 data.forEach(category => {
-                    let parsedCategory = getCategoryParsed(category);
+                    let parsedCategory = _getCategoryParsed(category);
                     //TODO: Structuring
                     parsedData = [...parsedData, parsedCategory];
                 });
                 return parsedData;
             }
-            return getCategoryParsed(data);
+            return _getCategoryParsed(data);
         }
         return null;
     };
 
-    const getCategoryParsed = (data) => {
+    const _getCategoryParsed = (data) => {
         return {
             id: data._id,
             name: data.name,

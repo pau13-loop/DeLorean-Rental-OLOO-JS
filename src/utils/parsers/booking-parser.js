@@ -4,15 +4,15 @@ const BookingParser = (function singletonBookingParser() {
         if (data) {
             if (data.length > 0) {
                 return data.map(booking => {
-                    return getBookingParsed(booking);
+                    return _getBookingParsed(booking);
                 });
             }
-            return getBookingParsed(data);
+            return _getBookingParsed(data);
         }
         return null;
     };
 
-    const getBookingParsed = (data) => {
+    const _getBookingParsed = (data) => {
         return {
             id: data._id,
             startDate: data.startDate,

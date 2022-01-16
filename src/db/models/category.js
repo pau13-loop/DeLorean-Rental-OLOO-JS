@@ -12,12 +12,16 @@ var CategorySchema = new Schema({
         min: 10, 
         max: 80,
         required: true
+    },
+    //! Añadir no modificable
+    MIN_PRICE_CATEGORY: {
+        type: Number,
+        required: true
     }
 });
 
 CategorySchema.pre(['find', 'findOne', 'findOneAndDelete', 'findOneAndUpdate'], function () {
     this.select('_id name discountTax');
 });
-
 
 module.exports = mongoose.model('categories', CategorySchema);

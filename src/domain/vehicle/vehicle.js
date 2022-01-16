@@ -1,6 +1,6 @@
 var Vehicle = {
-    init: function (
-        model, brand, category, year, price, ORIGINAL_PRICE, available) {
+    _init: function (
+        model, brand, category, year, price, ORIGINAL_PRICE, isAvailable) {
         this.model = model;
         this.brand = brand;
         this.category = category;
@@ -51,7 +51,7 @@ var Vehicle = {
     //TODO: Object.defineProperty()
     setPrototypeVehicle: function (vehicle) {
         return Object.getPrototypeOf(vehicle) !== Vehicle
-            ? Object.setPrototypeOf(vehicle, Vehicle.init(vehicle.model, vehicle.brand, vehicle.category, vehicle.passengers, vehicle.year, vehicle.price, vehicle.isAvailable))
+            ? Object.setPrototypeOf(vehicle, Vehicle._init(vehicle.model, vehicle.brand, vehicle.category, vehicle.passengers, vehicle.year, vehicle.price, vehicle.isAvailable))
             : vehicle;
     },
     //TODO: closure
