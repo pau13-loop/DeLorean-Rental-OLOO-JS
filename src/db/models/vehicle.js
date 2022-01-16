@@ -27,6 +27,13 @@ var VehicleSchema = new Schema({
         type: Number,
         required: true
     },
+    //! convertirlo en constante ?
+    //! en el modelo también se seteará desde el primer momento ?
+    //* passengers se puede eliminar, no se utiliza para nada de momento
+    // originalPrice: {
+    //     type: Number,
+    //     required: false
+    // },
     available: {
         type: Boolean,
         required: true,

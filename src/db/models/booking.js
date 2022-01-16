@@ -5,11 +5,11 @@ var Schema = mongoose.Schema;
 
 var BookingSchema = new Schema({
     startDate: { 
-        type: String,
+        type: Date,
         required: true
     },
     endDate: {
-        type: String,
+        type: Date,
         required: true
     },
     customer: {

@@ -3,7 +3,6 @@ const { expect } = require('@jest/globals');
 const request = require('supertest');
 const app = require('../index');
 const db = require('../db/connection/mongoConfig');
-const responseFormatter = require('../utils/responseFormatter');
 
 describe("Vehicle Routes FINDS", () => {
 
@@ -138,4 +137,13 @@ describe("Vehicle Routes FINDS", () => {
                 );
             });
     }, 1000)
+
+    test("Test update price stock vehicles endpoint", () => {
+        return request(app)
+            .put('/vehicle/update/stock/price')
+            .then(res => {
+                expect(res.get('Content-Type')).toEqual(expect.stringMatching('/json'));
+                expect(res.statusCode).toEqual(200);
+            })
+    }, 10000)
 }, 10000);

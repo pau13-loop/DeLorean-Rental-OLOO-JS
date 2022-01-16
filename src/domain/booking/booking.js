@@ -20,9 +20,9 @@ var Booking = {
         return this.vehicle;
     },
     setPrototypeBooking: function(booking) {
-        if (Object.getPrototypeOf(booking) != Booking) {
-            return Object.setPrototypeOf(booking, Booking.init(booking.startDate, booking.endDate, booking.customer, booking.vehicle));
-        }
+        return Object.getPrototypeOf(booking) != Booking 
+        ?  Object.setPrototypeOf(booking, Booking.init(booking.startDate, booking.endDate, booking.customer, booking.vehicle))
+        : booking;
     },
     calculateBookingDaysNum: function () {
         var regexFormatDate = /^(([0-9]{4})\/[0-9]{2})\/([0-9]{2})$/;
@@ -36,7 +36,9 @@ var Booking = {
     //! Si se tienenq ue aplicar algún descuento deberían ejecutarse antes los métodos para aplicar un descuento sobre el precio y calcular el precio ya sobre el valor del coche con el descuento aplicado sobre él
     calculatePriceBooking: function () {
         let totalBookingDays = this.calculateBookingDaysNum();
-        return (totalBookingDays ? totalBookingDays * this.vehicle.price : null);
+        return totalBookingDays 
+        ? totalBookingDays * this.vehicle.price 
+        : null;
     }
 }
 
