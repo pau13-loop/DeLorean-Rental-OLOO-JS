@@ -1,5 +1,6 @@
 const bookingService = require('../service/bookingService');
-const responseFormatter = require('../utils/responseFormatter');
+
+const responseFormatter = require('../utils/response-formatter');
 
 const bookingAPI = (function singletonBookingController() {
 

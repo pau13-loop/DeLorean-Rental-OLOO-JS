@@ -1,5 +1,5 @@
 const vehicleService = require('../service/vehicleService');
-const responseFormatter = require('../utils/responseFormatter');
+const responseFormatter = require('../utils/response-formatter');
 
 const VehicleAPI = (function singletonVehicleController() {
 

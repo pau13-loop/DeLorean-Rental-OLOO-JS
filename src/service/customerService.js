@@ -1,6 +1,6 @@
 const Customer = require('../db/models/customer');
 const CustomerProto = require('../domain/customer/customer');
-const CustomerParser = require('../utils/parsers/customerParser');
+const CustomerParser = require('../utils/parsers/customer-parser');
 
 const CustomerServiceAPI = (function singletonCustomerService() {
 

@@ -1,6 +1,6 @@
 var Vehicle = {
-    init: function (
-        model, brand, category, year, price, ORIGINAL_PRICE, available) {
+    _init: function (
+        model, brand, category, year, price, ORIGINAL_PRICE, isAvailable) {
         this.model = model;
         this.brand = brand;
         this.category = category;
@@ -8,7 +8,7 @@ var Vehicle = {
         this.year = year;
         this.price = price;
         this.ORIGINAL_PRICE = ORIGINAL_PRICE;
-        this.available = available;
+        this.isAvailable = isAvailable;
         return this;
     },
     // Prop getters
@@ -30,8 +30,8 @@ var Vehicle = {
     getPrice: function () {
         return this.price;
     },
-    getAvailable: function () {
-        return this.available;
+    getIsAvailable: function () {
+        return this.isAvailable;
     },
     getName: function () {
         return `Vehicle name: ${this.brand} ${this.model}`;
@@ -43,15 +43,15 @@ var Vehicle = {
         return this.ORIGINALPRICE - (this.ORIGINALPRICE * 0.4);
     },
     bookVehicle: function () {
-        this.available = false;
+        this.isAvailable = false;
     },
     finishBookingVehicle: function () {
-        this.available = true;
+        this.isAvailable = true;
     },
     //TODO: Object.defineProperty()
     setPrototypeVehicle: function (vehicle) {
         return Object.getPrototypeOf(vehicle) !== Vehicle
-            ? Object.setPrototypeOf(vehicle, Vehicle.init(vehicle.model, vehicle.brand, vehicle.category, vehicle.passengers, vehicle.year, vehicle.price, vehicle.available))
+            ? Object.setPrototypeOf(vehicle, Vehicle._init(vehicle.model, vehicle.brand, vehicle.category, vehicle.passengers, vehicle.year, vehicle.price, vehicle.isAvailable))
             : vehicle;
     },
     //TODO: closure

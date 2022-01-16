@@ -15,11 +15,11 @@ describe('Test object attributes and getters', () => {
         expect(fordMustang.category).toBeDefined();
         expect(fordMustang.category).toBe(category);
         expect(fordMustang.year).toBe(1999);
-        expect(fordMustang.available).toBe(true);
+        expect(fordMustang.isAvailable).toBe(true);
         // Random test not.toBe()
         expect(fordMustang.brand).not.toBe('seat');
         expect(fordMustang.price).not.toBeNull();
-        expect(fordMustang.available).not.toBeFalsy();
+        expect(fordMustang.isAvailable).not.toBeFalsy();
         expect(fordMustang.category).not.toBeNaN();
     });
 
@@ -30,7 +30,7 @@ describe('Test object attributes and getters', () => {
         expect(fordMustang).toHaveProperty('passengers');
         expect(fordMustang).toHaveProperty('year');
         expect(fordMustang).toHaveProperty('price');
-        expect(fordMustang).toHaveProperty('available');
+        expect(fordMustang).toHaveProperty('isAvailable');
         // Random prop check
         expect(fordMustang).not.toHaveProperty('aquatic');
     });
@@ -42,7 +42,7 @@ describe('Test object attributes and getters', () => {
         expect(fordMustang.getPassengers()).toEqual(4);
         expect(fordMustang.getYear()).toBe(1999);
         expect(fordMustang.getPrice()).toBe(70);
-        expect(fordMustang.getAvailable()).toBeTruthy();
+        expect(fordMustang.getIsAvailable()).toBeTruthy();
         expect(fordMustang.getName()).toEqual(expect.stringMatching('ford mustang'));
     });
 });
@@ -55,7 +55,7 @@ describe("Check unset prototype of random object", () => {
         passengers: 0,
         year: 0,
         price: 0,
-        available: true
+        isAvailable: true
     };
     test('Check prototype NOT set of Vehicle', () => {
         // Two different ways of check the prototype of an obj
@@ -72,7 +72,7 @@ describe("Set prototype of Vehicle and check it's ORIGINALPRICE", () => {
         passengers: 5,
         year: 2019,
         price: 15,
-        available: true
+        isAvailable: true
     };
 
     //TODO: beforeAll()
@@ -107,25 +107,25 @@ describe("Set prototype of Vehicle and check it's ORIGINALPRICE", () => {
 
 describe("Check book vehicle and finish booking", () => {
     test('Check booking is made correctly', () => {
-        expect(fordMustang.getAvailable()).toBeTruthy();
-        expect(fordMustang.getAvailable()).not.toBeFalsy();
+        expect(fordMustang.getIsAvailable()).toBeTruthy();
+        expect(fordMustang.getIsAvailable()).not.toBeFalsy();
         
         // book vehicle
         fordMustang.bookVehicle();
 
-        expect(fordMustang.getAvailable()).toBeFalsy();
-        expect(fordMustang.getAvailable()).not.toBeTruthy();
+        expect(fordMustang.getIsAvailable()).toBeFalsy();
+        expect(fordMustang.getIsAvailable()).not.toBeTruthy();
     });
 
     test("Check booking is finished correctly", () => {
-        expect(fordMustang.getAvailable()).toBeFalsy();
-        expect(fordMustang.getAvailable()).not.toBeTruthy();
+        expect(fordMustang.getIsAvailable()).toBeFalsy();
+        expect(fordMustang.getIsAvailable()).not.toBeTruthy();
         
         // unbook vehicle
         fordMustang.finishBookingVehicle();
 
-        expect(fordMustang.getAvailable()).toBeTruthy();
-        expect(fordMustang.getAvailable()).not.toBeFalsy();
+        expect(fordMustang.getIsAvailable()).toBeTruthy();
+        expect(fordMustang.getIsAvailable()).not.toBeFalsy();
     })
 });
 
@@ -143,7 +143,7 @@ describe('Tests for closure and update price', () => {
         passengers: 5,
         year: 1999,
         price: 35,
-        available: true
+        isAvailable: true
     };
 
     var leon = {
@@ -153,7 +153,7 @@ describe('Tests for closure and update price', () => {
         passengers: 5,
         year: 2018,
         price: 20,
-        available: true
+        isAvailable: true
     };
 
     //TODO: beforeAll()

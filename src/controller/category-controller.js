@@ -1,5 +1,5 @@
 const categoryService = require('../service/categoryService');
-const responseFormatter = require('../utils/responseFormatter');
+const responseFormatter = require('../utils/response-formatter');
 
 const CategoryAPI = (function singletonCategoryController() {
 

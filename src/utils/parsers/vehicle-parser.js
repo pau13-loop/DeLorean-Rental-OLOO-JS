@@ -1,6 +1,3 @@
-// const VehicleProto = require('../domain/vehicle/vehicle');
-const CategoryParser = require('./categoryParser');
-
 const VehicleParser = (function singletonVehicleParser() {
 
     const vehicleDataParser = (data) => {
@@ -8,16 +5,16 @@ const VehicleParser = (function singletonVehicleParser() {
             if (data.length > 0) {
                 //TODO: Map
                 return data.map(vehicle => {
-                    return getVehicleParsed(vehicle);
+                    return _getVehicleParsed(vehicle);
                 });
             }
-            return getVehicleParsed(data);
+            return _getVehicleParsed(data);
         }
         return null;
     };
 
     //! Private
-    const getVehicleParsed = (data) => {
+    const _getVehicleParsed = (data) => {
         return {
             id: data._id,
             model: data.model,
@@ -27,7 +24,7 @@ const VehicleParser = (function singletonVehicleParser() {
             year: data.year,
             price: data.price,
             // originalPrice: data.orginalPrice,
-            available: data.available
+            isAvailable: data.isAvailable
         };
     };
 

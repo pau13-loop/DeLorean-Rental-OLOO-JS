@@ -11,7 +11,7 @@ module.exports = [
         year: 2018,
         price: 30,
         ORIGINAL_PRICE: 30,
-        available: true,
+        isAvailable: true,
     },
     {
         _id: ObjectId("61da25c0bcbf3e5cd7af6655"),
@@ -22,7 +22,7 @@ module.exports = [
         year: 2018,
         price: 30,
         ORIGINAL_PRICE: 30,
-        available: false,
+        isAvailable: false,
     },
     {
         _id: ObjectId("61d9d40de380c7e6a6974668") ,
@@ -33,7 +33,7 @@ module.exports = [
         year: 2019,
         price: 35,
         ORIGINAL_PRICE: 35,
-        available: true
+        isAvailable: true
     },
     {
         _id: ObjectId("61da25cab859aa8fe6b1b915") ,
@@ -43,7 +43,7 @@ module.exports = [
         // passengers: 5,
         year: 2019,
         price: 35,ORIGINAL_PRICE: 35,
-        available: true
+        isAvailable: true
     },
     // 2 Premium
     {
@@ -55,7 +55,7 @@ module.exports = [
         year: 2020,
         price: 115,
         ORIGINAL_PRICE: 115,
-        available: true
+        isAvailable: true
     },
     {
         _id: ObjectId("61d9d4165ccb5e87237f1de1"),
@@ -66,7 +66,7 @@ module.exports = [
         year: 2021,
         price: 80,
         ORIGINAL_PRICE: 80,
-        available: true
+        isAvailable: true
     },
     // 4 Classic
     {
@@ -78,7 +78,7 @@ module.exports = [
         year: 1983,
         price: 65,
         ORIGINAL_PRICE: 65,
-        available: true
+        isAvailable: true
     },
     {
         _id: ObjectId("61d9d42295bf779ca13223ac"),
@@ -89,7 +89,7 @@ module.exports = [
         year: 1980,
         price: 45,
         ORIGINAL_PRICE: 45,
-        available: true
+        isAvailable: true
     },
     {
         id: ObjectId("61d9d42831baf5c7f0104c94"),
@@ -111,6 +111,6 @@ module.exports = [
         year: 1943,
         price: 75,
         ORIGINAL_PRICE: 75,
-        available: true
+        isAvailable: true
     }
 ];

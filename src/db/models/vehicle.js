@@ -27,14 +27,12 @@ var VehicleSchema = new Schema({
         type: Number,
         required: true
     },
-    //! convertirlo en constante ?
-    //! en el modelo también se seteará desde el primer momento ?
-    //* passengers se puede eliminar, no se utiliza para nada de momento
-    // originalPrice: {
-    //     type: Number,
-    //     required: false
-    // },
-    available: {
+    //! Añadir no modificable
+    ORIGINAL_PRICE: {
+        type: Number,
+        required: true
+    },
+    isAvailable: {
         type: Boolean,
         required: true,
         default: true
@@ -42,8 +40,7 @@ var VehicleSchema = new Schema({
 });
 
 VehicleSchema.pre(['find', 'findOne', 'findOneAndDelete', 'findOneAndUpdate'], function () {
-    this.select('_id model brand category passengers year price available');
+    this.select('_id model brand category passengers year price isAvailable');
 });
-
 
 module.exports = mongoose.model('vehicles', VehicleSchema);

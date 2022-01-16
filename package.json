@@ -1,8 +1,8 @@
 {
   "name": "rent-a-car-oloo",
   "version": "1.0.0",
-  "description": "Implement the business logic of a Rent a car, create an ApiRestfull connected to MongoAtlas and implement the object composition. Introduction to linked objects by prototypes of JS",
-  "main": "main.js",
+  "description": "Implement the business logic of a Rent a car. Creation of an RESTfull-API connected to MongoAtlas, no relational DB, and implement Prototypal Object Linking of JavaScript, OLOO. Introduction to linked objects by prototypes with JS",
+  "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pau13-loop/Rent-a-car-OLOO-JS.git"

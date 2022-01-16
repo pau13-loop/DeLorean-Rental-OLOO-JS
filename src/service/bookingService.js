@@ -2,7 +2,7 @@ const Booking = require('../db/models/booking');
 const Customer = require('../db/models/customer');
 const CustomerProto = require('../domain/customer/customer');
 const Vehicle = require('../db/models/vehicle');
-const BookingParser = require('../utils/parsers/bookingParser');
+const BookingParser = require('../utils/parsers/booking-parser');
 
 const BookingServiceAPI = (function singletonCategoryService() {
 
@@ -26,7 +26,7 @@ const BookingServiceAPI = (function singletonCategoryService() {
         if (bookingToDelete) {
             // Vehicle comeback to be available before delete the booking
             let vehicleToUnBook = await Vehicle.findById(bookingToDelete.vehicle);
-            Vehicle.findByIdAndUpdate(vehicleToUnBook.id, { available: true }).exec();
+            Vehicle.findByIdAndUpdate(vehicleToUnBook.id, { isAvailable: true }).exec();
             return Booking.findByIdAndDelete(bookingToDelete.id)
                 .exec()
                 .then(BookingParser.BookingParser.bookingDataParser);
@@ -45,14 +45,14 @@ const BookingServiceAPI = (function singletonCategoryService() {
         console.log('customerPrototype: ', customerPrototype);
         // To match the desired vehicle
         let vehicleBooking = await Vehicle.findOne({ model: vehicleModel, brand: vehicleBrand });
-        if (vehicleBooking.available && customerPrototype.checkIsAdult()) {
+        if (vehicleBooking.isAvailable && customerPrototype.checkIsAdult()) {
             let newBooking = new Booking({
                 startDate: data.startDate,
                 endDate: data.endDate,
                 customer: _id,
                 vehicle: vehicleBooking.id
             });
-            Vehicle.findByIdAndUpdate(vehicleBooking.id, { available: false }).exec();
+            Vehicle.findByIdAndUpdate(vehicleBooking.id, { isAvailable: false }).exec();
             return newBooking.save().then(BookingParser.BookingParser.bookingDataParser);
         }
         return null;

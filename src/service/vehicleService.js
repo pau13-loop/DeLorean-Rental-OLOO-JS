@@ -2,7 +2,7 @@ const Vehicle = require('../db/models/vehicle');
 const VehicleProto = require('../domain/vehicle/vehicle');
 const Category = require('../db/models/category');
 const CategoryProto = require('../domain/category/category');
-const VehicleParser = require('../utils/parsers/vehicleParser');
+const VehicleParser = require('../utils/parsers/vehicle-parser');
 const { CategoryServiceAPI } = require('./categoryService');
 
 const VehicleServiceAPI = (function singletonVehicleService() {
@@ -49,7 +49,7 @@ const VehicleServiceAPI = (function singletonVehicleService() {
             passengers: data.passengers,
             year: data.year,
             price: data.price,
-            availalbe: data.available
+            availalbe: data.isAvailable
         };
         // Set new to true to return the document after the update
         return Vehicle.findByIdAndUpdate(id, update, { new: true })
@@ -61,14 +61,14 @@ const VehicleServiceAPI = (function singletonVehicleService() {
         //TODO: Set
         //! I was not able to use the set with a collection of objects, just with primitive types to get a collection of unique elements
         // return [...new Set(vehiclesList)];
-        let vehiclesList = await Vehicle.find({ available: true });
+        let vehiclesList = await Vehicle.find({ isAvailable: true });
         return vehiclesList.length > 0
             ? [...new Map(vehiclesList.map((vehicle) => [vehicle['model'], vehicle]))]
             : null;
     }
 
     //! Private
-    const setPrototyeVehicles = async (vehiclesList) => {
+    const _setPrototyeVehicles = async (vehiclesList) => {
         return Promise.all(vehiclesList.map(async (vehicle) => {
             let category = await CategoryServiceAPI.getOneCategory('id', vehicle.category.toString());
 
@@ -80,15 +80,13 @@ const VehicleServiceAPI = (function singletonVehicleService() {
         }));
     }
 
-    
-
     const updatePriceVehicles = async () => {
         //! If we dont parse the mongoose object ot a json object when we will apply the destructing techique we will be getting all the internal cache of a mongoose object
         // let availableVehiclesList = await Vehicle.find({ available: true }).exec().then(VehicleParser.VehicleParser.vehicleDataParser);
         //! we can not use the parser if we want to .save() the mongo object back after has been updated
-        let availableVehiclesList = await Vehicle.find({ available: true }).exec();
+        let availableVehiclesList = await Vehicle.find({ isAvailable: true }).exec();
 
-        var protoVehiclesList = await setPrototyeVehicles(availableVehiclesList);
+        var protoVehiclesList = await _setPrototyeVehicles(availableVehiclesList);
         protoVehiclesList.forEach((vehicle) => { vehicle.updatePrice() });
 
         availableVehiclesList.forEach((vehicle, index) => {
@@ -100,8 +98,8 @@ const VehicleServiceAPI = (function singletonVehicleService() {
     }
 
     const applyDiscountTaxVehicles = async () => {
-        let availableVehiclesList = await Vehicle.find({ available: true }).exec();
-        var protoVehiclesList = await setPrototyeVehicles(availableVehiclesList);
+        let availableVehiclesList = await Vehicle.find({ isAvailable: true }).exec();
+        var protoVehiclesList = await _setPrototyeVehicles(availableVehiclesList);
 
         protoVehiclesList.forEach((vehicle) => { vehicle.price = vehicle.category.applyDiscount(vehicle.price) });
         availableVehiclesList.forEach((vehicle, index) => {

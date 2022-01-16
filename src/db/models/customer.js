@@ -26,7 +26,6 @@ var CustomerSchema = new Schema({
     }
 });
 
-// Pre hook for `findOneAndUpdate`
 //* Source: https://stackoverflow.com/questions/15627967/why-mongoose-doesnt-validate-on-update/53856167
 CustomerSchema.pre(['findOneAndUpdate', 'findByIdAndUpdate'], function (next) {
     this.options.runValidators = true;
