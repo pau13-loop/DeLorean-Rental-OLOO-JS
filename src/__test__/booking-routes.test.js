@@ -1,17 +1,27 @@
 const { expect } = require('@jest/globals');
 const request = require('supertest');
 const app = require('../index');
-const db = require('../db/connection/mongoConfig');
+const db = require('../db/connection/mongo-config');
+const BookingModel = require('../db/models/booking');
+const bookingCollection = require('../db/collections/bookings-collection');
 
 describe("Booking Routes", () => {
 
     beforeAll(async () => {
-        await db.connect()
+        await db.connect();
     });
 
     afterAll(async () => {
-        await db.disconnect()
+        await db.disconnect();
     });
+
+    // beforeEach(async () => {
+    //     await BookingModel.insertMany(bookingCollection);
+    // }, 10000);
+
+    // afterEach(async () => {
+    //     await BookingModel.deleteMany();
+    // }, 10000);
 
     // FIND ALL
 
@@ -21,7 +31,7 @@ describe("Booking Routes", () => {
             .then(res => {
                 expect(res.get('Content-Type')).toEqual(expect.stringMatching('/json'));
                 expect(res.statusCode).toEqual(200);
-                expect(res.body.data.length).toBe(4);
+                expect(res.body.data.length).toBeGreaterThan(1);
                 expect(res.body.data).toEqual(
                     expect.arrayContaining([
                         // Ids
@@ -32,7 +42,7 @@ describe("Booking Routes", () => {
                     ])
                 );
             });
-    }, 100000);
+    }, 10000);
 
     // FIND ONE BY CUSTOMER ID
 
@@ -78,20 +88,17 @@ describe("Booking Routes", () => {
 
     // DELETE ONE BY ID
 
-    //! IMPORTANT, remember to delete a booking where you haven't delete the vehicle or the customer of it in a previous test case
-
-    // test("Test delete booking by id /booking/delete/:key/:value", () => {
-    //     let bookingId = '61d9da9f7c664f0817d33034'; // Booking of customer Travis with vehicle Batmobile
-    //     return request(app)
-    //         .delete(`/booking/delete/id/${bookingId}`)
-    //         .then(res => {
-    //             // No content, status code 204
-    //             // expect(res.get('Content-Type')).toEqual(expect.stringMatching('text/html; charset=utf-8'));
-    //             expect(res.statusCode).toEqual(204);
-    //             expect(res.body.data).toBeUndefined();
-    //             expect(res.body.data).toBeFalsy();
-    //         });
-    // }, 10000);
+    test("Test delete booking by id /booking/delete/:key/:value", () => {
+        let bookingId = '61d9da9122e2b4614b1c7afb'; // Booking of customer McFly with vehicle DeLorean
+        return request(app)
+            .delete(`/booking/delete/id/${bookingId}`)
+            .then(res => {
+                // No content, status code 204
+                expect(res.statusCode).toEqual(204);
+                expect(res.body.data).toBeUndefined();
+                expect(res.body.data).toBeFalsy();
+            });
+    }, 10000);
 
     // test("Test booking has been deleted succesfully by id", () => {
     //     return request(app)
@@ -99,16 +106,42 @@ describe("Booking Routes", () => {
     //         .then(res => {
     //             expect(res.get('Content-Type')).toEqual(expect.stringMatching('/json'));
     //             expect(res.statusCode).toEqual(200);
-    //             expect(res.body.data.length).toBe(3);
     //             expect(res.body.data).toEqual(
     //                 expect.arrayContaining([
     //                     // Ids
-    //                     expect.objectContaining({ id: '61d9da9122e2b4614b1c7afb' }),
     //                     expect.objectContaining({ id: '61d9da984292aa2f665d71d7' }),
-    //                     expect.objectContaining({ id: '61d9da9c8886061930a91e2d' })
+    //                     expect.objectContaining({ id: '61d9da9c8886061930a91e2d' }),
+    //                     expect.objectContaining({ id: '61d9da9f7c664f0817d33034' }),
+    //                     expect.not.objectContaining({ id: '61d9da9122e2b4614b1c7afb' })
     //                 ])
     //             );
     //         });
-    // }, 100000);
+    // }, 10000);
 
+    //! High chance to throw TimeOut or throw an error
+    test("Test create booking", () => {
+        return request(app)
+            .post('/booking/create')
+            .send({ "startDate": "2022/02/15", "endDate": "2022/02/21", "dniNumber": 17608824, "dniLetter": "R", "vehicleModel": "Bumblebee", "vehicleBrand": "Chevrolet" })
+            .then(res => {
+                console.log('Response body: ', res.body)
+                expect(res.get('Content-Type')).toEqual(expect.stringMatching('/json'));
+                expect(res.statusCode).toEqual(202);
+                expect(res.body.data).toHaveProperty('id', 'startDate', 'endDate', 'customer', 'vehicle');
+                expect(res.body.data.customer).toEqual("61d9cfbbd1b9a9480b0c343e");
+                expect(res.body.data.vehicle).toEqual('61d9d42831baf5c7f0104c94');
+            });
+    }, 10000);
+
+    test("Test create unsuccessfull booking by customer under age", () => {
+        return request(app)
+            .post('/booking/create')
+            .send({ "startDate": "2022/05/20", "endDate": "2022/05/29", "dniNumber": 25668350, "dniLetter": "M", "vehicleModel": "Golf", "vehicleBrand": "volkswagen" })
+            .then(res => {
+                expect(res.get('Content-Type')).toEqual(expect.stringMatching('/json'));
+                expect(res.statusCode).toEqual(202);
+                expect(res.body.data).toBeNull();
+                expect(res.body.message).toEqual(expect.stringMatching("Requested to make a booking couldn't be make, check parametres specified please and try again !"));
+            });
+    }, 10000);
 }, 10000);

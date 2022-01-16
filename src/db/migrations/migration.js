@@ -2,10 +2,10 @@ const { MongoClient } = require("mongodb");
 require('dotenv').config();
 
 //* COLLECTIONS *//
-const vehicleCollection = require('../collections/vehicleCollectionShortList');
-const categoryCollection = require('../collections/categoryCollection');
-const customersCollection = require("../collections/customersCollection");
-const bookingsCollection = require("../collections/bookingsCollection");
+const vehicleCollection = require('../collections/vehicle-collection-short-list');
+const categoryCollection = require('../collections/category-collection');
+const customersCollection = require("../collections/customers-collection");
+const bookingsCollection = require("../collections/bookings-collection");
 
 //* Source: https://github.com/dfleta/pushmees_pullmees/blob/master/db/mongoConfig.js
 
@@ -20,8 +20,8 @@ async function run() {
         await client.connect();
 
         //! Cambiado para poder hace llamadas con Hoppscotch
-        // const database = client.db('Rent-a-car_test');
-        const database = client.db('Rent-a-car');
+        const database = client.db('Rent-a-car_test');
+        // const database = client.db('Rent-a-car');
         const categories = database.collection('categories');
         const customers = database.collection('customers')
         const vehicles = database.collection('vehicles');
@@ -55,8 +55,8 @@ async function run() {
             });
         }
 
-        let result = await categories.insertMany(categoryCollection);
-        console.log(`${result.insertedCount} == 3 categories inserted into DB`);
+        // let result = await categories.insertMany(categoryCollection);
+        // console.log(`${result.insertedCount} == 3 categories inserted into DB`);
         result = await customers.insertMany(customersCollection);
         console.log(`${result.insertedCount} == 5 customers inserted into DB`);
         result = await vehicles.insertMany(vehicleCollection);

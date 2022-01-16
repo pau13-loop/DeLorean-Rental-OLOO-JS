@@ -42,7 +42,6 @@ const BookingServiceAPI = (function singletonCategoryService() {
         let customer = await Customer.findOne({ dniNumber: dniNumber, dniLetter: dniLetter });
         let {_id, ...customerBooking} = customer.toObject();
         let customerPrototype = CustomerProto.setPrototypeCustomer(customerBooking);
-        console.log('customerPrototype: ', customerPrototype);
         // To match the desired vehicle
         let vehicleBooking = await Vehicle.findOne({ model: vehicleModel, brand: vehicleBrand });
         if (vehicleBooking.isAvailable && customerPrototype.checkIsAdult()) {

@@ -39,5 +39,14 @@ module.exports = [
         birthDate: '1994/03/14',
         dniNumber: 63453896,
         dniLetter: 'R',
+    },
+    // Under age customer --> from UP movie
+    {
+        _id: '61e46e081ef770a3a24e77de',
+        name: 'Carl',
+        lastName: 'Fredricksen',
+        birthDate: '2009/07/30',
+        dniNumber: 25668350,
+        dniLetter: 'M'
     }
 ];

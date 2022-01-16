@@ -92,7 +92,7 @@ module.exports = [
         isAvailable: true
     },
     {
-        id: ObjectId("61d9d42831baf5c7f0104c94"),
+        _id: ObjectId("61d9d42831baf5c7f0104c94"),
         model: "Bumblebee",
         brand: "Chevrolet",
         category: ObjectId("61b0f62a88d0be4b41bc1003"),
@@ -100,10 +100,10 @@ module.exports = [
         year: 2007,
         price: 70,
         ORIGINAL_PRICE: 70,
-        availalbe: true
+        isAvailable: true
     },
     {
-        id: ObjectId("61d9d42d2338c9151f929b57"),
+        _id: ObjectId("61d9d42d2338c9151f929b57"),
         model: "Batmobile",
         brand: "Lincoln Futura",
         category: ObjectId("61b0f62a88d0be4b41bc1003"),
