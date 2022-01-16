@@ -3,8 +3,8 @@ const { expect } = require('@jest/globals');
 var Vehicle = require('../vehicle');
 var Category = require('../../category/category');
 
-var category = Object.create(Category).init('classic', 30);
-var fordMustang = Object.create(Vehicle).init('mustang', 'ford', category, 4, 1999, 70, true);
+var category = Object.create(Category)._init('classic', 30);
+var fordMustang = Object.create(Vehicle)._init('mustang', 'ford', category, 1999, 70, 70, true);
 
 //TODO: describe()
 describe('Test object attributes and getters', () => {
@@ -12,6 +12,7 @@ describe('Test object attributes and getters', () => {
         expect(fordMustang.model).toBe('mustang');
         expect(fordMustang.brand).toBe('ford');
         expect(fordMustang.price).toBe(70);
+        expect(fordMustang.ORIGINAL_PRICE).toEqual(fordMustang.price);
         expect(fordMustang.category).toBeDefined();
         expect(fordMustang.category).toBe(category);
         expect(fordMustang.year).toBe(1999);
@@ -27,9 +28,9 @@ describe('Test object attributes and getters', () => {
         expect(fordMustang).toHaveProperty('model');
         expect(fordMustang).toHaveProperty('brand');
         expect(fordMustang).toHaveProperty('category');
-        expect(fordMustang).toHaveProperty('passengers');
         expect(fordMustang).toHaveProperty('year');
         expect(fordMustang).toHaveProperty('price');
+        expect(fordMustang).toHaveProperty('ORIGINAL_PRICE');
         expect(fordMustang).toHaveProperty('isAvailable');
         // Random prop check
         expect(fordMustang).not.toHaveProperty('aquatic');
@@ -39,69 +40,38 @@ describe('Test object attributes and getters', () => {
         expect(fordMustang.getModel()).toEqual(expect.stringMatching('mustang'));
         expect(fordMustang.getBrand()).toEqual(expect.stringMatching('ford'));
         expect(fordMustang.getCategory()).toEqual(category);
-        expect(fordMustang.getPassengers()).toEqual(4);
         expect(fordMustang.getYear()).toBe(1999);
         expect(fordMustang.getPrice()).toBe(70);
+        expect(fordMustang.getOriginalPrice()).toEqual(70);
         expect(fordMustang.getIsAvailable()).toBeTruthy();
         expect(fordMustang.getName()).toEqual(expect.stringMatching('ford mustang'));
     });
 });
 
 describe("Check unset prototype of random object", () => {
-    let randomObject = {
-        mode: "",
-        brand: "",
-        category: undefined,
-        passengers: 0,
-        year: 0,
-        price: 0,
-        isAvailable: true
-    };
-    test('Check prototype NOT set of Vehicle', () => {
-        // Two different ways of check the prototype of an obj
-        expect(Vehicle.isPrototypeOf(randomObject)).toBeFalsy();
-        expect(Object.getPrototypeOf(randomObject) === Vehicle).toBeFalsy();
-    });
-})
-
-describe("Set prototype of Vehicle and check it's ORIGINALPRICE", () => {
     let newVehicle = {
         mode: "clio",
         brand: "renault",
         category: category,
-        passengers: 5,
         year: 2019,
-        price: 15,
+        price: 25,
+        ORIGINAL_PRICE: 25,
         isAvailable: true
     };
 
-    //TODO: beforeAll()
-    beforeAll(() => {
+    //TODO: afterEach()
+    afterEach(() => {
         Vehicle.setPrototypeVehicle(newVehicle);
     });
 
+    test('Check prototype NOT set of Vehicle', () => {
+        expect(Vehicle.isPrototypeOf(newVehicle)).toBeFalsy();
+        expect(Object.getPrototypeOf(newVehicle) === Vehicle).toBeFalsy();
+    });
+
     test('Check prototype of Vehicle already SET', () => {
-        // Two different ways of check the prototype of an obj      
-        expect(Vehicle.isPrototypeOf(newVehicle)).toBe(true);
-        expect(Object.getPrototypeOf(newVehicle) === Vehicle).toBe(true);
-    });
-
-    test('Check ORIGINALPRICE property is defined but not enumerable', () => {
-        expect(Object.keys(newVehicle)).toHaveLength(7);
-        expect(Object.keys(newVehicle).length).not.toBeGreaterThan(7);
-        expect(Object.keys(newVehicle)).not.toContain('ORIGINALPRICE');
-        expect(newVehicle.ORIGINALPRICE).toBeDefined();
-        expect(newVehicle.ORIGINALPRICE).not.toBeNull();
-        expect(newVehicle).toHaveProperty('ORIGINALPRICE');
-        expect(newVehicle.ORIGINALPRICE).toBeTruthy();
-        expect(newVehicle.ORIGINALPRICE).toEqual(newVehicle.price);
-    });
-
-    test('Check ORIGINALPRICE property is NOT writeable', () => {
-        expect(newVehicle.ORIGINALPRICE).toBe(15);
-        newVehicle.ORIGINALPRICE += 5;
-        expect(newVehicle.ORIGINALPRICE).not.toBe(20);
-        expect(newVehicle.ORIGINALPRICE).toBe(15);
+        expect(Vehicle.isPrototypeOf(newVehicle)).toBeTruthy();
+        expect(Object.getPrototypeOf(newVehicle) === Vehicle).toBeTruthy();
     });
 });
 
@@ -109,7 +79,7 @@ describe("Check book vehicle and finish booking", () => {
     test('Check booking is made correctly', () => {
         expect(fordMustang.getIsAvailable()).toBeTruthy();
         expect(fordMustang.getIsAvailable()).not.toBeFalsy();
-        
+
         // book vehicle
         fordMustang.bookVehicle();
 
@@ -120,7 +90,7 @@ describe("Check book vehicle and finish booking", () => {
     test("Check booking is finished correctly", () => {
         expect(fordMustang.getIsAvailable()).toBeFalsy();
         expect(fordMustang.getIsAvailable()).not.toBeTruthy();
-        
+
         // unbook vehicle
         fordMustang.finishBookingVehicle();
 
@@ -132,17 +102,17 @@ describe("Check book vehicle and finish booking", () => {
 describe('Tests for closure and update price', () => {
 
     // CATEGORIES
-    var commonCategory = Object.create(Category).init('common', 60);
-    var classicCategory = Object.create(Category).init('classic', 40);
+    var commonCategory = Object.create(Category)._init('common', 60, 15);
+    var classicCategory = Object.create(Category)._init('classic', 40, 20);
 
     // VEHICLES
     var golf = {
         mode: "golf",
         brand: "volkswagen",
-        category: classicCategory,
-        passengers: 5,
-        year: 1999,
+        category: commonCategory,
+        year: 2019,
         price: 35,
+        ORIGINAL_PRICE: 35,
         isAvailable: true
     };
 
@@ -150,33 +120,38 @@ describe('Tests for closure and update price', () => {
         mode: "leon",
         brand: "seat",
         category: commonCategory,
-        passengers: 5,
         year: 2018,
         price: 20,
+        ORIGINAL_PRICE: 35,
         isAvailable: true
     };
+
+    var herbie = {
+        model: "Herbie Torero",
+        brand: "Volkswagen",
+        category: classicCategory,
+        year: 1980,
+        price: 45,
+        ORIGINAL_PRICE: 45,
+        isAvailable: true
+    }
 
     //TODO: beforeAll()
     beforeAll(() => {
         Vehicle.setPrototypeVehicle(golf);
         Vehicle.setPrototypeVehicle(leon);
-    });
-
-    //TODO: beforeEach()
-    beforeEach(() => {
-        golf.price = golf.ORIGINALPRICE;
-        leon.price = leon.ORIGINALPRICE;
+        Vehicle.setPrototypeVehicle(herbie);
     });
 
     //TODO: functionMock
-    const percentageMock = jest
+    const minVehiclePriceMock = jest
         .fn()
-        .mockImplementation((priceVehicle) => priceVehicle * 0.4)
+        .mockImplementation((ORIGINAL_PRICE_VEHICLE) => ORIGINAL_PRICE_VEHICLE - (ORIGINAL_PRICE_VEHICLE * 0.4))
         .mockName('percentageMock');
 
-    test('Check minimum price', () => {
-        expect(leon.getMinPrice()).toBe(percentageMock(leon.price));
-        expect(golf.getMinPrice()).toBe(percentageMock(golf.price));
+    test('Check minimum price calculated correctly', () => {
+        expect(leon.getMinPrice()).toBe(minVehiclePriceMock(leon.ORIGINAL_PRICE));
+        expect(golf.getMinPrice()).toBe(minVehiclePriceMock(golf.ORIGINAL_PRICE));
     });
 
     test('Test closure get Personal Assitance', () => {
@@ -191,41 +166,27 @@ describe('Tests for closure and update price', () => {
         expect(vehicleProto).not.toHaveProperty('personalAssistance');
     });
 
-    // Set current year
+    //* Set current year
     Date.now = jest
         .fn(() => new Date());
 
-    const updateLeonPrice = jest
+    const updateVehiclePriceMock = jest
         .fn()
-        .mockImplementation((ORIGINALPRICE, year) => Math.round(ORIGINALPRICE - ORIGINALPRICE * (0.1 * (Date.now().getFullYear() - year))))
-        .mockName('updateLeonPrice');
+        .mockImplementation((ORIGINAL_PRICE_VEHICLE, yearVehicle) => Math.round(ORIGINAL_PRICE_VEHICLE - ORIGINAL_PRICE_VEHICLE * (0.1 * (Date.now().getFullYear() - yearVehicle))))
+        .mockName('updateVehiclePriceMock');
 
     test('Update price vehicles', () => {
         expect(golf.getPrice()).toBe(35);
         expect(leon.getPrice()).toBe(20);
+        expect(herbie.getPrice()).toBe(45);
 
         golf.updatePrice();
         leon.updatePrice();
+        herbie.updatePrice();
 
-        expect(golf.price).toBe(35);
-        expect(leon.price).toBe(updateLeonPrice(leon.ORIGINALPRICE, leon.year));
-
-        // Change year
-        Date.now = jest
-            .fn(() => new Date(2023, 1, 1));
-
-        golf.updatePrice();
-        leon.updatePrice();
-
-        expect(Date.now().getFullYear()).toBe(2023);
-        expect(golf.price).toBe(35);
-        expect(leon.price).toBe(updateLeonPrice(leon.ORIGINALPRICE, leon.year));
-    });
-
-    // This test case is in conflict with another one, bcs by executed alone get passed but in group fails
-    test('Try to update price under minimum, return min price', () => {
-        expect(golf.getPrice()).toBe(35);
-        expect(leon.getPrice()).toBe(20);
+        expect(golf.price).toBe(updateVehiclePriceMock(golf.ORIGINAL_PRICE, golf.year));
+        expect(leon.price).toBe(updateVehiclePriceMock(leon.ORIGINAL_PRICE, leon.year));
+        expect(herbie.price).toBe(45);
 
         // Change year
         Date.now = jest
@@ -233,9 +194,12 @@ describe('Tests for closure and update price', () => {
 
         golf.updatePrice();
         leon.updatePrice();
+        herbie.updatePrice();
 
+        // By change the year we made the price after the update be under the minimum
         expect(Date.now().getFullYear()).toBe(2030);
-        expect(golf.price).toBe(35);
-        expect(leon.price).toBe(leon.getMinPrice());
+        expect(golf.price).toBe(minVehiclePriceMock(golf.ORIGINAL_PRICE));
+        expect(leon.price).toBe(minVehiclePriceMock(leon.ORIGINAL_PRICE));
+        expect(herbie.price).toBe(45);
     });
 });

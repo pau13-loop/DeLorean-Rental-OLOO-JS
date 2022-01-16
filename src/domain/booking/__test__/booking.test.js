@@ -4,11 +4,10 @@ const Customer = require('../../customer/customer');
 const Vehicle = require('../../vehicle/vehicle');
 const Category = require('../../category/category');
 
-var marty = Object.create(Customer).init('Marty', '1985/12/02', 12345678, 'Z');
-var classic = Object.create(Category).init('classic', 40);
-var deLorean = Object.create(Vehicle).init('DeLorean', 'Motor Company', classic, 4, 1982, 30, true);
-var martyBooking = Object.create(Booking).init('2021/01/02', '2021/01/20', marty, deLorean);
-
+var marty = Object.create(Customer)._init('Marty', '1985/12/02', 12345678, 'Z');
+var classic = Object.create(Category)._init('classic', 40);
+var deLorean = Object.create(Vehicle)._init('DeLorean', 'Motor Company', classic, 1982, 30, 30, true);
+var martyBooking = Object.create(Booking)._init('2021/01/02', '2021/01/20', marty, deLorean);
 
 describe(
     'Define booking, vehicle, category and customer to test the getters of the booking', () => {
@@ -49,9 +48,9 @@ describe(
 
 describe('Booking domain logic methods testing', () => {
 
-    var bookingOfFiveDays = Object.create(Booking).init('2021/01/01', '2021/01/05', marty, deLorean);
-    var bookingWrongDateFormat = Object.create(Booking).init('02-05-2020', '20052020', marty, deLorean);
-    var bookingEndBeforeStart = Object.create(Booking).init('2021/01/02', '2020/12/25', marty, deLorean);
+    var bookingOfFiveDays = Object.create(Booking)._init('2021/01/01', '2021/01/05', marty, deLorean);
+    var bookingWrongDateFormat = Object.create(Booking)._init('02-05-2020', '20052020', marty, deLorean);
+    var bookingEndBeforeStart = Object.create(Booking)._init('2021/01/02', '2020/12/25', marty, deLorean);
 
     test('Calculate total number of days of booking', () => {
         const differenceBtwDaysMock = jest
