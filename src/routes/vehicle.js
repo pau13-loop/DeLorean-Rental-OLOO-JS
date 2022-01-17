@@ -21,6 +21,5 @@ router.put('/update/:id', vehicleController.VehicleAPI.updateVehicle);
 //? Added /stock to endpoint to not get conflict with the update endpoint by :id
 router.put('/update/stock/price', vehicleController.VehicleAPI.updatePriceVehicles);
 router.put('/update/stock/discount', vehicleController.VehicleAPI.applyDiscountTaxVehicles);
-// router.put('./update/restore',);
 
 module.exports = router;

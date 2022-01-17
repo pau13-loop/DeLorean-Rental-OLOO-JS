@@ -1,9 +1,9 @@
 const { MongoClient } = require("mongodb");
 /**
- * Ejecutar en terminal:
+ * Run in terminal:
  * $ node ./src/db/connection/isAtlasAlive.js
  * 
- * Deben observarse las dos queries
+ * You must observe both queries
  */
 
 //*Source: https://github.com/dfleta/pushmees_pullmees/blob/master/db/isAtlasAlive.js

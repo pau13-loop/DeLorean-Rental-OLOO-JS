@@ -17,7 +17,7 @@ const CustomerParser = (function singletonCustomerParser() {
             id: data._id,
             name: data.name,
             lastName: data.lastName,
-            birthDate: data.birthDate,
+            birthDate: new Date(data.birthDate).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) ,
             dniNumber: data.dniNumber,
             dniLetter: data.dniLetter
         };

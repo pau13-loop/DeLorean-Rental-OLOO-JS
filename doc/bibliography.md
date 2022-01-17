@@ -66,6 +66,8 @@
 
 > https://stackoverflow.com/questions/27317437/how-to-check-if-one-date-is-before-another-date-using-javascript-jquery/27317897
 
+> https://www.freecodecamp.org/news/how-to-format-dates-in-javascript/
+
 **[⬆ back to top](#table-of-contents)**
 
 ---
@@ -102,6 +104,9 @@
 > https://github.com/visionmedia/supertest/issues/520
 
 > https://github.com/facebook/jest/issues/11665
+
+###### How to run Jest tests sequentially?
+> https://stackoverflow.com/questions/32751695/how-to-run-jest-tests-sequentially
 
 **[⬆ back to top](#table-of-contents)**
 

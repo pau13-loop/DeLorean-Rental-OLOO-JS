@@ -1,5 +1,7 @@
 const ObjectId = require('mongodb').ObjectId;
 
+// CATEGORIES NUMBER --> 3
+
 module.exports = [
     //TODO: Add ObjectId manually to obj to insert into DB 
     {

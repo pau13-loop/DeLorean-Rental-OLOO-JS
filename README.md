@@ -268,3 +268,5 @@ Restore Price
     > A partir de determinado año
     > A partir de determinado precio (o el precio es a partir de este como máximo ??? )
 
+Explicación updatePrice Vehicle domain:
+> //? Conseguimos el nuevo precio multiplicando el porcentaje por el precio original, porque el precio podría ya tener un descuento aplicado, y el descuento del 10% por año siempre se realizará sobre el precio original

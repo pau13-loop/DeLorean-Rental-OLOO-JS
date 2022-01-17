@@ -36,15 +36,16 @@ const BookingServiceAPI = (function singletonCategoryService() {
 
     const createBooking = async (data) => {
         // TODO: Destructing 
-        const {dniNumber, dniLetter, vehicleModel, vehicleBrand} = data;
         // Necessary specify dni number and the dni letter of a customer when try to make a booking, by this way we ensure that the customer found it by the query is the customer we are looking for
         //? Why is that ? Because the costumer never will know with which id he has been saved into the DB
+        const {dniNumber, dniLetter, vehicleModel, vehicleBrand} = data;
         let customer = await Customer.findOne({ dniNumber: dniNumber, dniLetter: dniLetter });
         let {_id, ...customerBooking} = customer.toObject();
         let customerPrototype = CustomerProto.setPrototypeCustomer(customerBooking);
-        console.log('customerPrototype: ', customerPrototype);
+        
         // To match the desired vehicle
         let vehicleBooking = await Vehicle.findOne({ model: vehicleModel, brand: vehicleBrand });
+        
         if (vehicleBooking.isAvailable && customerPrototype.checkIsAdult()) {
             let newBooking = new Booking({
                 startDate: data.startDate,
