@@ -15,7 +15,7 @@ What else we cana ask for ? Give a chance and browse the code, you'll love it to
 
 <!-- Source: https://www.deloreanrental.com/ -->
 <p align="center">
-  <img src="./doc/img/rent-a-car.gif" alt="animated" width="70%" height="300" />
+  <img src="./doc/img/rent-a-car.gif" alt="animated" width="80%" height="300" />
 </p>
 
 
