@@ -45,7 +45,7 @@ const CustomerAPI = (function singletonCustomerController() {
             .then((data) => {
                 const response = data
                     ? responseFormatter(null, data, 'Request customer updated succesfully')
-                    : responseFormatter(null, data, 'Requested customer to update not found');
+                    : responseFormatter(null, data, 'Check the specified parameter please');
                 res.status(202).type('json').json(response);
             })
             .catch((err) => {
@@ -60,7 +60,7 @@ const CustomerAPI = (function singletonCustomerController() {
                 console.log('data: ', data)
                 const response = data
                     ? responseFormatter(null, data, 'Request create customer succesfull')
-                    : responseFormatter(null, data, 'Couldn\'t create customer, please check the given parameters');
+                    : responseFormatter(null, data, 'Couldn\'t create customer please check the specified parameters');
                 res.status(202).type('json').json(response);
             })
             .catch((err) => {

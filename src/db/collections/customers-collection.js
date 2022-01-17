@@ -1,5 +1,7 @@
 const ObjectId = require('mongodb').ObjectId;
 
+// CUSTOMERS NUMBER --> 6
+
 module.exports = [
     {
         _id: ObjectId("61d9cfbbd1b9a9480b0c343e"),

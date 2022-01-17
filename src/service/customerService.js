@@ -25,17 +25,14 @@ const CustomerServiceAPI = (function singletonCustomerService() {
     };
 
     const updateCustomer = (id, data) => {
-        let update = {
-            name: data.name,
-            lastName: data.lastName,
-            birthDate: data.birthDate,
-            dniNumber: data.dniNumber,
-            dniLetter: data.dniLetter
+        let updateCustomerProto = CustomerProto.setPrototypeCustomer(data);
+        if (updateCustomerProto.checkValidDni()) {
+            // Set new to true to return the document after the update
+            return Customer.findByIdAndUpdate(id, updateCustomerProto, { new: true })
+                .exec()
+                .then(CustomerParser.CustomerParser.customerDataParser);
         }
-        // Set new to true to return the document after the update
-        return Customer.findByIdAndUpdate(id, update, { new: true })
-            .exec()
-            .then(CustomerParser.CustomerParser.customerDataParser);
+        return Promise.resolve(null);
     }
 
     const createCustomer = (data) => {
