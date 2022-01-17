@@ -1,5 +1,13 @@
 # Rent-a-car-OLOO-JS
-Implement the business logic of a Rent a car, create an ApiRestfull connected to MongoAtlas and implement the object composition. Introduction to linked objects by prototypes of JS
+
+Implement the business logic of a Rent a car, create an ApiRestfull connected to MongoAtlas and implement the object composition. Introduction to linked objects by prototypes of JS. 
+The basics of a project to understand JavaScript in it's low level, get a nice perspective of the scripting language and get familiarized with it. 
+
+What else we cana ask for ? Give a chance and browse the code, you'll love it too. (JavaScript, the project can be done much better, I'm sure of it)
+
+
+![Rent A Car Gif](../doc/img/rent-a-car.gif)
+
 
 ## Table of Contents
 
@@ -9,24 +17,27 @@ Implement the business logic of a Rent a car, create an ApiRestfull connected to
 1. [Required dependencies](#required-dependencies)
 1. [Required dependencies](#required-dependencies)
 1. [Bibliography](#bibliography)
-<!-- No desarrollados aún -->
 1. [Installation](#)
-1. [Contribuition](#)
 1. [Collaboration References](#)
-1. [Domain Documentation](#)
-1. [License](#)
+1. [License](#license)
 
 ## OLOO
 
 What is it OLOO ?
 
+First of all we have to understand what means "OLOO" to understand the concept. OLOO means, Objects Linking to Other Objects. And now we are ready to know how JavaScipts works in base low level. Everything in JavaScript is considered an object and every object has his own prototype.   
+
 ---
+
+**[⬆ back to top](#table-of-contents)**
 
 ## Motivation
 
-This project has been created thanks to the motivation of our coding head teacher to learn the paradigm of JavaScript in the lowest possible leevl. Create an api with Express and implement a connection to a no relationl data base, like MongoDB in this case. I've to say that it was a lot easier than I expected and thanks to projects like this kind if started to develop a big love for JavaScript language and the easy way that JS it turns out to be to give you freedom when you code. 
+This project has been created thanks to the motivation of our coding head teacher to learn the paradigm of JavaScript as good and as close as possible. We had to create an api with Express and implement a connection to a no relationl data base, like MongoDB in this case. I've to say that it was a lot easier than I expected and thanks to projects like this kind if started to develop a big love for JavaScript language and the easy way that JS it turns out to be to give you freedom when you code. Sometimes this can be harm but if you implement SOLID Principles and follow a good developing strategy it should do more good than bad. Always keep in mind the "clean code conventions and project architecture", SOLID Principles, design patterns and good naming.
 
 ---
+
+**[⬆ back to top](#table-of-contents)**
 
 ## Technologies Implemented
 
@@ -63,136 +74,24 @@ This project has been created thanks to the motivation of our coding head teache
 
 ---
 
-## User Stories
+**[⬆ back to top](#table-of-contents)**
 
-[***User Stories***](./doc/user-stories.md)
-
----
-
-## Bibliography
-
-[**Bibliography**](./doc/bibliography.md)
-
----
-
-# Node.js server
-
-To run the node.js server execute the file where you have added the configuration of your server, for example:
-> node main.js
-You'll get something like the example below:
-```
-> node hellonode.js
-Server running at http://127.0.0.1:3000/
-```
-Access to the `127.0.0.1:3000` to be able to view the express server up and running.
-
-
-
-###### Help
-**Remember !**
-
-The IP  `127.0.0.1` always refers to the `localhost`. Then if you access to the url `http://127.0.0.1:3000/` or to this other one `http://localhost:3000/` you'll get the same result, so don't worry about it because both urls point to the same destination point.
-
-
-
-# Express server example
-To run the node.js server execute the file where you have added the configuration of your server, for example:
-> node myAppExpress.js
-You'll get something like the example below:
-```
-> node myAppExpress.js
-Example app listening on port 8000
-```
-Access to the `localhost:8000` to be able to view the express server up and running.
-
-
-
-# eslint NOT WORKING AT THE MOMENT
-
-To explain a little further, eslint src/js is a command that we could enter in our terminal/command line to run eslint on JavaScript files contained in the src/js directory inside our app directory. Including the above inside our app's package.json file provides a shortcut for this command — lint.
-
-
-
-# Working with EXPRESS
-
-Then run the app:
-> `DEBUG=rent-a-car:* npm start`
-
-### www file
-The file /bin/www is the application entry point! The very first thing this does is require() the "real" application entry point (app.js, in the project root) that sets up and returns the express() application object.
-
-### app.js
-This file creates an express application object (named app, by convention), sets up the application with various settings and middleware, and then exports the app from the module.
-
-### Routes
-First, it loads the express module and uses it to get an express.Router object. Then it specifies a route on that object and lastly exports the router from the module (this is what allows the file to be imported into app.js).
-
-###### Why "next" in router function() ?
-One thing of interest above is that the callback function has the third argument 'next', and is hence a middleware function rather than a simple route callback. While the code doesn't currently use the next argument, it may be useful in the future if you want to add multiple route handlers to the '/' route path.
-
-### Views (templates)
-The views (templates) are stored in the /views directory (as specified in app.js) and are given the file extension .pug. The method Response.render() is used to render a specified template along with the values of named variables passed in an object, and then send the result as a response. 
-
-
-## Atribs a aplicar (en los prototipos)
-
-- originalPrice 
-
-## Método a aplicar (Lógica prototipos)
-
-- UpdatePrice (este método se ejecutará cuando el vehiculo lleve en stock 1 año, actualizará el precio un 5%)
-- applyDiscount (Black friday method, se hace el cálculo con el discountTax, atributo distinto para cada categoria)
-- RestorePrice (devuelve su precio original después de un BlackFriday)
-
-## Método a aplicar (en el Service)
-
-###### Find alls
-- [x] findAll
-- [x][] findByBrand (or brands ???)
-- [x] findByColor
-- [x] findByPrice
-- [x] findByCategory
-- [x] findByDiscountTax
-- [x] findByFuel
-- [x] findByPassengersNum
-- [x] findByYear
-- [x] findAvailables
-- [] findByCharacteristics
-
-###### Find ones
-- [x] findModel
-
-###### Other
-- findByPriceMinorTo
-- findByPriceMajorTo
-
-- SortByMayorPrice
-- SortByMinorPrice
- 
-
-- Actualizar un vehiculo ? PUT
-- Eliminar un vehiculo ? DELETE
-- Añadir un vehiculo ? POST
-
-
-
-# Preguntas que han ido surgiendo a lo largo del dessarrollo:
-
-### Dudas que han surgido en el Controller
+### Questions & Answers that came up during the project development
 
 1. El modulo resource nos lo podemos ahorrar ??? Ya que en principio el la logica de Ollivaners habiamos creado uno ya que el controller actuaba como el router y el resource de Ollivanders actuaria como el controller de node. 
+We can save the resource module ? Because in Ollivanders logic we have created one and the controller in my opinion would act as the router and the Ollivanders resource would act as the node controller. I'm I right ? (Ollivanders is a reference of a project from the first year of Software Development)
 
-> Sí, la lógica del resoruces es una capa que nos podemos ahorrar, en Ollivanders no teniamos la capa routers.
+> Yes, we can save the logic from the resources layer because in Ollivanders project the routers layer was missing
 
-2.    Si una lista al hacer un getAll me vuelve vacia, donde compruebo si devuelvo la lista o un mensaje de error en el caso de que este vacia, en el Service o en el controller ? Me creo una función que lo único que haga sea comprobar si la lista está vacia y mantnemos SRP ? Es una validación que se realizará constantemente para cada método que devuelva una lista, tendria sentido crearse una función. 
+2. If a list returns empty when I do a getAll, where do I check if I return the list or an error message in case it is empty, in the Service or in the controller layer ? I create a function that the only thing I do is to check if the list is empty and keep SRP ? 
 
-> La validación se debería hacer, se puede crear un método para ello y debería estar creada en el Controller de la aplicación
+> It is a validation that will be performed constantly for each method that returns a list, it would make sense to create a function. And some validation should be done, a method can be created for it and it should be created in the Controller of the application.
 
-3.   Las validaciones se deberían hacer en el service y el objeto debería encapsular una lógica simple que solo sea llamada si se cumple la condición ??? Los if-else deberían ir en el service ?
+3.   Validations should be done in the service and the object should encapsulate simple logic that is only called if some condition is met?
 
-> La lógica de negocio debe ir encapsulada en el dominio. En el service solo se ataca la bd y se filtra u ordena si se desea pero la lógica de negocio, que es lo que planteo en este caso, la encapsulamos en el dominio
+> The business logic must be encapsulated in the domain. In the service we only attack the database and filter or sort it if desired, but the business logic, which is what I am proposing in this case, is encapsulated in the domain.
 
-4. Esta función sobra  ???
+4. This function is redundant  ?
 ```
         getMinPrice: function() {
         return this.getOriginalPrice * 0.3;
@@ -201,26 +100,15 @@ The views (templates) are stored in the /views directory (as specified in app.js
     if (this.price > this.originalPrice * 0.3)
 ```
 
-> Si hubiera colocado el método dentro del condicional el lenguage del dominio sería mucho más intuitivo y facilitaria el antenimiento del código en el caso de que futuros programadores vinieran a trabjar en el proyecto
+> If I had placed the method inside the conditional, the domain language would be much more intuitive and would make it easier to maintain the code in case future programmers come to work on the project. As quick as you read the method name you'll related with it's purpose.
 
-5. Cuando le debo asignar el prototipo a los objetos ? 
+5. When to assign the prototype to objects ? 
 
-```
-    //TODO: asignar prototypo ???
-    //? Esto se debe hacer al inicializar la bd ???
-    //* Asignar la propiedad --> es el momento adecuado ???
-    const setPrototypeVehicle = function (vehicle) {
-        if (Object.getPrototypeOf(vehicle) !== Vehicle) {
-            return Object.setPrototypeOf(vehicle, Vehicle.init(vehicle.brand, vehicle.model, vehicle.color, vehicle.price, vehicle.category));
-        }
-    }
-```
+> The assignment or linking of prototypes must take place in the domain, in the domain logic. Each entity shall be responsible for linking its prototype to the objects.
 
-> La asignación o lincamiento de prototipos debe producirse en el domain, en la lógica de dominio. Cada entidad deberá ser la encargada de lincar su prototipo a los objetos.
+6. When I order the objects ?
 
-6. Cuando ordeno los aobjetos ?
-
-> En la llamada a la BD ya puedo hacer que me de los obj ordenados según como me interesa
+> In the call to the DB I can now make it give me the objects ordered according to my interests.
 
 
 # Historias de usuario
@@ -243,30 +131,56 @@ The views (templates) are stored in the /views directory (as specified in app.js
 
 - Closure para conseguir asistencia técnica ??? Cuando un vehiculo es reservado se define una propiedad del objeto que trata sobre conseguir asistencia técnica. Solo se puede acceder a ella mientras su prop available este seteada a false. Basicamente lo que hace es pasarle un nombre por parametro y devolver un mensaje diciendo: "Asistencia técninca en camino para <nombre>"
 
-### Ciclo de vida del precio del Vehiculo
+## User Stories
 
-Seteamos property ORIGINALPRICE
-> precio = ORIGINALPRICE
+[***User Stories***](./doc/user-stories.md)
 
-Black Friday
-> precio = precio * tasaDescuento
+---
 
-Update Price
-> precio = ORIGINALPRICE * (0.1 * añosVehiculo hasta día de hoy)
+## Bibliography
 
-Restore Price
-> updatePrice()
+[**Bibliography**](./doc/bibliography.md)
 
+---
 
-# Service
+## Mongo Refresh
 
--  Número de pasajeros me parece más improtante que el color para actualizar la lista, tenemos que ver si el filtro generico funciona y ordenar la lista de menor a mayor. Porque esa lista filtra por año y por núm. de pasajeros.
+[***Mongo Refresh***](./doc/mongo-refresh.md)
 
-- Si el filtro generico después ordena de menor a mayor probablemente se pueda incluir el precio. 
-    
-    > Porque yo quiero que me muestre vehiculos a partir de determinado número de pasajeros
-    > A partir de determinado año
-    > A partir de determinado precio (o el precio es a partir de este como máximo ??? )
+---
 
-Explicación updatePrice Vehicle domain:
-> //? Conseguimos el nuevo precio multiplicando el porcentaje por el precio original, porque el precio podría ya tener un descuento aplicado, y el descuento del 10% por año siempre se realizará sobre el precio original
+## Node Refresh
+
+[***Node Refresh***](./doc/node-refresh.md)
+
+---
+
+**[⬆ back to top](#table-of-contents)**
+
+## License
+
+MIT License
+
+Copyright (c) 2020 AntoniPizarro and Pau Llinàs
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+**[⬆ back to top](#table-of-contents)**
