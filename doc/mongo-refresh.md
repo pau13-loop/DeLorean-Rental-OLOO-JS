@@ -1,6 +1,8 @@
-# Refresh Concepts
+# Refresh Mongo Concepts
 
-## MongoDB define a Schema (Good PRactices Video)
+## MongoDB define a Schema (Good Practices Video)
+
+> Source: https://www.youtube.com/watch?v=leNCfU5SYR8
 
 ### Relational
 
@@ -73,6 +75,7 @@ How you model your data depends-entirely-on your particular aplication's data ac
 ## Security 
 
 To be able to use the environment variables at the file .env you'll have to install the following dependency:
+
 ```bash
      npm install dotenv --save
 ```
@@ -81,12 +84,8 @@ And now add at the top of the files the following `require('dotenv').config()` t
 
 # ATENTION
 
-The DB from production has not to be touch at any moment. This means we wont do any insert or deletion. 
+The DB from production can't be touched at any moment. This means we wont do any insert, update or deletion. 
 
-# This I've Forgot
+**[⬆ back to top](#refresh-mongo-concepts)**
 
-## app.js
-
-En la app se definen las rutas y los midelware. A partir de cada ruta definida se le añade la extensión que se le quiera dar y las rutas del endpoint definido comenzarán a partir de dicha extensión. <br/>
-Por ejemplo:<br/>
-Queremos definir el endpoint para el **stock**. En la app añadiremos el siguiente statement `app.use('/stock', stockRouter)`. Todos los endpoints de stock serán creado a a partir de, `/stock/<name new endpoint of stock>`.  
+---
