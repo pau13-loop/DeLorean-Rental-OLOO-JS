@@ -66,6 +66,8 @@
 
 > https://stackoverflow.com/questions/27317437/how-to-check-if-one-date-is-before-another-date-using-javascript-jquery/27317897
 
+> https://www.freecodecamp.org/news/how-to-format-dates-in-javascript/
+
 **[⬆ back to top](#table-of-contents)**
 
 ---
@@ -85,6 +87,9 @@
 ###### Official course from Node.js "all you need to know"
 > https://nodejs.dev/learn/introduction-to-nodejs
 
+###### Conventions JS
+> https://www.robinwieruch.de/javascript-naming-conventions/
+
 **[⬆ back to top](#table-of-contents)**
 
 ---
@@ -99,6 +104,9 @@
 > https://github.com/visionmedia/supertest/issues/520
 
 > https://github.com/facebook/jest/issues/11665
+
+###### How to run Jest tests sequentially?
+> https://stackoverflow.com/questions/32751695/how-to-run-jest-tests-sequentially
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -176,6 +184,13 @@
 
 ###### Model example
 > https://vertabelo.com/blog/renting-out-cars-is-as-simple-as-driving-a-data-model-for-a-car-rental-company/
+
+###### Destructing and ...rest operator
+> https://www.freecodecamp.org/news/javascript-object-destructuring-spread-operator-rest-parameter/
+> https://dmitripavlutin.com/javascript-object-destructuring/
+
+###### Destructing mongoose objects
+> https://stackoverflow.com/questions/54951260/spread-syntax-returns-unexpected-object
 
 **[⬆ back to top](#table-of-contents)**
 

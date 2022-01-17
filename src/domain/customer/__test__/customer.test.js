@@ -3,7 +3,7 @@ const  Customer = require('../customer');
 
 describe('Customer test cases', () => {
 
-    var customer = Object.create(Customer).init('Leopoldo', 'Alas', '1991/02/15', 22738795, 'Y');
+    var customer = Object.create(Customer)._init('Leopoldo', 'Alas', '1991/02/15', 22738795, 'Y');
 
     test('Check customer properties', () => {
         expect(customer).toHaveProperty('name', 'lastName', 'birthDate', 'dniNumber', 'dniLetter');
@@ -44,9 +44,9 @@ describe('Customer test cases', () => {
     });
 
     test('Check customer is an adult, over 18 years old', () => {
-        var child = Object.create(Customer).init('Sheldon', 'Cooper', '2008/06/09', 12345678, 'T');
-        var twentyOneYears = Object.create(Customer).init('I\'m 21 years', 'Old', '2001/01/07', 12345678, 'T');
-        var twentyYears = Object.create(Customer).init('I\'m 20 years', 'Old', '2002/01/07', 12345678, 'T');
+        var child = Object.create(Customer)._init('Sheldon', 'Cooper', '2008/06/09', 12345678, 'T');
+        var twentyOneYears = Object.create(Customer)._init('I\'m 21 years', 'Old', '2001/01/07', 12345678, 'T');
+        var twentyYears = Object.create(Customer)._init('I\'m 20 years', 'Old', '2002/01/07', 12345678, 'T');
         expect(customer.checkIsAdult()).toBeTruthy();
         expect(twentyOneYears.checkIsAdult()).toBeTruthy();
         expect(child.checkIsAdult()).toBeFalsy();
@@ -54,10 +54,10 @@ describe('Customer test cases', () => {
     })
 
     test('Check the dni letter is correct for the dni number specified', () => {
-        var dniValid =  Object.create(Customer).init('David', 'Bowie', '1947/01/08', '04649048', 'N');
-        var dniNotValidLetters = Object.create(Customer).init('David', 'Bowie', '1947/01/08', '30147966', 'I');
-        var dniNotValidWrongNumber = Object.create(Customer).init('David', 'Bowie', '1947/01/08', 90707250, 'J');
-        var dniNotValidCharacters = Object.create(Customer).init('David', 'Bowie', '1947/01/08', 'ADBGETDR', 'T');
+        var dniValid =  Object.create(Customer)._init('David', 'Bowie', '1947/01/08', '04649048', 'N');
+        var dniNotValidLetters = Object.create(Customer)._init('David', 'Bowie', '1947/01/08', '30147966', 'I');
+        var dniNotValidWrongNumber = Object.create(Customer)._init('David', 'Bowie', '1947/01/08', 90707250, 'J');
+        var dniNotValidCharacters = Object.create(Customer)._init('David', 'Bowie', '1947/01/08', 'ADBGETDR', 'T');
         expect(customer.checkValidDni()).toBeTruthy();
         expect(dniValid.checkValidDni()).toBeTruthy();
         expect(dniNotValidLetters.checkValidDni()).toBeFalsy();

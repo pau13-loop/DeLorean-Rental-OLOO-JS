@@ -1,5 +1,5 @@
 const vehicleService = require('../service/vehicleService');
-const responseFormatter = require('../utils/responseFormatter');
+const responseFormatter = require('../utils/response-formatter');
 
 const VehicleAPI = (function singletonVehicleController() {
 
@@ -79,13 +79,41 @@ const VehicleAPI = (function singletonVehicleController() {
             });
     });
 
+    const updatePriceVehicles = ((req, res, next) => {
+        vehicleService.VehicleServiceAPI.updatePriceVehicles()
+        .then((data) => {
+            const response = data
+                ? responseFormatter(null, data, 'Request update price vehicles succesfully')
+                : responseFormatter(null, data, 'Can not update price because cannot be found any vehicles available');
+            res.status(202).type('json').json(response);
+        }).catch((err) => {
+            const response = responseFormatter(err);
+            res.status(400).type('json').json(response);
+        });
+    });
+
+    const applyDiscountTaxVehicles = ((req, res, next) => {
+        vehicleService.VehicleServiceAPI.applyDiscountTaxVehicles()
+        .then((data) => {
+            const response = data
+                ? responseFormatter(null, data, 'Request discount price vehicles succesfully')
+                : responseFormatter(null, data, 'Can not discount price because cannot be found any vehicles available');
+            res.status(202).type('json').json(response);
+        }).catch((err) => {
+            const response = responseFormatter(err);
+            res.status(400).type('json').json(response);
+        });
+    });
+
     return {
         vehiclesFindAll,
         vehiclesFindOne,
         vehicleDeleteOne,
         createVehicle,
         updateVehicle,
-        vehiclesFindAvailables
+        vehiclesFindAvailables,
+        updatePriceVehicles,
+        applyDiscountTaxVehicles
     }
 })();
 

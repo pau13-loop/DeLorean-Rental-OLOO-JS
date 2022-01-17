@@ -1,7 +1,8 @@
 var Category = {
-    init: function(name, discountTax) {
+    _init: function(name, discountTax, MIN_PRICE_CATEGORY) {
         this.name = name;
         this.discountTax = discountTax;
+        this.MIN_PRICE_CATEGORY = MIN_PRICE_CATEGORY;
         return this;
     },
     getName: function() {
@@ -10,14 +11,21 @@ var Category = {
     getDiscountTax: function() {
         return this.discountTax;
     },
-    setPrototypeCategory: function (category) {
-        if (Object.getPrototypeOf(category) !== Category) {
-            return Object.setPrototypeOf(category, Category.init(category.name, category.discountTax));
-        }
+    getMinPriceCategory: function() {
+        return this.MIN_PRICE_CATEGORY;
     },
-    applyDiscount: function (price) {
-        //* Al aplicar el descuento siempre queremos redondear al menor número posible
-            return Math.floor(price - (0.01 * this.discountTax) * price);
+    setPrototypeCategory: function (category) {
+        return Object.getPrototypeOf(category) !== Category
+        ? Object.setPrototypeOf(category, Category._init(category.name, category.discountTax, category.MIN_PRICE_CATEGORY))
+        : category;
+    },
+    //? El descuento siempre se aplicará al precio original y no al actualizado. Black Friday fraudulento
+    applyDiscount: function (ORIGINAL_PRICE_VEHICLE) {
+        //* When apply discount we want to round to the smallest possible number
+        let discountedPrice = Math.floor(ORIGINAL_PRICE_VEHICLE - (0.01 * this.discountTax) * ORIGINAL_PRICE_VEHICLE);
+        return  discountedPrice < this.MIN_PRICE_CATEGORY
+        ? this.MIN_PRICE_CATEGORY
+        : discountedPrice;
     }
 }
 

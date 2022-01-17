@@ -15,10 +15,10 @@ var VehicleSchema = new Schema({
         type: Schema.Types.ObjectId, 
         ref: Category
     },
-    passengers: {
-        type: Number, 
-        required: true
-    },
+    // passengers: {
+    //     type: Number, 
+    //     required: true
+    // },
     year: {
         type: Number, 
         required: true
@@ -27,7 +27,12 @@ var VehicleSchema = new Schema({
         type: Number,
         required: true
     },
-    available: {
+    //! Añadir no modificable
+    ORIGINAL_PRICE: {
+        type: Number,
+        required: true
+    },
+    isAvailable: {
         type: Boolean,
         required: true,
         default: true
@@ -35,8 +40,7 @@ var VehicleSchema = new Schema({
 });
 
 VehicleSchema.pre(['find', 'findOne', 'findOneAndDelete', 'findOneAndUpdate'], function () {
-    this.select('_id model brand category passengers year price available');
+    this.select('_id model brand category year price ORIGINAL_PRICE isAvailable');
 });
-
 
 module.exports = mongoose.model('vehicles', VehicleSchema);

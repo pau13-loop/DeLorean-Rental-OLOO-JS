@@ -1,5 +1,5 @@
 var Customer = {
-    init: function (
+    _init: function (
         name, lastName, birthDate, dniNumber, dniLetter
     ) {
         this.name = name;
@@ -25,9 +25,9 @@ var Customer = {
         return this.dniLetter;
     },
     setPrototypeCustomer: function(customer) {
-        if (Object.getPrototypeOf(customer) != Customer) {
-            return Object.setPrototypeOf(customer, Customer.init(customer.name, customer.lastName, customer.birthDate, customer.dniNumber, customer.dniLetter));
-        }
+        return Object.getPrototypeOf(customer) != Customer
+        ? Object.setPrototypeOf(customer, Customer._init(customer.name, customer.lastName, customer.birthDate, customer.dniNumber, customer.dniLetter))
+        : customer;
     },
     checkIsAdult: function () {
         var actualDate = new Date();
@@ -36,7 +36,7 @@ var Customer = {
             let birthDateParsed = new Date(this.birthDate);
             var age = actualDate.getFullYear() - birthDateParsed.getFullYear();
             let month = actualDate.getMonth() - birthDateParsed.getMonth();
-            if (month < 0 || (month === 0 && actualDate.getDate() < birthDateParsed.getDate())) { age--; };
+            if (month < 0 || (month === 0 && actualDate.getDate() < birthDateParsed.getDate())) { age--; }
             if (age >= 21) {
                 return true;
             }
