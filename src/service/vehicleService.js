@@ -6,7 +6,6 @@ const VehicleParser = require('../utils/parsers/vehicle-parser');
 const { CategoryServiceAPI } = require('./categoryService');
 
 const VehicleServiceAPI = (function singletonVehicleService() {
-
     const getAllVehicles = () => {
         return Vehicle.find().then(VehicleParser.VehicleParser.vehicleDataParser);
     }
@@ -33,9 +32,9 @@ const VehicleServiceAPI = (function singletonVehicleService() {
             model: data.model,
             brand: data.brand,
             category: categoryVehicle.id,
-            passengers: data.passengers,
             year: data.year,
-            price: data.price
+            price: data.price,
+            ORIGINAL_PRICE: data.ORIGINAL_PRICE
         });
         return newVehicle.save().then(VehicleParser.VehicleParser.vehicleDataParser);
     }

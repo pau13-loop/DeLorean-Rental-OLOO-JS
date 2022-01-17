@@ -4,10 +4,10 @@ const app = require('../index');
 const db = require('../db/connection/mongo-config');
 const BookingModel = require('../db/models/booking');
 const VehicleModel = require('../db/models/vehicle');
-const CustomerModel = require('../db/models/customer');
+const CustomerModel = require('../db/models/customer')
 const bookingCollection = require('../db/collections/bookings-collection');
-const customerCollection = require('../db/collections/customers-collection');
-const vehicleCollection = require('../db/collections/vehicle-collection-short-list')
+const vehicleCollection = require('../db/collections/vehicle-collection-short-list');
+const customersCollection = require('../db/collections/customers-collection');
 
 describe("Booking Routes", () => {
 
@@ -98,10 +98,12 @@ describe("Booking Routes", () => {
 
         beforeAll(async () => {
             await BookingModel.insertMany(bookingCollection);
+            await VehicleModel.insertMany(vehicleCollection);
         }, 10000);
 
         afterAll(async () => {
             await BookingModel.deleteMany();
+            await VehicleModel.deleteMany();
         }, 10000);
 
         // DELETE ONE BY ID
@@ -141,10 +143,14 @@ describe("Booking Routes", () => {
 
         beforeAll(async () => {
             await BookingModel.insertMany(bookingCollection);
+            await VehicleModel.insertMany(vehicleCollection);
+            await CustomerModel.insertMany(customersCollection);
         }, 10000);
 
         afterAll(async () => {
             await BookingModel.deleteMany();
+            await VehicleModel.deleteMany();
+            await CustomerModel.deleteMany();
         }, 10000);
 
         //! Can Throw error

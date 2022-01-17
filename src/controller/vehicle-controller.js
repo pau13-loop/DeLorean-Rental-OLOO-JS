@@ -84,8 +84,8 @@ const VehicleAPI = (function singletonVehicleController() {
         .then((data) => {
             const response = data
                 ? responseFormatter(null, data, 'Request update price vehicles succesfully')
-                : responseFormatter(null, data, 'Can not update price because can not be found any vehicles availables');
-            res.status(200).type('json').json(response);
+                : responseFormatter(null, data, 'Can not update price because cannot be found any vehicles available');
+            res.status(202).type('json').json(response);
         }).catch((err) => {
             const response = responseFormatter(err);
             res.status(400).type('json').json(response);
@@ -97,8 +97,8 @@ const VehicleAPI = (function singletonVehicleController() {
         .then((data) => {
             const response = data
                 ? responseFormatter(null, data, 'Request discount price vehicles succesfully')
-                : responseFormatter(null, data, 'Can not discount price because can not be found any vehicles availables');
-            res.status(200).type('json').json(response);
+                : responseFormatter(null, data, 'Can not discount price because cannot be found any vehicles available');
+            res.status(202).type('json').json(response);
         }).catch((err) => {
             const response = responseFormatter(err);
             res.status(400).type('json').json(response);

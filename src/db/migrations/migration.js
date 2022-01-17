@@ -57,12 +57,12 @@ async function run() {
 
         // let result = await categories.insertMany(categoryCollection);
         // console.log(`${result.insertedCount} == 3 categories inserted into DB`);
-        result = await customers.insertMany(customersCollection);
-        console.log(`${result.insertedCount} == 5 customers inserted into DB`);
-        result = await vehicles.insertMany(vehicleCollection);
-        console.log(`${result.insertedCount} == 10 vehicles inserted into DB`);
-        result = await bookings.insertMany(bookingsCollection);
-        console.log(`${result.insertedCount} == 4 bookings inserted into DB`);
+        // result = await bookings.insertMany(bookingsCollection);
+        // console.log(`${result.insertedCount} == 4 bookings inserted into DB`);
+        // result = await customers.insertMany(customersCollection);
+        // console.log(`${result.insertedCount} == 5 customers inserted into DB`);
+        // result = await vehicles.insertMany(vehicleCollection);
+        // console.log(`${result.insertedCount} == 10 vehicles inserted into DB`);
     } finally {
         // Ensures that the client will close when you finish/error
         await client.close();

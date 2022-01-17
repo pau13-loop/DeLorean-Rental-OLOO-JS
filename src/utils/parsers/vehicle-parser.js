@@ -23,7 +23,6 @@ const VehicleParser = (function singletonVehicleParser() {
             passengers: data.passengers,
             year: data.year,
             price: data.price,
-            // originalPrice: data.orginalPrice,
             isAvailable: data.isAvailable
         };
     };
