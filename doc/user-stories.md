@@ -14,11 +14,9 @@ For each module of the proyect, ***bookings, cutomers, vehicles and categories**
 - Post (Create one)
 
 
-
 ## Domain Logic
 
 Now we will explain the user stories that we imagine we had to supply to reach the goals and be able to develop the project following a guide lane. All this user storires you're going to read are not real for an actual ***Rent a car*** business, all them have been made up to create a business logic that will make the project as close as possible to a real implementation.
-
 
 
 #### ***Category***
@@ -51,16 +49,22 @@ Now we will explain the user stories that we imagine we had to supply to reach t
 1. **Set prototype booking**: will check that the prototype of the booking is set correctly and it belong the the right object prototype. In ºcase is not set correctly it will set the prototype of the booking to his belonging object prototype.
 
 
+## Vehicle price life cycle
 
-## User stories by an endpoint perspective
+Property ORIGINAL_PRICE
+> price = ORIGINAL_PRICE;
 
-1. Endpoint a
+Discount Price (Black Friday)
+> newPprice = ORIGINAL_PRICE - (ORIGINAL_PRICE * (0.01 * discountTax));
 
-1. Endpoint b
+> price = newPprice > MIN_PRICE_CATEGORY ? newPprice : MIN_PRICE_CATEGORY;
 
-1. Endpoint c
+Update Price
+> price = ORIGINALPRICE * (0.1 * years_old_vehicle);
 
-1. Endpoint d
-
+To Restore Price
+> call function, updatePrice();
 
 **[⬆ back to top](#user-stories)**
+
+---
