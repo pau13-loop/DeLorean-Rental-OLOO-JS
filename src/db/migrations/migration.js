@@ -2,7 +2,7 @@ const { MongoClient } = require("mongodb");
 require('dotenv').config();
 
 //* COLLECTIONS *//
-const vehicleCollection = require('../collections/vehicle-collection-short-list');
+const vehicleCollection = require('../collections/vehicle-collection');
 const categoryCollection = require('../collections/category-collection');
 const customersCollection = require("../collections/customers-collection");
 const bookingsCollection = require("../collections/bookings-collection");
@@ -20,8 +20,9 @@ async function run() {
         await client.connect();
 
         //! Cambiado para poder hace llamadas con Hoppscotch
-        const database = client.db('Rent-a-car_test');
-        // const database = client.db('Rent-a-car');
+        const database = process.env.NODE_ENV === "development"
+        ? client.db('Rent-a-car')
+        : client.db('Rent-a-car_test');
         const categories = database.collection('categories');
         const customers = database.collection('customers')
         const vehicles = database.collection('vehicles');
@@ -55,14 +56,16 @@ async function run() {
             });
         }
 
-        // let result = await categories.insertMany(categoryCollection);
-        // console.log(`${result.insertedCount} == 3 categories inserted into DB`);
-        // result = await bookings.insertMany(bookingsCollection);
-        // console.log(`${result.insertedCount} == 4 bookings inserted into DB`);
-        // result = await customers.insertMany(customersCollection);
-        // console.log(`${result.insertedCount} == 5 customers inserted into DB`);
-        // result = await vehicles.insertMany(vehicleCollection);
-        // console.log(`${result.insertedCount} == 10 vehicles inserted into DB`);
+        if (process.env.NODE_ENV === "development") {
+            let result = await categories.insertMany(categoryCollection);
+            console.log(`${result.insertedCount} == 3 categories inserted into DB`);
+            result = await bookings.insertMany(bookingsCollection);
+            console.log(`${result.insertedCount} == 4 bookings inserted into DB`);
+            result = await customers.insertMany(customersCollection);
+            console.log(`${result.insertedCount} == 5 customers inserted into DB`);
+            result = await vehicles.insertMany(vehicleCollection);
+            console.log(`${result.insertedCount} == 10 vehicles inserted into DB`);
+        }
     } finally {
         // Ensures that the client will close when you finish/error
         await client.close();

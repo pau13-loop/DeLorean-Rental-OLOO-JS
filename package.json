@@ -17,13 +17,13 @@
     "lint": "eslint src/*.js",
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
-    "serverstart": "cross-env NODE_ENV=development DEBUG=rent_a_car:* npm run devstart",
+    "serverstart": "NODE_ENV=development npm run migrate && cross-env NODE_ENV=development DEBUG=rent_a_car:* npm run devstart",
     "migrate": "node ./src/db/migrations/migration.js",
     "pretest": "cross-env NODE_ENV=test npm run migrate",
     "test": "cross-env NODE_ENV=test jest --runInBand --detectOpenHandles",
     "pulltest": "cross-env NODE_ENV=test jest --runInBand",
     "test-vanilla": "node ./src/db/migrations/migration.js && cross-env NODE_ENV=test jest --runInBand",
-    "coverage": "jest --coverage",
+    "coverage": "jest --coverage --runInBand",
     "pre-commit": "npm run lint && npm test"
   },
   "dependencies": {

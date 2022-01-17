@@ -6,7 +6,7 @@ const BookingModel = require('../db/models/booking');
 const VehicleModel = require('../db/models/vehicle');
 const CustomerModel = require('../db/models/customer')
 const bookingCollection = require('../db/collections/bookings-collection');
-const vehicleCollection = require('../db/collections/vehicle-collection-short-list');
+const vehicleCollection = require('../db/collections/vehicle-collection');
 const customersCollection = require('../db/collections/customers-collection');
 
 describe("Booking Routes", () => {

@@ -5,6 +5,13 @@ The basics of a project to understand JavaScript in it's low level, get a nice p
 
 What else we cana ask for ? Give a chance and browse the code, you'll love it too. (JavaScript, the project can be done much better, I'm sure of it)
 
+[![status application](https://img.shields.io/badge/status-stable-brightgreen)](https://github.com/pau13-loop/DeLorean-Rental-OLOO-JS)
+[![test passing](https://img.shields.io/badge/test-passing-green)](https://jestjs.io/)
+[![test coverage](https://img.shields.io/badge/coverage-92%25-success)](https://jestjs.io/)
+[![node version](https://img.shields.io/badge/node-v16.13.0-brightgreen)](https://nodejs.org/en/)
+[![npm version](https://img.shields.io/badge/npm-v8.1.0-critical)](https://www.npmjs.com/)
+[![version application](https://img.shields.io/badge/version-v1.0.0-informational)](https://github.com/pau13-loop/DeLorean-Rental-OLOO-JS)
+
 
 <!-- Source: https://www.deloreanrental.com/ -->
 <p align="center">

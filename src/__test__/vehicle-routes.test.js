@@ -4,7 +4,7 @@ const app = require('../index');
 const db = require('../db/connection/mongo-config');
 const VehicleModel = require('../db/models/vehicle');
 const CategoryModel = require('../db/models/category');
-const vehicleCollection = require('../db/collections/vehicle-collection-short-list');
+const vehicleCollection = require('../db/collections/vehicle-collection');
 const categoryCollection = require('../db/collections/category-collection');
 
 describe("Vehicle Routes FINDS", () => {
@@ -344,28 +344,4 @@ describe("Vehicle Routes FINDS", () => {
                 });
         }, 10000);
     }, 10000);
-
-    // describe("Test DISCOUNT & UPDATE with an empty DB or vehicles not availables", () => {
-    //     test('Test update vehicle price by years old /vehicle/update/stock/price', () => {
-    //         return request(app)
-    //             .put('/vehicle/update/stock/price')
-    //             .then(res => {
-    //                 expect(res.get('Content-Type')).toEqual(expect.stringMatching('/json'));
-    //                 expect(res.statusCode).toEqual(202);
-    //                 expect(res.body.data).toBeNull();
-    //                 expect(res.body.message).toEqual(expect.stringMatching("Can not update price because cannot be found any vehicles available"));
-    //             });
-    //     }, 10000);
-
-    //     test('Test discount vehicles price by category tax /vehicle/update/stock/discount', () => {
-    //         return request(app)
-    //             .put('/vehicle/update/stock/discount')
-    //             .then(res => {
-    //                 expect(res.get('Content-Type')).toEqual(expect.stringMatching('/json'));
-    //                 expect(res.statusCode).toEqual(202);
-    //                 expect(res.body.data).toBeNull();
-    //                 expect(res.body.message).toEqual(expect.stringMatching("Can not discount price because cannot be found any vehicles available"));
-    //             });
-    //     }, 10000);
-    // }, 10000);
 }, 10000);
