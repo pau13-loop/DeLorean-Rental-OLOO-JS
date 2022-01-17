@@ -22,7 +22,7 @@
     "pretest": "cross-env NODE_ENV=test npm run migrate",
     "test": "cross-env NODE_ENV=test jest --runInBand --detectOpenHandles",
     "pulltest": "cross-env NODE_ENV=test jest --runInBand",
-    "test-vanilla": "node ./src/db/migrations/migration.js && cross-env NODE_ENV=test jest",
+    "test-vanilla": "node ./src/db/migrations/migration.js && cross-env NODE_ENV=test jest --runInBand",
     "coverage": "jest --coverage",
     "pre-commit": "npm run lint && npm test"
   },
