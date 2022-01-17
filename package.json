@@ -1,18 +1,18 @@
 {
-  "name": "rent-a-car-oloo",
+  "name": "delorean-rental-oloo-js",
   "version": "1.0.0",
   "description": "Implement the business logic of a Rent a car. Creation of an RESTfull-API connected to MongoAtlas, no relational DB, and implement Prototypal Object Linking of JavaScript, OLOO. Introduction to linked objects by prototypes with JS",
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pau13-loop/Rent-a-car-OLOO-JS.git"
+    "url": "git+https://github.com/pau13-loop/DeLorean-Rental-OLOO-JS.git"
   },
   "author": "Pau Llinas Amat",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pau13-loop/Rent-a-car-OLOO-JS/issues"
+    "url": "https://github.com/pau13-loop/DeLorean-Rental-OLOO-JS/issues"
   },
-  "homepage": "https://github.com/pau13-loop/Rent-a-car-OLOO-JS#readme",
+  "homepage": "https://github.com/pau13-loop/DeLorean-Rental-OLOO-JS#readme",
   "scripts": {
     "lint": "eslint src/*.js",
     "start": "node ./bin/www",

@@ -1,4 +1,4 @@
-# Rent-a-car-OLOO-JS
+# DeLorean Rental
 
 Implement the business logic of a Rent a car, create an ApiRestfull connected to MongoAtlas and implement the object composition. Introduction to linked objects by prototypes of JS. 
 The basics of a project to understand JavaScript in it's low level, get a nice perspective of the scripting language and get familiarized with it. 
@@ -6,7 +6,10 @@ The basics of a project to understand JavaScript in it's low level, get a nice p
 What else we cana ask for ? Give a chance and browse the code, you'll love it too. (JavaScript, the project can be done much better, I'm sure of it)
 
 
-![Rent A Car Gif](../doc/img/rent-a-car.gif)
+<!-- Source: https://www.deloreanrental.com/ -->
+<p align="center">
+  <img src="./doc/img/rent-a-car.gif" alt="animated" width="50%" height="300" />
+</p>
 
 
 ## Table of Contents
