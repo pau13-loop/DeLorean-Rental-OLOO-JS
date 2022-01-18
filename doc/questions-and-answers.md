@@ -4,8 +4,7 @@
 [***README***](../README.md)
 
 
-1. El modulo resource nos lo podemos ahorrar ??? Ya que en principio el la logica de Ollivaners habiamos creado uno ya que el controller actuaba como el router y el resource de Ollivanders actuaria como el controller de node. 
-We can save the resource module ? Because in Ollivanders logic we have created one and the controller in my opinion would act as the router and the Ollivanders resource would act as the node controller. I'm I right ? (Ollivanders is a reference of a project from the first year of Software Development)
+1. We can save the resource module ? Because in Ollivanders logic we have created one and the controller in my opinion would act as the router and the Ollivanders resource would act as the node controller. I'm I right ? (Ollivanders is a reference of a project from the first year of Software Development)
 
 > Yes, we can save the logic from the resources layer because in Ollivanders project the routers layer was missing
 
@@ -26,7 +25,7 @@ We can save the resource module ? Because in Ollivanders logic we have created o
     if (this.price > this.originalPrice * 0.3)
 ```
 
-> If I had placed the method inside the conditional, the domain language would be much more intuitive and would make it easier to maintain the code in case future programmers come to work on the project. As quick as you read the method name you'll related with it's purpose.
+> If I had placed the method inside the conditional, the domain language would be much more intuitive and would make it easier to maintain the code in case future programmers come to work on the project. As quick as you read the method name, you'll be related with its purpose.
 
 5. When to assign the prototype to objects ? 
 
