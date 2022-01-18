@@ -3,7 +3,7 @@
 Implement the business logic of a Rent a car, create an ApiRestfull connected to MongoAtlas and implement the object composition. Introduction to linked objects by prototypes of JS. 
 The basics of a project to understand JavaScript in its low level, get a nice perspective of the scripting language and get familiarized with it. 
 
-What else we can ask for ? Give a chance and browse the code, you'll love it too. (JavaScript, the project can be done much better, I'm sure of it)
+What else we cana ask for ? Give a chance and browse the code, you'll love it too (JavaScript, the project can be done much better, I'm sure of it).
 
 [![status application](https://img.shields.io/badge/status-stable-brightgreen)](https://github.com/pau13-loop/DeLorean-Rental-OLOO-JS)
 [![test passing](https://img.shields.io/badge/test-passing-green)](https://jestjs.io/)
