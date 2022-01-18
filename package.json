@@ -1,29 +1,29 @@
 {
-  "name": "rent-a-car-oloo",
+  "name": "delorean-rental-oloo-js",
   "version": "1.0.0",
   "description": "Implement the business logic of a Rent a car. Creation of an RESTfull-API connected to MongoAtlas, no relational DB, and implement Prototypal Object Linking of JavaScript, OLOO. Introduction to linked objects by prototypes with JS",
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pau13-loop/Rent-a-car-OLOO-JS.git"
+    "url": "git+https://github.com/pau13-loop/DeLorean-Rental-OLOO-JS.git"
   },
   "author": "Pau Llinas Amat",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pau13-loop/Rent-a-car-OLOO-JS/issues"
+    "url": "https://github.com/pau13-loop/DeLorean-Rental-OLOO-JS/issues"
   },
-  "homepage": "https://github.com/pau13-loop/Rent-a-car-OLOO-JS#readme",
+  "homepage": "https://github.com/pau13-loop/DeLorean-Rental-OLOO-JS#readme",
   "scripts": {
     "lint": "eslint src/*.js",
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
-    "serverstart": "cross-env NODE_ENV=development DEBUG=rent_a_car:* npm run devstart",
+    "serverstart": "NODE_ENV=development npm run migrate && cross-env NODE_ENV=development DEBUG=rent_a_car:* npm run devstart",
     "migrate": "node ./src/db/migrations/migration.js",
     "pretest": "cross-env NODE_ENV=test npm run migrate",
     "test": "cross-env NODE_ENV=test jest --runInBand --detectOpenHandles",
     "pulltest": "cross-env NODE_ENV=test jest --runInBand",
     "test-vanilla": "node ./src/db/migrations/migration.js && cross-env NODE_ENV=test jest --runInBand",
-    "coverage": "jest --coverage",
+    "coverage": "jest --coverage --runInBand",
     "pre-commit": "npm run lint && npm test"
   },
   "dependencies": {

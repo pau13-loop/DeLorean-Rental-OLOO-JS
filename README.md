@@ -1,5 +1,23 @@
-# Rent-a-car-OLOO-JS
-Implement the business logic of a Rent a car, create an ApiRestfull connected to MongoAtlas and implement the object composition. Introduction to linked objects by prototypes of JS
+# DeLorean Rental
+
+Implement the business logic of a Rent a car, create an ApiRestfull connected to MongoAtlas and implement the object composition. Introduction to linked objects by prototypes of JS. 
+The basics of a project to understand JavaScript in it's low level, get a nice perspective of the scripting language and get familiarized with it. 
+
+What else we cana ask for ? Give a chance and browse the code, you'll love it too. (JavaScript, the project can be done much better, I'm sure of it)
+
+[![status application](https://img.shields.io/badge/status-stable-brightgreen)](https://github.com/pau13-loop/DeLorean-Rental-OLOO-JS)
+[![test passing](https://img.shields.io/badge/test-passing-green)](https://jestjs.io/)
+[![test coverage](https://img.shields.io/badge/coverage-92%25-success)](https://jestjs.io/)
+[![node version](https://img.shields.io/badge/node-v16.13.0-brightgreen)](https://nodejs.org/en/)
+[![npm version](https://img.shields.io/badge/npm-v8.1.0-critical)](https://www.npmjs.com/)
+[![version application](https://img.shields.io/badge/version-v1.0.0-informational)](https://github.com/pau13-loop/DeLorean-Rental-OLOO-JS)
+
+
+<!-- Source: https://www.deloreanrental.com/ -->
+<p align="center">
+  <img src="./doc/img/rent-a-car.gif" alt="animated" width="80%" height="300" />
+</p>
+
 
 ## Table of Contents
 
@@ -7,26 +25,29 @@ Implement the business logic of a Rent a car, create an ApiRestfull connected to
 1. [Motivation](#motivation)
 1. [Technologies Implemented](#technologies-implemented)
 1. [Required dependencies](#required-dependencies)
-1. [Required dependencies](#required-dependencies)
-1. [Bibliography](#bibliography)
-<!-- No desarrollados aún -->
-1. [Installation](#)
-1. [Contribuition](#)
-1. [Collaboration References](#)
-1. [Domain Documentation](#)
-1. [License](#)
+1. [Basic Explanation of User Stories and Business Logic](#basic-explanation-of-user-stories-and-business-logic)
+1. [Installation](#installation)
+1. [Links to Project Documentation](#links-to-project-documentation)
+1. [Acknowledgment](#acknowledgment)
+1. [License](#license)
 
 ## OLOO
 
 What is it OLOO ?
 
+First of all we have to understand what means "OLOO" to understand the concept. OLOO means, Objects Linking to Other Objects. And now we are ready to know how JavaScipts works in base low level. Everything in JavaScript is considered an object and every object has his own prototype. In JavaScript we can't implement inheritance but we can delegate the behaviour of prototype in his own prototype or into other ones, to get the behaviour of other prototypes we will have to implement OLOO, link to the desired prototype to be able to access his own logic. By this way we finally are able to get rid of the suffering colateral effect of the inheritance that other languages implement.  
+
 ---
+
+**[⬆ back to top](#table-of-contents)**
 
 ## Motivation
 
-This project has been created thanks to the motivation of our coding head teacher to learn the paradigm of JavaScript in the lowest possible leevl. Create an api with Express and implement a connection to a no relationl data base, like MongoDB in this case. I've to say that it was a lot easier than I expected and thanks to projects like this kind if started to develop a big love for JavaScript language and the easy way that JS it turns out to be to give you freedom when you code. 
+This project has been created thanks to the motivation of our coding head teacher to learn the paradigm of JavaScript as good and as close as possible. We had to create an api with Express and implement a connection to a no relationl data base, like MongoDB in this case. I've to say that it was a lot easier than I expected and thanks to projects like this kind if started to develop a big love for JavaScript language and the easy way that JS it turns out to be to give you freedom when you code. Sometimes this can be harm but if you implement SOLID Principles and follow a good developing strategy it should do more good than bad. Always keep in mind the "clean code conventions and project architecture", SOLID Principles, design patterns and good naming.
 
 ---
+
+**[⬆ back to top](#table-of-contents)**
 
 ## Technologies Implemented
 
@@ -63,210 +84,127 @@ This project has been created thanks to the motivation of our coding head teache
 
 ---
 
-## User Stories
+**[⬆ back to top](#table-of-contents)**
+
+## Basic Explanation of User Stories and Business Logic
+
+Welcome to DeLorean Rental application. This application is based on a business of a rent a car service. Like all the rent a cars is got his own business logic. 
+
+You've got four different modules that you should remember to understand how everything is connected in order to work:
+
+- Category
+- Vehicles
+- Customers
+- Bookings
+
+Every one of the modules has got his basic CRUD operations that this one will be, GET, DELETE, UPDATE and CREATE.
+
+Each car is got his own price. The price of each car will be updated by a 10% of the original price for each year old it become. By this way always will be able to rent older cars by a cheaper price. This could me like the main slogan of this business to get the attention of the customer. But we have to remember that the price will be updated until it gets to the minimum price that the car can offer, and we get the minimum price of the car by making a 40% of the original price, this one will be always the minimum price updatable for every car in the system.
+
+Any customers can register into our app you just will have to provide a valid DNI to get your profile registerd in our data base. 
+
+Bookings just will be able to be done by customers registered into our business but also you'll have to be 21 years old or over to be able to rent a car. Anyone under the age of 21 years old will be able to rent a car. At the same the bookings can be created and deleted but not updated to avoid fraudulent usses of the business. In case you make a wrong booking you'll be able to deleted and create another but not update one that already has been created. 
+
+The stock will show just all vehicles available and just one of them instead of seeing how many cars of the same model and brand are availables. In the end the customer is just interested in one car not into know how many of the one he likes are available in our business.
+
+And the more exciting thing of this business logic is how works  the discount method. The discount method will be applied in every "SALES SEASON", this means that will be applied in, for example: 
+
+- Black Friday.
+- New Year's Day
+- Martin Luther King Jr. Day
+- Presidents Day.
+- Easter.
+- Mother's Day.
+- Father's Day.
+- Amazon Prime Day.
+- Tax-free weekends.
+- Halloween.
+- Cyber Monday.
+- Super Saturday.
+- etc
+
+Sales seasons have become more than usual day by day, and most of them are not always 100% a real sale, then in our business happens the same. Every car is got a category assigned and each category have got his own discount tax and the minimum price it can be applied for the specified category. The discount always will be applied to the original price of the car when this one was registered into the stock for first time instead of the actual price has goot. This means that the new cars of the app probably will have a notorius price reduction but cars that already are a couple of years older and his price has been already updated previously maybe the SALES SEASON instead of make a reduction increase the price, making the people belive that they're are getting a price reduction when actually this is not what is really happening. Enjoy the most belived lie that we know, HAPPY SALES CUSTOMERS !
+
+---
+
+**[⬆ back to top](#table-of-contents)**
+
+## Instalaltion
+
+To be able to run this project you just will have to create an account into MongoDB, clone this project and run the command `$ npm i` to install all the required dependencies. Finally create a `.env` file in the root directory of your project and fill the credentials specified in the `.env template` that you'll find below. Enjoy !
+
+## Links to Project Documentation
+
+### User Stories
 
 [***User Stories***](./doc/user-stories.md)
 
 ---
 
-## Bibliography
+### Bibliography
 
 [**Bibliography**](./doc/bibliography.md)
 
 ---
 
-# Node.js server
+### Mongo Refresh
 
-To run the node.js server execute the file where you have added the configuration of your server, for example:
-> node main.js
-You'll get something like the example below:
-```
-> node hellonode.js
-Server running at http://127.0.0.1:3000/
-```
-Access to the `127.0.0.1:3000` to be able to view the express server up and running.
+[***Mongo Refresh***](./doc/mongo-refresh.md)
 
+---
 
+### Node Refresh
 
-###### Help
-**Remember !**
+[***Node Refresh***](./doc/node-refresh.md)
 
-The IP  `127.0.0.1` always refers to the `localhost`. Then if you access to the url `http://127.0.0.1:3000/` or to this other one `http://localhost:3000/` you'll get the same result, so don't worry about it because both urls point to the same destination point.
+### Questions and answers
 
+[***Questions and Answers***](./doc/questions-and-answers.md)
 
+### env. Template
 
-# Express server example
-To run the node.js server execute the file where you have added the configuration of your server, for example:
-> node myAppExpress.js
-You'll get something like the example below:
-```
-> node myAppExpress.js
-Example app listening on port 8000
-```
-Access to the `localhost:8000` to be able to view the express server up and running.
+[***.env Template***](./doc/env-template.md)
 
+---
 
+**[⬆ back to top](#table-of-contents)**
 
-# eslint NOT WORKING AT THE MOMENT
+## Acknowledgment
 
-To explain a little further, eslint src/js is a command that we could enter in our terminal/command line to run eslint on JavaScript files contained in the src/js directory inside our app directory. Including the above inside our app's package.json file provides a shortcut for this command — lint.
+I would like to acknowledge the help and support of:
 
+[***dfleta***](https://github.com/dfleta)
 
+[***Charlos16v***](https://github.com/Charlos16v)
 
-# Working with EXPRESS
+---
 
-Then run the app:
-> `DEBUG=rent-a-car:* npm start`
+**[⬆ back to top](#table-of-contents)**
 
-### www file
-The file /bin/www is the application entry point! The very first thing this does is require() the "real" application entry point (app.js, in the project root) that sets up and returns the express() application object.
+## License
 
-### app.js
-This file creates an express application object (named app, by convention), sets up the application with various settings and middleware, and then exports the app from the module.
+MIT License
 
-### Routes
-First, it loads the express module and uses it to get an express.Router object. Then it specifies a route on that object and lastly exports the router from the module (this is what allows the file to be imported into app.js).
+Copyright (c) 2020 AntoniPizarro and Pau Llinàs
 
-###### Why "next" in router function() ?
-One thing of interest above is that the callback function has the third argument 'next', and is hence a middleware function rather than a simple route callback. While the code doesn't currently use the next argument, it may be useful in the future if you want to add multiple route handlers to the '/' route path.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-### Views (templates)
-The views (templates) are stored in the /views directory (as specified in app.js) and are given the file extension .pug. The method Response.render() is used to render a specified template along with the values of named variables passed in an object, and then send the result as a response. 
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
-## Atribs a aplicar (en los prototipos)
+---
 
-- originalPrice 
-
-## Método a aplicar (Lógica prototipos)
-
-- UpdatePrice (este método se ejecutará cuando el vehiculo lleve en stock 1 año, actualizará el precio un 5%)
-- applyDiscount (Black friday method, se hace el cálculo con el discountTax, atributo distinto para cada categoria)
-- RestorePrice (devuelve su precio original después de un BlackFriday)
-
-## Método a aplicar (en el Service)
-
-###### Find alls
-- [x] findAll
-- [x][] findByBrand (or brands ???)
-- [x] findByColor
-- [x] findByPrice
-- [x] findByCategory
-- [x] findByDiscountTax
-- [x] findByFuel
-- [x] findByPassengersNum
-- [x] findByYear
-- [x] findAvailables
-- [] findByCharacteristics
-
-###### Find ones
-- [x] findModel
-
-###### Other
-- findByPriceMinorTo
-- findByPriceMajorTo
-
-- SortByMayorPrice
-- SortByMinorPrice
- 
-
-- Actualizar un vehiculo ? PUT
-- Eliminar un vehiculo ? DELETE
-- Añadir un vehiculo ? POST
-
-
-
-# Preguntas que han ido surgiendo a lo largo del dessarrollo:
-
-### Dudas que han surgido en el Controller
-
-1. El modulo resource nos lo podemos ahorrar ??? Ya que en principio el la logica de Ollivaners habiamos creado uno ya que el controller actuaba como el router y el resource de Ollivanders actuaria como el controller de node. 
-
-> Sí, la lógica del resoruces es una capa que nos podemos ahorrar, en Ollivanders no teniamos la capa routers.
-
-2.    Si una lista al hacer un getAll me vuelve vacia, donde compruebo si devuelvo la lista o un mensaje de error en el caso de que este vacia, en el Service o en el controller ? Me creo una función que lo único que haga sea comprobar si la lista está vacia y mantnemos SRP ? Es una validación que se realizará constantemente para cada método que devuelva una lista, tendria sentido crearse una función. 
-
-> La validación se debería hacer, se puede crear un método para ello y debería estar creada en el Controller de la aplicación
-
-3.   Las validaciones se deberían hacer en el service y el objeto debería encapsular una lógica simple que solo sea llamada si se cumple la condición ??? Los if-else deberían ir en el service ?
-
-> La lógica de negocio debe ir encapsulada en el dominio. En el service solo se ataca la bd y se filtra u ordena si se desea pero la lógica de negocio, que es lo que planteo en este caso, la encapsulamos en el dominio
-
-4. Esta función sobra  ???
-```
-        getMinPrice: function() {
-        return this.getOriginalPrice * 0.3;
-    },
-
-    if (this.price > this.originalPrice * 0.3)
-```
-
-> Si hubiera colocado el método dentro del condicional el lenguage del dominio sería mucho más intuitivo y facilitaria el antenimiento del código en el caso de que futuros programadores vinieran a trabjar en el proyecto
-
-5. Cuando le debo asignar el prototipo a los objetos ? 
-
-```
-    //TODO: asignar prototypo ???
-    //? Esto se debe hacer al inicializar la bd ???
-    //* Asignar la propiedad --> es el momento adecuado ???
-    const setPrototypeVehicle = function (vehicle) {
-        if (Object.getPrototypeOf(vehicle) !== Vehicle) {
-            return Object.setPrototypeOf(vehicle, Vehicle.init(vehicle.brand, vehicle.model, vehicle.color, vehicle.price, vehicle.category));
-        }
-    }
-```
-
-> La asignación o lincamiento de prototipos debe producirse en el domain, en la lógica de dominio. Cada entidad deberá ser la encargada de lincar su prototipo a los objetos.
-
-6. Cuando ordeno los aobjetos ?
-
-> En la llamada a la BD ya puedo hacer que me de los obj ordenados según como me interesa
-
-
-# Historias de usuario
-
-- Los obj tendrán el precio inicial de cuando se obtuvieron por primera vez de BD. Por esta razón una vez acabe el "Black Friday" podrán restablecer su valor original sin hacer una query costosa, tan solo tendrán que acceder a su atributo "originalPRice" que será [no enumerable, no configurable y no writeable]. El atributo no vendrá definido de BD por lo que nos ahorramos el campo en los obj a la hora de meterlos en BD y lo creamos al inicializar el obj
-
-- El precio mínimo nunca podrá ser inferior al 40% del precio original o en ese caso al precio se lelos obj a la hora de meterlos en BD y lo creamos al inicializar el obj
-
-- El precio mínimo nunca podrá ser inferior al 40% del precio original o en ese caso al precio se le asignará el valor devuelto por la función getMinPrice(). Cuando hay oferta de descuent asignará el valor devuelto por la función getMinPrice(). Cuando hay oferta de descuento como el Black Friday, no se le aplicará está lógica, cualquier descuento sobre el precio está permitido, la ocasión lo merece, rebajas sin control, no ? Política Black Friday consumista !
-
-- Cada vez que un vehiculo cumple un año se le actualizará el 10% del precio original
-
-- Los vehiculos que tienen un descuento son todos, pero los clasicos no actualizarán su precio (solo lo descuentan en BF), su precio mantiene a lo largo del programa.
-
-- Los vehiculos clasicos no se eliminaran nunca de la flota, solo se eliminaran coches con una antiguedad superior a cinco años y categoria no clasica
-
-- Solo se pueden añadir vehiculos a la flota con una antiguedad inferior a cinco años
-
-- Debería comprobar que al actualizar los coches su disponibilidad está seteada a "true". Solo actualizan los vehiculos con disponibilidad seteada a "true"
-
-- Closure para conseguir asistencia técnica ??? Cuando un vehiculo es reservado se define una propiedad del objeto que trata sobre conseguir asistencia técnica. Solo se puede acceder a ella mientras su prop available este seteada a false. Basicamente lo que hace es pasarle un nombre por parametro y devolver un mensaje diciendo: "Asistencia técninca en camino para <nombre>"
-
-### Ciclo de vida del precio del Vehiculo
-
-Seteamos property ORIGINALPRICE
-> precio = ORIGINALPRICE
-
-Black Friday
-> precio = precio * tasaDescuento
-
-Update Price
-> precio = ORIGINALPRICE * (0.1 * añosVehiculo hasta día de hoy)
-
-Restore Price
-> updatePrice()
-
-
-# Service
-
--  Número de pasajeros me parece más improtante que el color para actualizar la lista, tenemos que ver si el filtro generico funciona y ordenar la lista de menor a mayor. Porque esa lista filtra por año y por núm. de pasajeros.
-
-- Si el filtro generico después ordena de menor a mayor probablemente se pueda incluir el precio. 
-    
-    > Porque yo quiero que me muestre vehiculos a partir de determinado número de pasajeros
-    > A partir de determinado año
-    > A partir de determinado precio (o el precio es a partir de este como máximo ??? )
-
-Explicación updatePrice Vehicle domain:
-> //? Conseguimos el nuevo precio multiplicando el porcentaje por el precio original, porque el precio podría ya tener un descuento aplicado, y el descuento del 10% por año siempre se realizará sobre el precio original
+**[⬆ back to top](#table-of-contents)**
