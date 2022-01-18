@@ -1,0 +1,14 @@
+{
+  "name": "vehicle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "vehicle.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Pau Llinas Amat",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^27.3.1"
+  }
+}

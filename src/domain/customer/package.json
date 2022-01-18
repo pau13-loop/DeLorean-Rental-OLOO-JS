@@ -1,0 +1,14 @@
+{
+  "name": "customer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "customer.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Pau Llinas Amat",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^27.4.7"
+  }
+}
