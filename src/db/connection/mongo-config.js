@@ -6,11 +6,11 @@ require('dotenv').config();
 
 var databaseUri = {
     
-    production: `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@proyectodual.4q26o.mongodb.net/Rent-a-car?retryWrites=true&w=majority`,
+    production: process.env.ATLAS_PRODUCTION,
 
-    development: `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@proyectodual.4q26o.mongodb.net/Rent-a-car?retryWrites=true&w=majority`,
+    development: process.env.ATLAS_DEVELOPMENT,
     
-    test: `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@proyectodual.4q26o.mongodb.net/Rent-a-car_test?retryWrites=true&w=majority`
+    test: process.env.ATLAS_TEST 
 }
 
 module.exports = {

@@ -10,8 +10,7 @@ const bookingsCollection = require("../collections/bookings-collection");
 //* Source: https://github.com/dfleta/pushmees_pullmees/blob/master/db/mongoConfig.js
 
 //* URI *//
-const uri =
-    `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@proyectodual.4q26o.mongodb.net/?retryWrites=true&w=majority`;
+const uri = process.env.MONGO_URI
 
 const client = new MongoClient(uri);
 
