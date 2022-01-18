@@ -10,7 +10,7 @@ What else we cana ask for ? Give a chance and browse the code, you'll love it to
 [![test coverage](https://img.shields.io/badge/coverage-92%25-success)](https://jestjs.io/)
 [![node version](https://img.shields.io/badge/node-v16.13.0-brightgreen)](https://nodejs.org/en/)
 [![npm version](https://img.shields.io/badge/npm-v8.1.0-critical)](https://www.npmjs.com/)
-[![version application](https://img.shields.io/badge/version-v1.0.0-informational)](https://github.com/pau13-loop/DeLorean-Rental-OLOO-JS)
+[![version application](https://img.shields.io/badge/version-v1.0.0-informational)](https://github.com/pau13-loop/DeLorean-Rental-OLOO-JS/releases/tag/v1.0.0)
 
 
 <!-- Source: https://www.deloreanrental.com/ -->
@@ -132,6 +132,10 @@ Sales seasons have become more than usual day by day, and most of them are not a
 ## Instalaltion
 
 To be able to run this project you just will have to create an account into MongoDB, clone this project and run the command `$ npm i` to install all the required dependencies. Finally create a `.env` file in the root directory of your project and fill the credentials specified in the `.env template` that you'll find below. Enjoy !
+
+---
+
+**[⬆ back to top](#table-of-contents)**
 
 ## Links to Project Documentation
 
