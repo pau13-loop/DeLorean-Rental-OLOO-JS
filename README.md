@@ -25,17 +25,17 @@ What else we cana ask for ? Give a chance and browse the code, you'll love it to
 1. [Motivation](#motivation)
 1. [Technologies Implemented](#technologies-implemented)
 1. [Required dependencies](#required-dependencies)
-1. [Required dependencies](#required-dependencies)
-1. [Bibliography](#bibliography)
-1. [Installation](#)
-1. [Collaboration References](#)
+1. [Basic Explanation of User Stories and Business Logic](#basic-explanation-of-user-stories-and-business-logic)
+1. [Installation](#installation)
+1. [Links to Project Documentation](#links-to-project-documentation)
+1. [Acknowledgment](#acknowledgment)
 1. [License](#license)
 
 ## OLOO
 
 What is it OLOO ?
 
-First of all we have to understand what means "OLOO" to understand the concept. OLOO means, Objects Linking to Other Objects. And now we are ready to know how JavaScipts works in base low level. Everything in JavaScript is considered an object and every object has his own prototype.   
+First of all we have to understand what means "OLOO" to understand the concept. OLOO means, Objects Linking to Other Objects. And now we are ready to know how JavaScipts works in base low level. Everything in JavaScript is considered an object and every object has his own prototype. In JavaScript we can't implement inheritance but we can delegate the behaviour of prototype in his own prototype or into other ones, to get the behaviour of other prototypes we will have to implement OLOO, link to the desired prototype to be able to access his own logic. By this way we finally are able to get rid of the suffering colateral effect of the inheritance that other languages implement.  
 
 ---
 
@@ -86,82 +86,96 @@ This project has been created thanks to the motivation of our coding head teache
 
 **[⬆ back to top](#table-of-contents)**
 
-### Questions & Answers that came up during the project development
+## Basic Explanation of User Stories and Business Logic
 
-1. El modulo resource nos lo podemos ahorrar ??? Ya que en principio el la logica de Ollivaners habiamos creado uno ya que el controller actuaba como el router y el resource de Ollivanders actuaria como el controller de node. 
-We can save the resource module ? Because in Ollivanders logic we have created one and the controller in my opinion would act as the router and the Ollivanders resource would act as the node controller. I'm I right ? (Ollivanders is a reference of a project from the first year of Software Development)
+Welcome to DeLorean Rental application. This application is based on a business of a rent a car service. Like all the rent a cars is got his own business logic. 
 
-> Yes, we can save the logic from the resources layer because in Ollivanders project the routers layer was missing
+You've got four different modules that you should remember to understand how everything is connected in order to work:
 
-2. If a list returns empty when I do a getAll, where do I check if I return the list or an error message in case it is empty, in the Service or in the controller layer ? I create a function that the only thing I do is to check if the list is empty and keep SRP ? 
+- Category
+- Vehicles
+- Customers
+- Bookings
 
-> It is a validation that will be performed constantly for each method that returns a list, it would make sense to create a function. And some validation should be done, a method can be created for it and it should be created in the Controller of the application.
+Every one of the modules has got his basic CRUD operations that this one will be, GET, DELETE, UPDATE and CREATE.
 
-3.   Validations should be done in the service and the object should encapsulate simple logic that is only called if some condition is met?
+Each car is got his own price. The price of each car will be updated by a 10% of the original price for each year old it become. By this way always will be able to rent older cars by a cheaper price. This could me like the main slogan of this business to get the attention of the customer. But we have to remember that the price will be updated until it gets to the minimum price that the car can offer, and we get the minimum price of the car by making a 40% of the original price, this one will be always the minimum price updatable for every car in the system.
 
-> The business logic must be encapsulated in the domain. In the service we only attack the database and filter or sort it if desired, but the business logic, which is what I am proposing in this case, is encapsulated in the domain.
+Any customers can register into our app you just will have to provide a valid DNI to get your profile registerd in our data base. 
 
-4. This function is redundant  ?
-```
-        getMinPrice: function() {
-        return this.getOriginalPrice * 0.3;
-    },
+Bookings just will be able to be done by customers registered into our business but also you'll have to be 21 years old or over to be able to rent a car. Anyone under the age of 21 years old will be able to rent a car. At the same the bookings can be created and deleted but not updated to avoid fraudulent usses of the business. In case you make a wrong booking you'll be able to deleted and create another but not update one that already has been created. 
 
-    if (this.price > this.originalPrice * 0.3)
-```
+The stock will show just all vehicles available and just one of them instead of seeing how many cars of the same model and brand are availables. In the end the customer is just interested in one car not into know how many of the one he likes are available in our business.
 
-> If I had placed the method inside the conditional, the domain language would be much more intuitive and would make it easier to maintain the code in case future programmers come to work on the project. As quick as you read the method name you'll related with it's purpose.
+And the more exciting thing of this business logic is how works  the discount method. The discount method will be applied in every "SALES SEASON", this means that will be applied in, for example: 
 
-5. When to assign the prototype to objects ? 
+- Black Friday.
+- New Year's Day
+- Martin Luther King Jr. Day
+- Presidents Day.
+- Easter.
+- Mother's Day.
+- Father's Day.
+- Amazon Prime Day.
+- Tax-free weekends.
+- Halloween.
+- Cyber Monday.
+- Super Saturday.
+- etc
 
-> The assignment or linking of prototypes must take place in the domain, in the domain logic. Each entity shall be responsible for linking its prototype to the objects.
+Sales seasons have become more than usual day by day, and most of them are not always 100% a real sale, then in our business happens the same. Every car is got a category assigned and each category have got his own discount tax and the minimum price it can be applied for the specified category. The discount always will be applied to the original price of the car when this one was registered into the stock for first time instead of the actual price has goot. This means that the new cars of the app probably will have a notorius price reduction but cars that already are a couple of years older and his price has been already updated previously maybe the SALES SEASON instead of make a reduction increase the price, making the people belive that they're are getting a price reduction when actually this is not what is really happening. Enjoy the most belived lie that we know, HAPPY SALES CUSTOMERS !
 
-6. When I order the objects ?
+---
 
-> In the call to the DB I can now make it give me the objects ordered according to my interests.
+**[⬆ back to top](#table-of-contents)**
 
+## Instalaltion
 
-# Historias de usuario
+To be able to run this project you just will have to create an account into MongoDB, clone this project and run the command `$ npm i` to install all the required dependencies. Finally create a `.env` file in the root directory of your project and fill the credentials specified in the `.env template` that you'll find below. Enjoy !
 
-- Los obj tendrán el precio inicial de cuando se obtuvieron por primera vez de BD. Por esta razón una vez acabe el "Black Friday" podrán restablecer su valor original sin hacer una query costosa, tan solo tendrán que acceder a su atributo "originalPRice" que será [no enumerable, no configurable y no writeable]. El atributo no vendrá definido de BD por lo que nos ahorramos el campo en los obj a la hora de meterlos en BD y lo creamos al inicializar el obj
+## Links to Project Documentation
 
-- El precio mínimo nunca podrá ser inferior al 40% del precio original o en ese caso al precio se lelos obj a la hora de meterlos en BD y lo creamos al inicializar el obj
-
-- El precio mínimo nunca podrá ser inferior al 40% del precio original o en ese caso al precio se le asignará el valor devuelto por la función getMinPrice(). Cuando hay oferta de descuent asignará el valor devuelto por la función getMinPrice(). Cuando hay oferta de descuento como el Black Friday, no se le aplicará está lógica, cualquier descuento sobre el precio está permitido, la ocasión lo merece, rebajas sin control, no ? Política Black Friday consumista !
-
-- Cada vez que un vehiculo cumple un año se le actualizará el 10% del precio original
-
-- Los vehiculos que tienen un descuento son todos, pero los clasicos no actualizarán su precio (solo lo descuentan en BF), su precio mantiene a lo largo del programa.
-
-- Los vehiculos clasicos no se eliminaran nunca de la flota, solo se eliminaran coches con una antiguedad superior a cinco años y categoria no clasica
-
-- Solo se pueden añadir vehiculos a la flota con una antiguedad inferior a cinco años
-
-- Debería comprobar que al actualizar los coches su disponibilidad está seteada a "true". Solo actualizan los vehiculos con disponibilidad seteada a "true"
-
-- Closure para conseguir asistencia técnica ??? Cuando un vehiculo es reservado se define una propiedad del objeto que trata sobre conseguir asistencia técnica. Solo se puede acceder a ella mientras su prop available este seteada a false. Basicamente lo que hace es pasarle un nombre por parametro y devolver un mensaje diciendo: "Asistencia técninca en camino para <nombre>"
-
-## User Stories
+### User Stories
 
 [***User Stories***](./doc/user-stories.md)
 
 ---
 
-## Bibliography
+### Bibliography
 
 [**Bibliography**](./doc/bibliography.md)
 
 ---
 
-## Mongo Refresh
+### Mongo Refresh
 
 [***Mongo Refresh***](./doc/mongo-refresh.md)
 
 ---
 
-## Node Refresh
+### Node Refresh
 
 [***Node Refresh***](./doc/node-refresh.md)
+
+### Questions and answers
+
+[***Questions and Answers***](./doc/questions-and-answers.md)
+
+### env. Template
+
+[***.env Template***](./doc/env-template.md)
+
+---
+
+**[⬆ back to top](#table-of-contents)**
+
+## Acknowledgment
+
+I would like to acknowledge the help and support of:
+
+[***dfleta***](https://github.com/dfleta)
+
+[***Charlos16v***](https://github.com/Charlos16v)
 
 ---
 
