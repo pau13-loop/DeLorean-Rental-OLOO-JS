@@ -10,7 +10,7 @@ What else we cana ask for ? Give a chance and browse the code, you'll love it to
 [![test coverage](https://img.shields.io/badge/91%25-coverage-success)](https://jestjs.io/)
 [![node version](https://img.shields.io/badge/node-v16.13.0-brightgreen)](https://nodejs.org/en/)
 [![npm version](https://img.shields.io/badge/npm-v8.1.0-critical)](https://www.npmjs.com/)
-[![version application](https://img.shields.io/badge/version-v1.0.0-informational)](https://github.com/pau13-loop/DeLorean-Rental-OLOO-JS/releases/tag/v1.0.0)
+[![version application](https://img.shields.io/badge/version-v1.0.1-informational)](https://github.com/pau13-loop/DeLorean-Rental-OLOO-JS/releases/tag/v1.0.1)
 
 
 <!-- Source: https://www.deloreanrental.com/ -->
