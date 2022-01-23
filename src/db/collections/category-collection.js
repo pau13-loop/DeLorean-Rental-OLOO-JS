@@ -3,7 +3,7 @@ const ObjectId = require('mongodb').ObjectId;
 // CATEGORIES NUMBER --> 3
 
 module.exports = [
-    //TODO: Add ObjectId manually to obj to insert into DB 
+    //TODO: Add ObjectId
     {
         _id: ObjectId("61b0f513646886f408bd0730"),
         name: "common",

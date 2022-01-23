@@ -15,10 +15,6 @@ var VehicleSchema = new Schema({
         type: Schema.Types.ObjectId, 
         ref: Category
     },
-    // passengers: {
-    //     type: Number, 
-    //     required: true
-    // },
     year: {
         type: Number, 
         required: true

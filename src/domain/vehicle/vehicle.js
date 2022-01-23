@@ -47,7 +47,6 @@ var Vehicle = {
     finishBookingVehicle: function () {
         this.isAvailable = true;
     },
-    //TODO: Object.defineProperty()
     setPrototypeVehicle: function (vehicle) {
         return Object.getPrototypeOf(vehicle) !== Vehicle
             ? Object.setPrototypeOf(vehicle, Vehicle._init(vehicle.model, vehicle.brand, vehicle.category, vehicle.passengers, vehicle.year, vehicle.price, vehicle.isAvailable))

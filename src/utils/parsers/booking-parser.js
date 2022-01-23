@@ -1,4 +1,14 @@
 const BookingParser = (function singletonBookingParser() {
+    //! Private
+    const _getBookingParsed = (data) => {
+        return {
+            id: data._id,
+            startDate: data.startDate,
+            endDate: data.endDate,
+            customer: data.customer,
+            vehicle: data.vehicle
+        };
+    };
 
     const bookingDataParser = (data) => {
         if (data) {
@@ -10,16 +20,6 @@ const BookingParser = (function singletonBookingParser() {
             return _getBookingParsed(data);
         }
         return null;
-    };
-
-    const _getBookingParsed = (data) => {
-        return {
-            id: data._id,
-            startDate: data.startDate,
-            endDate: data.endDate,
-            customer: data.customer,
-            vehicle: data.vehicle
-        };
     };
 
     return {

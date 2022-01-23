@@ -23,6 +23,8 @@ var Category = {
     applyDiscount: function (ORIGINAL_PRICE_VEHICLE) {
         //* When apply discount we want to round to the smallest possible number
         let discountedPrice = Math.floor(ORIGINAL_PRICE_VEHICLE - (0.01 * this.discountTax) * ORIGINAL_PRICE_VEHICLE);
+        console.log('Discounted price: ', discountedPrice);
+        console.log('Min price category: ', this.MIN_PRICE_CATEGORY);
         return  discountedPrice < this.MIN_PRICE_CATEGORY
         ? this.MIN_PRICE_CATEGORY
         : discountedPrice;

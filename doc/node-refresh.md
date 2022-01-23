@@ -42,7 +42,7 @@ One thing of interest above is that the callback function has the third argument
 #### Views (templates)
 The views (templates) are stored in the /views directory (as specified in app.js) and are given the file extension .pug. The method Response.render() is used to render a specified template along with the values of named variables passed in an object, and then send the result as a response. 
 
-## Things I've forgot easly and you should keep in mind
+## Things I've forgotten easly and you should keep in mind
 
 #### app.js (main.js/index.js)
 
