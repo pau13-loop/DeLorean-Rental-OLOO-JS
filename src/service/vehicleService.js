@@ -3,9 +3,21 @@ const VehicleProto = require('../domain/vehicle/vehicle');
 const Category = require('../db/models/category');
 const CategoryProto = require('../domain/category/category');
 const VehicleParser = require('../utils/parsers/vehicle-parser');
-const { CategoryServiceAPI } = require('./categoryService');
 
 const VehicleServiceAPI = (function singletonVehicleService() {
+        //! Private
+        const _setPrototyeVehicles = async (vehiclesList) => {
+            return Promise.all(vehiclesList.map(async (vehicle) => {
+                let category = await Category.findById(vehicle.category.toString());
+
+                const {id, ...categoryProto} = category.toObject();
+                const { _id, ...vehicleProto } = vehicle.toObject();
+    
+                vehicleProto.category = CategoryProto.setPrototypeCategory(categoryProto);
+                return VehicleProto.setPrototypeVehicle(vehicleProto);
+            }));
+        }
+
     const getAllVehicles = () => {
         return Vehicle.find().then(VehicleParser.VehicleParser.vehicleDataParser);
     }
@@ -62,25 +74,12 @@ const VehicleServiceAPI = (function singletonVehicleService() {
         // return [...new Set(vehiclesList)];
         let vehiclesList = await Vehicle.find({ isAvailable: true });
         return vehiclesList.length > 0
-            ? [...new Map(vehiclesList.map((vehicle) => [vehicle['model'], vehicle]))]
+            ? [...new Map(vehiclesList.map((vehicle) => [vehicle['model'], VehicleParser.VehicleParser.vehicleDataParser(vehicle)]))]
             : null;
     }
 
-    //! Private
-    const _setPrototyeVehicles = async (vehiclesList) => {
-        return Promise.all(vehiclesList.map(async (vehicle) => {
-            let category = await CategoryServiceAPI.getOneCategory('id', vehicle.category.toString());
-
-            const {id, ...categoryProto} = category;
-            const { _id, ...vehicleProto } = vehicle.toObject();
-
-            vehicleProto.category = CategoryProto.setPrototypeCategory(categoryProto);
-            return VehicleProto.setPrototypeVehicle(vehicleProto);
-        }));
-    }
-
     const updatePriceVehicles = async () => {
-        //! If we dont parse the mongoose object ot a json object when we will apply the destructing techique we will be getting all the internal cache of a mongoose object
+        //! If we dont parse the mongoose object to json object. When applied the destructing techique we will get all the internal cache of the mongoose object
         // let availableVehiclesList = await Vehicle.find({ available: true }).exec().then(VehicleParser.VehicleParser.vehicleDataParser);
         //! we can not use the parser if we want to .save() the mongo object back after has been updated
         let availableVehiclesList = await Vehicle.find({ isAvailable: true }).exec();
@@ -93,7 +92,7 @@ const VehicleServiceAPI = (function singletonVehicleService() {
             vehicle.save();
         });
         
-        return availableVehiclesList;
+        return VehicleParser.VehicleParser.vehicleDataParser(availableVehiclesList);
     }
 
     const applyDiscountTaxVehicles = async () => {
@@ -106,7 +105,7 @@ const VehicleServiceAPI = (function singletonVehicleService() {
             vehicle.save();
         });
 
-        return availableVehiclesList;
+        return VehicleParser.VehicleParser.vehicleDataParser(availableVehiclesList);
     }
 
     return {

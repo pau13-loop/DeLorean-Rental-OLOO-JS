@@ -1,4 +1,15 @@
 const CustomerParser = (function singletonCustomerParser() {
+    //! Private
+    const _getCustomerParsed = (data) => {
+        return {
+            id: data._id,
+            name: data.name,
+            lastName: data.lastName,
+            birthDate: new Date(data.birthDate).toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" }),
+            dniNumber: data.dniNumber,
+            dniLetter: data.dniLetter
+        };
+    };
 
     const customerDataParser = (data) => {
         if (data) {
@@ -11,17 +22,6 @@ const CustomerParser = (function singletonCustomerParser() {
         }
         return null;
     }
-
-    const _getCustomerParsed = (data) => {
-        return {
-            id: data._id,
-            name: data.name,
-            lastName: data.lastName,
-            birthDate: new Date(data.birthDate).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) ,
-            dniNumber: data.dniNumber,
-            dniLetter: data.dniLetter
-        };
-    };
 
     return {
         customerDataParser

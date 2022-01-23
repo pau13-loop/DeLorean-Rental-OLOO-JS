@@ -1,18 +1,4 @@
 const VehicleParser = (function singletonVehicleParser() {
-
-    const vehicleDataParser = (data) => {
-        if (data) {
-            if (data.length > 0) {
-                //TODO: Map
-                return data.map(vehicle => {
-                    return _getVehicleParsed(vehicle);
-                });
-            }
-            return _getVehicleParsed(data);
-        }
-        return null;
-    };
-
     //! Private
     const _getVehicleParsed = (data) => {
         return {
@@ -25,6 +11,19 @@ const VehicleParser = (function singletonVehicleParser() {
             price: data.price,
             isAvailable: data.isAvailable
         };
+    };
+
+    const vehicleDataParser = (data) => {
+        if (data) {
+            if (data.length > 0) {
+                //TODO: Map
+                return data.map(vehicle => {
+                    return _getVehicleParsed(vehicle);
+                });
+            }
+            return _getVehicleParsed(data);
+        }
+        return null;
     };
 
     return {

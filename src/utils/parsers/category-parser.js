@@ -1,6 +1,15 @@
 const CategoryProto = require('../../domain/category/category');
 
 const CategoryParser = (function singletonCategoryParser() {
+    //! Private
+    const _getCategoryParsed = (data) => {
+        return {
+            id: data._id,
+            name: data.name,
+            discountTax: data.discountTax
+        };
+    };
+
     const categoryDataParser = (data) => {
         if (data) {
             if (data.length > 0) {
@@ -16,14 +25,6 @@ const CategoryParser = (function singletonCategoryParser() {
             return _getCategoryParsed(data);
         }
         return null;
-    };
-
-    const _getCategoryParsed = (data) => {
-        return {
-            id: data._id,
-            name: data.name,
-            discountTax: data.discountTax
-        };
     };
 
     return {
